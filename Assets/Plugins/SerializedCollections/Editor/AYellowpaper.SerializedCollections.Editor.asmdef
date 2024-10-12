@@ -1,11 +1,11 @@
 {
-    "name": "ScriptsAssemblyDefinition",
-    "rootNamespace": "",
+    "name": "AYellowpaper.SerializedCollections.Editor",
     "references": [
-        "GUID:d525ad6bd40672747bde77962f1c401e",
-        "GUID:234340c04eed5674a988bc6ebde7d248"
+        "GUID:d525ad6bd40672747bde77962f1c401e"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
