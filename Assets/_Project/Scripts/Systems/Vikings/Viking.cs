@@ -13,6 +13,7 @@ namespace Vikings
 {
     public class Viking : MonoBehaviour
     {
+        
         [Header("Gender"), Tooltip("Uses the Gender emum from SettlerEnumerators.cs- Gender.Male / Gender.Female")]
         public Gender gender;     // there is no historical evidence of other gender descriptors from the Viking era
         
@@ -24,10 +25,21 @@ namespace Vikings
         public string      surName;
         // a unique ID for the family the settler belongs to
         public int         familyID;
-       
-        // composes a struct of stats that the settler has, these can be used to modify the settler's abilities
+
+        [Header("Stats"), Tooltip("a struct of stats that the settler has")]
         public VikingStats stats;
         // composes a list of skills that the settler has, these can be used to determine settler status and modify the settler's tasks
-        private List<Skill>  skills;     
+        [Header("SKills"), Tooltip("a struct of stats that the settler has")]
+        private List<Skill>  skills;
+
+        /// <summary>
+        /// The paramaterized constructor for the Viking class called by the settlerFactory.
+        /// </summary>
+        /// <returns>A set up and initialised Viking object</returns>
+        public Viking Viking()
+        {
+            // create a new list of skills for the settler
+            skills = new List<Skill>();
+        }
     }
 }
