@@ -9,30 +9,39 @@
  */
 using PatternLibrary;
 using UnityEngine;
-
-namespace Settler
+using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
+namespace SettlerSystem
 {
     public class SettlerFactory : Singleton<SettlerFactory>
     {
         // source of Settler randomization
         [SerializeField] private SettlerRandomizer settlerRandomizer;
-
+        [SerializeField] private SettlerBaseStats settlerBaseStats;
+        [SerializeField] private SettlerSkillDictionary settlerSkillDictionary;
         protected override void Awake()
         {
             base.Awake();
-            if (settlerRandomizer == null)
+            if (settlerRandomizer == null || settlerBaseStats == null || settlerSkillDictionary == null)
             {
-                Debug.LogError("SettlerFactory: SettlerRandomizer not set in the inspector");
+                Debug.LogError("SettlerFactory not set up correctly in the inspector");
             }
         }
 
-        public Settler Create(SocialStatus socialStatus = SocialStatus.Unassigned, int familyID = 0)
+        public GameObject Create(SocialStatus socialStatus = SocialStatus.Unassigned, int familyID = 0)
         {
-            Settler settler = new Settler();
+            GameObject _go = new GameObject();
+            _go.tag = "Settler";
+            Settler settler = _go.AddComponent<Settler>();
             settler.gender = GenerateRandomisedGender();
             settler.familyID = familyID;
-            //settler.SocialStatus = socialStatus;
-            return settler;
+            settler.forename = GenerateRandomisedForeName(settler.gender);
+            settler.surname = GenerateRandomisedSurName();
+            _go.name = $"Settler_{settler.forename}_{settler.surname}";
+            settler.skills = new SerializedDictionary<string,int>(settlerSkillDictionary.skills);
+            settler.traits = new SerializedDictionary<string, List<SettlerModifiers>>();
+            //settler.stats = settlerBaseStats.stats;
+            return _go;
         }
 
         /// <summary>
@@ -80,7 +89,7 @@ namespace Settler
 
         private string GenerateRandomisedSurName()
         {
-            return "Settler";
+            return "Bloodaxe";
         }
     }
 }

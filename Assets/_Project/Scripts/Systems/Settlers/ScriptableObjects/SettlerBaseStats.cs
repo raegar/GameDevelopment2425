@@ -7,7 +7,7 @@
 
 using UnityEngine;
 
-namespace Settler
+namespace SettlerSystem
 {
     [CreateAssetMenu(fileName = "SettlerBaseStats", menuName = "GameData/Settlers/SettlerBaseStat", order = 1)]
     public class SettlerBaseStats : ScriptableObject

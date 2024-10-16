@@ -7,7 +7,7 @@
 
 using UnityEngine;
 
-namespace Settler 
+namespace SettlerSystem 
 { 
     [CreateAssetMenu(fileName = "SettlerRandomizer", menuName = "GameData/Settlers/settlerRandomiser", order = 1)]
     public class SettlerRandomizer : ScriptableObject

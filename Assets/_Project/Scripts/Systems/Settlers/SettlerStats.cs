@@ -6,8 +6,9 @@
  */
 using UnityEngine;
 
-namespace Settler
+namespace SettlerSystem
 {
+    [System.Serializable]
     public class SettlerStats
     {
         [Tooltip("Was the settler born in the settlement (true) or migrated to it (false)")]

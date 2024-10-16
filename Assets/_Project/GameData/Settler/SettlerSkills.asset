@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2be4d95b2f3704899dad437f531638, type: 3}
   m_Name: SettlerSkills
   m_EditorClassIdentifier: 
-  settlerSkills:
-    _serializedList: []
+  skills:
+    _serializedList:
+    - Key: Woodworking
+      Value: 1
+    - Key: Killing Things
+      Value: 9
+    - Key: Farming
+      Value: 1

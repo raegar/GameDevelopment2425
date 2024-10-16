@@ -9,10 +9,14 @@ using UnityEngine;
 using AYellowpaper.SerializedCollections;
 using AYellowpaper.SerializedCollections.Editor;
 
-
-[CreateAssetMenu(fileName = "SettlerSkills", menuName = "GameData/Settlers/SettlerSkills", order = 1)]
-public class SettlerSkills : ScriptableObject
+namespace SettlerSystem
 {
-    [SerializedDictionary("Skill", "Initial Value")]
-    public SerializedDictionary<string,int> settlerSkills = new SerializedDictionary<string, int>();
+
+    [CreateAssetMenu(fileName = "SettlerSkills", menuName = "GameData/Settlers/SettlerSkills", order = 1)]
+    public class SettlerSkillDictionary : ScriptableObject
+    {
+        [SerializedDictionary("Skill", "Initial Value")]
+        public SerializedDictionary<string, int> skills = new SerializedDictionary<string, int>();
+    }
+
 }
