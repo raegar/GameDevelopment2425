@@ -5,14 +5,12 @@
  * Purpose      : This script is the data container for settler base stats, a scriptable object has been used to allow for easy modification by the designers of settler stats in the future.
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
 using AYellowpaper.SerializedCollections.Editor;
 
 
-[CreateAssetMenu(fileName = "SettlerBaseStats", menuName = "GameData/Settlers/SettlerSkills", order = 1)]
+[CreateAssetMenu(fileName = "SettlerSkills", menuName = "GameData/Settlers/SettlerSkills", order = 1)]
 public class SettlerSkills : ScriptableObject
 {
     [SerializedDictionary("Skill", "Initial Value")]

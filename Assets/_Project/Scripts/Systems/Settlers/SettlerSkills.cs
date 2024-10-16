@@ -3,15 +3,16 @@
  * Purpose : This script defines a singular skill that a settler can have. Skills are a prerequsite for certain tasks.
  *           e.g. only a settler with the 'Blacksmith' skill can make a shovel.
  */
-using System.Collections;
-using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
-namespace Settlers
+namespace Settler
 {
 
-    public class VikingSkill : MonoBehaviour
+    public class SettlerSkills : MonoBehaviour
     {
-        
+        public SerializedDictionary<string, int> settlerSkills;
+
+
     }
 }

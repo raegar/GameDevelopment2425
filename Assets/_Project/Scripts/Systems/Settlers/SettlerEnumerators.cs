@@ -28,6 +28,7 @@ public enum Gender // The gender of the settler - only used cosmetically & for f
 
 public enum SocialStatus 
 {
+    Unassigned, // A settler that has not been assigned a social status
     Thrall, // A slave or servant
     Karl,   // A free middle class settler
     Warrior,// A warrior or soldier

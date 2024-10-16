@@ -9,14 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa2be4d95b2f3704899dad437f531638, type: 3}
+  m_Script: {fileID: 11500000, guid: 420cc733ae85ef741a559bfee1215c70, type: 3}
   m_Name: SettlerBaseStats
   m_EditorClassIdentifier: 
-  settlerSkills:
-    _serializedList:
-    - Key: Woodcutting
-      Value: 0
-    - Key: Foraging
-      Value: 0
-    - Key: Axe Combat
-      Value: 0
+  wasBornInSettlement: 1
+  health: 0
+  maxHealth: 0
+  gender: 0
+  socialStatus: 0
+  ageInDays: 1
+  hunger: 1
+  fatigue: 1
+  happiness: 0.5
+  attack: 0
+  defence: 0
+  moneyOwned: 0
