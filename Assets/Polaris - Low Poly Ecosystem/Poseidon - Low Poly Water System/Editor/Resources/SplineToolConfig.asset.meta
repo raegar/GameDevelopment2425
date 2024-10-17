@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8e5e7a805294a72489c9d4af76a31acc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153826
+  packageName: Low Poly Water - Builtin & URP - Poseidon
+  packageVersion: 1.8.6
+  assetPath: Assets/Polaris - Low Poly Ecosystem/Poseidon - Low Poly Water System/Editor/Resources/SplineToolConfig.asset
+  uploadId: 572787
