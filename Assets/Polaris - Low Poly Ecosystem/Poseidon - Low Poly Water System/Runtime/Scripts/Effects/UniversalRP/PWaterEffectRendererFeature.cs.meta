@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 52820e82bff58474cbdc4c685df7f99a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153826
+  packageName: Low Poly Water - Builtin & URP - Poseidon
+  packageVersion: 1.8.6
+  assetPath: Assets/Polaris - Low Poly Ecosystem/Poseidon - Low Poly Water System/Runtime/Scripts/Effects/UniversalRP/PWaterEffectRendererFeature.cs
+  uploadId: 572787
