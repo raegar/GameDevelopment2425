@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,6 +39,7 @@ namespace InventorySystem
                     Image image = transform.GetComponent<Image>();
                     image.sprite = item.GetSprite();
                 }
+                
                 x++;
                 if (x > 4)
                 {

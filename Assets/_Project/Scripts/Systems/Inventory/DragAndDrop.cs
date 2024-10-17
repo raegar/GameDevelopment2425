@@ -10,7 +10,7 @@ namespace InventorySystem
         {
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
-            transform.SetAsFirstSibling();
+            transform.SetSiblingIndex(3); //is parented to the viewport when dragged
         }
 
         public void OnDrag(PointerEventData eventData)
