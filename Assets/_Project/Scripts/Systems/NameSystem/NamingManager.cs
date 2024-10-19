@@ -19,7 +19,7 @@ public class NamingManager : MonoBehaviour
 {
     static public NamingManager Instance { get; private set; }
 
-    // This dictionary is used to sstore the full names of vikings and prevent duplicate names.
+    // This dictionary is used to store the full names of vikings and prevent duplicate names.
     private Dictionary<string, bool> fullnameRecord = new Dictionary<string, bool>();
 
     [Header("Name and Title Lists\n-These lists are populated from the text files. \n-They are used to assign names and titles to vikings.\n\n=== DO NOT MODIFY THESE LISTS VIA INSPECTOR === \n-Use the text files instead.")]
@@ -80,6 +80,7 @@ public class NamingManager : MonoBehaviour
             File.WriteAllText(path3, string.Join("\n", defaultTitles));
         }
     }
+
     private void LoadTextFiles() // <--- This method loads the text files into the lists.
     {
         //- The text files are loaded into the lists maleNames, femaleNames, and titles.
@@ -89,9 +90,10 @@ public class NamingManager : MonoBehaviour
         femaleNames = File.ReadAllLines(path2).ToList();
         titles = File.ReadAllLines(path3).ToList();
     }
+
     public void AssignTitle(string title) // <--- IMPORTANT!!!!!!! should also take a viking as a parameter when implemented.
     {
-        //Add title to viking
+        // Add title to viking
     }
 
     public string ChooseFirstName(bool isMale)
@@ -107,26 +109,61 @@ public class NamingManager : MonoBehaviour
                 break;
         }
         return chosenName;
-    }// <--- Use this one for all vikings/children. This method will assign a first name to a viking.
+    } // <--- Use this one for all vikings/children. This method will assign a first name to a viking.
 
-    public string ChooseLastName(bool isMale, bool isChild) //  <--- isChild logic not implemented yet.
+    public string ChooseLastName(bool isMale) // <--- Non-child logic
     {
         string chosenName = "";
         string surname = "";
-        if (isChild)
+
+        switch (isMale)
         {
-            //- Add logic for child last names. These should be based on the parents' last names.
-            //- NOT YET IMPLEMENTED
-            switch (isMale)
+            case true:
+                chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                break;
+            case false:
+                chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                break;
+        }
+        surname = chosenName;
+
+        return surname;
+    }
+
+    public string ChooseLastName(bool isMale, bool isChild, bool usePatronymic, string fatherName, string motherName) // <--- isChild logic not implemented yet.
+    {
+        string chosenName = "";
+        string surname = "";
+        if (usePatronymic)
+        {
+            if (isChild)
             {
-                case true:
-                    chosenName = maleNames[Random.Range(0, maleNames.Count)];
-                    break;
-                case false:
-                    chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
-                    break;
+                //- Add logic for child last names. These should be based on the parents' last names.
+                //- NOT YET IMPLEMENTED
+                switch (isMale)
+                {
+                    case true:
+                        chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                        break;
+                    case false:
+                        chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                        break;
+                }
+                surname = PatronymicSurname(chosenName, isMale);
             }
-            surname = PatronymicSurname(chosenName, isMale);
+            else
+            {
+                switch (isMale)
+                {
+                    case true:
+                        chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                        break;
+                    case false:
+                        chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                        break;
+                }
+                surname = chosenName;
+            }
         }
         else
         {
@@ -145,17 +182,71 @@ public class NamingManager : MonoBehaviour
         return surname;
     }
 
-    private string PatronymicSurname(string surname, bool isMale)
+    public string PatronymicSurname(string surname, bool isMale)
     {
-        //- The implementation should take into account genitive form, and the suffixes -son (son) and -dottir (daughter).
+        // For more information on how the Patronymic/Viking naming system functioned, here is the resource I used: https://www.ellipsis.cx/~liana/names/norse/sg-viking.html
 
-        // NOT YET IMPLEMENTED, REQUIRES FURTHER RESEARCH INTO NAMING CONVENTIONS
+        // Dictionary to store name endings and their corresponding suffixes
+        var nameEndings = new Dictionary<string, string> // <--- This dictionary is used to store the name endings and their corresponding suffixes.
+        {
+            { "dan", "ar" },
+            { "endr", "ar" },
+            { "freor", "ar" },
+            { "froor", "ar" },
+            { "gautr", "ar" },
+            { "mundr", "ar" },
+            { "roor", "ar" },
+            { "undr", "ar" },
+            { "unn", "ar" }, // special case for "unn"
+            { "uror", "ar" },
+            { "varor", "ar" },
+            { "vior", "ar" },
+            { "vindr", "ar" },
+            { "poror", "ar" },
+            { "prondr", "ar" },
+            { "iorn", "jarnar" }, // almost certain bjorn and biorn follow the same naming conventions, could do with a bit more indepth research
+            { "orn", "arnar" },
+            { "i", "a" },
+            { "a", "u" },
+            { "nn", "ns" },
+            { "ll", "ls" },
+            { "rr", "rs" },
+            { "r", "s" },
+            { "ir", "is" }
+        };
 
-        string nameSuffix = "SUFFIX"; // Placeholder
+        // Find the appropriate suffix based on the surname ending
+        string genderSuffix = isMale ? "son" : "dottir"; // <--- Select appropriate suffix based on gender
+        string genderSuffixNoSpecial = isMale ? "son" : "sdottir"; // <--- This one incorporates the possessive "s" for names that aren't given a custom suffix.
 
-        string finalSurname = surname + nameSuffix;
+        if (surname.EndsWith("unn")) // <--- Special case for "unn"
+        {
+            return surname.Substring(0, surname.Length - 1) + nameEndings["unn"] + genderSuffix;
+        }
 
-        return finalSurname;
+        var first15Keys = nameEndings.Keys.Take(15).ToList();
+        foreach (var key in first15Keys)
+        {
+            if (surname.EndsWith(key) && key != "uror")
+            {
+                return surname + nameEndings[key] + genderSuffix;
+            }
+
+            else if (surname.EndsWith(key) && key == "uror")
+            {
+                return surname.Substring(0, surname.Length - 2) + nameEndings[key] + genderSuffix;
+            }
+        }
+
+        foreach (var ending in nameEndings.Keys)
+        {
+            if (surname.EndsWith(ending))
+            {
+                return surname.Substring(0, surname.Length - ending.Length) + nameEndings[ending] + genderSuffix;
+            }
+        }
+        // Default case if no matching ending is found
+        return surname + genderSuffixNoSpecial;
     } // <--- This method creates a patronymic surname based on the name of the father.
 
     private (string, string) RecordFullName(bool isMale, bool isChild, string firstName, string lastName) // <--- This method records the full name of a viking and returns it as a tuple (string, string).
@@ -206,10 +297,18 @@ public class NamingManager : MonoBehaviour
         }
     }
 
-    public (string, string) GetFullNameQuickly(bool isMale, bool isChild) // <--- This method is used to get a full name quickly. It returns a tuple (string, string).
+    public (string, string) GetFullNameQuickly(bool isMale, bool isChild, bool usePatronymics) // <--- This method is used to get a full name quickly. It returns a tuple (string, string).
     {
         string firstName = ChooseFirstName(isMale);
-        string lastName = ChooseLastName(isMale, isChild);
+        string lastName = ChooseLastName(isMale); // <--- Use this one for viking without child/patronymics logic.
+        (string, string) fullName = RecordFullName(isMale, isChild, firstName, lastName);
+        Debug.Log($"Full name: {fullName.ToString()}.");
+        return fullName;
+    }
+    public (string, string) GetFullNameQuickly(bool isMale, bool isChild, bool usePatronymics, string fatherName, string motherName) // <--- This method is used to get a full name quickly. It returns a tuple (string, string).
+    {
+        string firstName = ChooseFirstName(isMale);
+        string lastName = ChooseLastName(isMale, isChild, usePatronymics, fatherName, motherName); // <--- Use this one for children and use of patronymics.
         (string, string) fullName = RecordFullName(isMale, isChild, firstName, lastName);
         Debug.Log($"Full name: {fullName.ToString()}.");
         return fullName;

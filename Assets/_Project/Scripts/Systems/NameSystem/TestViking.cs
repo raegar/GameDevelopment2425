@@ -15,12 +15,12 @@ public class TestViking : MonoBehaviour
 
     //First and Last names extracted from the vikingName tuple.
     [SerializeField] private string vikingFirstName, vikingLastName;
-    [SerializeField] private bool isMale, isChild;
+    [SerializeField] private bool isMale, isChild, usePatronymics;
     [SerializeField] private TextMeshPro nameText; // <--- TextMeshPro component to display the viking's name.
 
     private void Start()
     {
-        vikingName = NamingManager.Instance.GetFullNameQuickly(isMale, isChild); // <--- The method called here provides complete functionality for getting a full name.
+        vikingName = NamingManager.Instance.GetFullNameQuickly(isMale, isChild, usePatronymics); // <--- The method called here provides complete functionality for getting a full name.
         (vikingFirstName, vikingLastName) = vikingName; // <--- Deconstruct the tuple into two separate strings.
         nameText.text = vikingFirstName + " " + vikingLastName; // <--- Display the viking's name in the scene.
         Debug.Log(vikingName);
