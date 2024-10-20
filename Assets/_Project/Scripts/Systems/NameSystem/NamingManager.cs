@@ -22,12 +22,12 @@ public class NamingManager : MonoBehaviour
     // This dictionary is used to store the full names of vikings and prevent duplicate names.
     private Dictionary<string, bool> fullnameRecord = new Dictionary<string, bool>();
 
-    [Header("Name and Title Lists\n-These lists are populated from the text files. \n-They are used to assign names and titles to vikings.\n\n=== DO NOT MODIFY THESE LISTS VIA INSPECTOR === \n-Use the text files instead.")]
+    [Header("Name and Title Lists\n-These lists are populated from the text files. \n-They are used to assign names and titles to vikings.")] // These should not be modified via inspector
     [SerializeField] private List<string> maleNames = new List<string>();
     [SerializeField] private List<string> femaleNames = new List<string>();
     [SerializeField] private List<string> titles = new List<string>();
 
-    [Header("Default Name Lists\n-Lists of default names for the system to use if it can't find the files.\n-These can be safely modified via inspector.")]
+    [Header("Default Name Lists\n-Lists of default names for the system to use if it can't find the files.")] // These can be modified via inspector
     [SerializeField] private List<string> defaultMaleNames = new List<string>();
     [SerializeField] private List<string> defaultFemaleNames = new List<string>();
     [SerializeField] private List<string> defaultTitles = new List<string>();
@@ -90,12 +90,6 @@ public class NamingManager : MonoBehaviour
         femaleNames = File.ReadAllLines(path2).ToList();
         titles = File.ReadAllLines(path3).ToList();
     }
-
-    public void AssignTitle(string title) // <--- IMPORTANT!!!!!!! should also take a viking as a parameter when implemented.
-    {
-        // Add title to viking
-    }
-
     public string ChooseFirstName(bool isMale)
     {
         string chosenName = "";
