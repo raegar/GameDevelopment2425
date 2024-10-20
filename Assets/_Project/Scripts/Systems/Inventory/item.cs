@@ -1,5 +1,6 @@
 //using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace InventorySystem
 {
@@ -10,7 +11,7 @@ namespace InventorySystem
         //public TextMeshProUGUI itemNameText;
 
         public Sprite itemSprite;
-        public SpriteRenderer spriteRenderer;
+        public Image itemImage;
 
         public string iteminformation;
         public GameObject itemInformationGO;
@@ -20,10 +21,12 @@ namespace InventorySystem
 
         private void Start()
         {
+            // itemName = gameObject.name;
+            // itemNameText = GetComponentInChildren<TextMeshProUGUI>();
             //itemNameText.text = itemName; // set the item name
 
-            spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = itemSprite; // set the item sprite
+            itemImage = GetComponentInChildren<Image>();
+            itemImage.sprite = itemSprite; // set the item sprite
 
         }
 
