@@ -19,7 +19,7 @@ namespace InventorySystem
             itemContainer = transform.Find("itemContainer");
             itemTemplate = itemContainer.Find("item");
         }
-        public void RefreshInventoryItems() // refresh the inventory
+        private void RefreshInventoryItems() // refresh the inventory
         {
             int x = 0;
             int y = 0;

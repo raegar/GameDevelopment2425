@@ -6,8 +6,15 @@ namespace InventorySystem
     public class Inventory : MonoBehaviour
     {
         private List<InventoryItem> itemList;
+
+        private List<Item> items;
         public Inventory()
         {
+
+            items = new List<Item>();
+
+            
+
             itemList = new List<InventoryItem>();
             
             AddItem(new InventoryItem { itemType = InventoryItem.Item.Wood, amount = 1 });
@@ -25,6 +32,11 @@ namespace InventorySystem
         public List<InventoryItem> GetItemList()
         {
             return itemList;
+        }
+
+        public void AddItem(string itemName, Sprite itemSprite)
+        {
+
         }
     }
 }
