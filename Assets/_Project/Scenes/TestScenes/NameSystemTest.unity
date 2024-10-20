@@ -453,6 +453,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8149476894116225633, guid: fc8e76645549ab749b7f65cf407728ed,
+        type: 3}
+      propertyPath: usePatronymics
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -657,7 +662,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maleNames: []
   femaleNames: []
-  titles: []
   defaultMaleNames:
   - Birger
   - Bjorn
@@ -680,12 +684,6 @@ MonoBehaviour:
   - Yrsa
   - Ulfhild
   - Ase
-  defaultTitles:
-  - the Slayer
-  - the Conqueror
-  - the Raider
-  - the Berserker
-  - the Butcher
 --- !u!4 &1720903689
 Transform:
   m_ObjectHideFlags: 0
