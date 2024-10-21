@@ -65,11 +65,21 @@ public class NamingManager : MonoBehaviour
 
     void VerifyTextFiles() // <--- This method creates text files if they do not exist. If missing, default names are used.
     {
+        string maleNamesText = File.ReadAllText(path1);
+        string femaleNamesText = File.ReadAllText(path2);
         if (!File.Exists(path1))
         {
             File.WriteAllText(path1, string.Join("\n", defaultMaleNames));
         }
+        else if (maleNamesText.Length == 0)
+        {
+            File.WriteAllText(path1, string.Join("\n", defaultMaleNames));
+        }
         if (!File.Exists(path2))
+        {
+            File.WriteAllText(path2, string.Join("\n", defaultFemaleNames));
+        }
+        else if (femaleNamesText.Length == 0)
         {
             File.WriteAllText(path2, string.Join("\n", defaultFemaleNames));
         }
