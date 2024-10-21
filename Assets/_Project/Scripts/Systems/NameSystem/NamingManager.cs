@@ -99,16 +99,30 @@ public class NamingManager : MonoBehaviour
         switch (isMale)
         {
             case true:
-                chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                if (maleNames.Count > 0)
+                {
+                    chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                }
+                else
+                {
+                    Debug.LogError("Error: maleNames list is empty. Check the text file or the default names.");
+                }
                 break;
             case false:
-                chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                if (femaleNames.Count > 0)
+                {
+                    chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                }
+                else
+                {
+                    Debug.LogError("Error: femaleNames list is empty. Check the text file or the default names.");
+                }
                 break;
         }
         return chosenName;
     } // <--- Use this one for all vikings/children. This method will assign a first name to a viking.
 
-    public string ChooseLastName(bool isMale) // <--- Non-child logic
+    public string ChooseLastName(bool isMale) // <--- Non-child logic, use this when not needing patronymics and want random last names.
     {
         string chosenName = "";
         string surname = "";
@@ -116,10 +130,24 @@ public class NamingManager : MonoBehaviour
         switch (isMale)
         {
             case true:
-                chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                if (maleNames.Count > 0)
+                {
+                    chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                }
+                else
+                {
+                    Debug.LogError("Error: maleNames list is empty. Check the text file or the default names.");
+                }
                 break;
             case false:
-                chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                if (femaleNames.Count > 0)
+                {
+                    chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                }
+                else
+                {
+                    Debug.LogError("Error: femaleNames list is empty. Check the text file or the default names.");
+                }
                 break;
         }
         surname = chosenName;
@@ -142,10 +170,24 @@ public class NamingManager : MonoBehaviour
                 switch (isMale)
                 {
                     case true:
-                        chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                        if (maleNames.Count > 0)
+                        {
+                            chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                        }
+                        else
+                        {
+                            Debug.LogError("Error: maleNames list is empty. Check the text file or the default names.");
+                        }
                         break;
                     case false:
-                        chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                        if (femaleNames.Count > 0)
+                        {
+                            chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                        }
+                        else
+                        {
+                            Debug.LogError("Error: femaleNames list is empty. Check the text file or the default names.");
+                        }
                         break;
                 }
                 surname = chosenName;
@@ -156,10 +198,24 @@ public class NamingManager : MonoBehaviour
             switch (isMale)
             {
                 case true:
-                    chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                    if (maleNames.Count > 0)
+                    {
+                        chosenName = maleNames[Random.Range(0, maleNames.Count)];
+                    }
+                    else
+                    {
+                        Debug.LogError("Error: maleNames list is empty. Check the text file or the default names.");
+                    }
                     break;
                 case false:
-                    chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                    if (femaleNames.Count > 0)
+                    {
+                        chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
+                    }
+                    else
+                    {
+                        Debug.LogError("Error: femaleNames list is empty. Check the text file or the default names.");
+                    }
                     break;
             }
             surname = chosenName;
