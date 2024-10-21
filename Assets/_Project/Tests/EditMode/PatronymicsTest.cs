@@ -16,10 +16,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Auounn";
-        bool isMale = true;
+        Gender gender = Gender.Male;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Auounarson", result); // <--- In the case of "unn", we replace the last letter with "ar". This is a special case.
@@ -30,10 +30,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Auounn";
-        bool isMale = false;
+        Gender gender = Gender.Female;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Auounardottir", result);
@@ -44,10 +44,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Halfdan";
-        bool isMale = true;
+        Gender gender = Gender.Male;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Halfdanarson", result);
@@ -58,10 +58,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Haldan";
-        bool isMale = false;
+        Gender gender = Gender.Female;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Haldanardottir", result);
@@ -72,10 +72,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Thuror";
-        bool isMale = true;
+        Gender gender = Gender.Male;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Thurarson", result);
@@ -86,10 +86,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Thuror";
-        bool isMale = false;
+        Gender gender = Gender.Female;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Thurardottir", result);
@@ -100,10 +100,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Bjorn";
-        bool isMale = true;
+        Gender gender = Gender.Male;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Bjarnarson", result);
@@ -114,10 +114,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Bjorn";
-        bool isMale = false;
+        Gender gender = Gender.Female;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Bjarnardottir", result);
@@ -128,10 +128,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Erik"; // <--- Erik is a name that shouldn't be given any sort of special ending.
-        bool isMale = true;
+        Gender gender = Gender.Male;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Erikson", result);
@@ -142,10 +142,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Erik";
-        bool isMale = false;
+        Gender gender = Gender.Female;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Eriksdottir", result); // <--- The reason there is an "s" is because in the case of no custom suffix, we add a possessive "s" which "son" already comes with.
@@ -156,10 +156,10 @@ public class PatronymicsTests
     {
         // Arrange
         string surname = "Biorn";
-        bool isMale = true;
+        Gender gender = Gender.Male;
 
         // Act
-        string result = namingManager.PatronymicSurname(surname, isMale);
+        string result = namingManager.PatronymicSurname(surname, gender);
 
         // Assert
         Assert.AreEqual("Bjarnarson", result);

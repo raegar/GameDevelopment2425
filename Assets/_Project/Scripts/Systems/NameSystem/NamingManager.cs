@@ -10,15 +10,15 @@
  * Tip     : Use the GetFullNameQuickly method to get a full name as a tuple. See the TestViking script for an example.
  */
 
+using PatternLibrary;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting.YamlDotNet.Serialization;
 using UnityEngine;
 
-public class NamingManager : MonoBehaviour
+public class NamingManager : Singleton<NamingManager>
 {
-    static public NamingManager Instance { get; private set; }
-
     // This dictionary is used to store the full names of vikings and prevent duplicate names.
     private Dictionary<string, bool> fullnameRecord = new Dictionary<string, bool>();
 
@@ -27,36 +27,37 @@ public class NamingManager : MonoBehaviour
     [SerializeField] private List<string> femaleNames = new List<string>();
 
     // Default placeholder name arrays")]
-    private string[] defaultMaleNames = { "Birger", "Bjorn", "Bo", "Erik", "Frode", "Gorm", "Halfdan", "Harald", "Knud", "Svend" }; // Default set of names in case of missing file.
-    private string[] defaultFemaleNames = { "Astrid", "Frida", "Gertrud", "Hilda", "Helga", "Sigrid", "Tora", "Yrsa", "Ulfhild", "Ase" };
+    private List<string> defaultMaleNames = new List<string>(); // Default set of names in case of missing file.
+    private List<string> defaultFemaleNames = new List<string>();
 
-    private string path1, path2;
+    private string path1, path2, defaultPath1, defaultPath2, internalDirectoryPath, externalDirectoryPath;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // <--- This will prevent the object from being destroyed when a new scene is loaded.
-        }
-        else
-        {
-            Destroy(this);
-        }
+        base.Awake();
 
         //- The persistentDataPath ensures that the path of the text files is always the same.
         //- This is important because the path is used to save and load the text files.
         //- The path should point to: %userprofile%\AppData\LocalLow\<companyname>\<productname>
         //- Unity Docs: https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html
 
-        string directoryPath = Application.persistentDataPath + "/TextFiles";
-        Debug.Log($"Data path: {directoryPath}");
-        if (!Directory.Exists(directoryPath))
+        externalDirectoryPath = Application.persistentDataPath + "/NameFiles";
+        internalDirectoryPath = Application.streamingAssetsPath + "/NameFiles";
+        Debug.Log($"Data path: {externalDirectoryPath}");
+        if (!Directory.Exists(externalDirectoryPath))
         {
-            Directory.CreateDirectory(directoryPath); // <--- This will create the directory if it does not exist.
+            Directory.CreateDirectory(externalDirectoryPath); // <--- This will create the external directory if it does not exist.
         }
-        path1 = directoryPath + "/MaleNames.txt";
-        path2 = directoryPath + "/FemaleNames.txt";
+        
+        // No writing to StreamingAssets directory as it is read-only!!!
+
+        path1 = externalDirectoryPath + "/MaleNames.txt";
+        path2 = externalDirectoryPath + "/FemaleNames.txt";
+
+        defaultPath1 = internalDirectoryPath + "/DefaultMaleNames.txt";
+        defaultPath2 = internalDirectoryPath + "/DefaultFemaleNames.txt";
+
+
 
         VerifyTextFiles();
         LoadTextFiles();
@@ -65,13 +66,38 @@ public class NamingManager : MonoBehaviour
 
     void VerifyTextFiles() // <--- This method creates text files if they do not exist. If missing, default names are used.
     {
-        string maleNamesText = File.ReadAllText(path1);
-        string femaleNamesText = File.ReadAllText(path2);
+        if (!File.Exists(defaultPath1))
+        {
+            Debug.LogError("Placeholder for male names is missing. Please create a text file in " + internalDirectoryPath);
+        }
+        else
+        {
+            defaultMaleNames = File.ReadAllLines(defaultPath1).ToList();
+        }
+        if (defaultMaleNames.Count < 1)
+        {
+            Debug.LogError("Placeholder for male names is empty. Please populate the text file in " + internalDirectoryPath);
+        }
+
+        if (!File.Exists(defaultPath2))
+        {
+            Debug.LogError("Placeholder for female names is missing. Please create a text file in " + internalDirectoryPath);
+        }
+        else
+        {
+            defaultFemaleNames = File.ReadAllLines(defaultPath2).ToList();
+        }
+        if (defaultFemaleNames.Count < 1)
+        {
+            Debug.LogError("Placeholder for female names is empty. Please populate the text file in " + internalDirectoryPath);
+        }
+
         if (!File.Exists(path1))
         {
             File.WriteAllText(path1, string.Join("\n", defaultMaleNames));
         }
-        else if (maleNamesText.Length == 0)
+        string maleNamesText = File.ReadAllText(path1);
+        if (maleNamesText.Length == 0)
         {
             File.WriteAllText(path1, string.Join("\n", defaultMaleNames));
         }
@@ -79,7 +105,8 @@ public class NamingManager : MonoBehaviour
         {
             File.WriteAllText(path2, string.Join("\n", defaultFemaleNames));
         }
-        else if (femaleNamesText.Length == 0)
+        string femaleNamesText = File.ReadAllText(path2);
+        if (femaleNamesText.Length == 0)
         {
             File.WriteAllText(path2, string.Join("\n", defaultFemaleNames));
         }
@@ -93,12 +120,12 @@ public class NamingManager : MonoBehaviour
         maleNames = File.ReadAllLines(path1).ToList();
         femaleNames = File.ReadAllLines(path2).ToList();
     }
-    public string ChooseFirstName(bool isMale)
+    public string ChooseFirstName(Gender gender)
     {
         string chosenName = "";
-        switch (isMale)
+        switch (gender)
         {
-            case true:
+            case Gender.Male:
                 if (maleNames.Count > 0)
                 {
                     chosenName = maleNames[Random.Range(0, maleNames.Count)];
@@ -108,7 +135,7 @@ public class NamingManager : MonoBehaviour
                     Debug.LogError("Error: maleNames list is empty. Check the text file or the default names.");
                 }
                 break;
-            case false:
+            case Gender.Female:
                 if (femaleNames.Count > 0)
                 {
                     chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
@@ -122,14 +149,14 @@ public class NamingManager : MonoBehaviour
         return chosenName;
     } // <--- Use this one for all vikings/children. This method will assign a first name to a viking.
 
-    public string ChooseLastName(bool isMale) // <--- Non-child logic, use this when not needing patronymics and want random last names.
+    public string ChooseLastName(Gender gender) // <--- Non-child logic, use this when not needing patronymics and want random last names.
     {
         string chosenName = "";
         string surname = "";
 
-        switch (isMale)
+        switch (gender)
         {
-            case true:
+            case Gender.Male:
                 if (maleNames.Count > 0)
                 {
                     chosenName = maleNames[Random.Range(0, maleNames.Count)];
@@ -139,7 +166,7 @@ public class NamingManager : MonoBehaviour
                     Debug.LogError("Error: maleNames list is empty. Check the text file or the default names.");
                 }
                 break;
-            case false:
+            case Gender.Female:
                 if (femaleNames.Count > 0)
                 {
                     chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
@@ -155,7 +182,7 @@ public class NamingManager : MonoBehaviour
         return surname;
     }
 
-    public string ChooseLastName(bool isMale, bool isChild, bool usePatronymic, string fatherName)
+    public string ChooseLastName(Gender gender, bool isChild, bool usePatronymic, string fatherName)
     {
         string chosenName = "";
         string surname = "";
@@ -163,13 +190,13 @@ public class NamingManager : MonoBehaviour
         {
             if (isChild)
             {
-                surname = PatronymicSurname(fatherName, isMale);
+                surname = PatronymicSurname(fatherName, gender);
             }
             else
             {
-                switch (isMale)
+                switch (gender)
                 {
-                    case true:
+                    case Gender.Male:
                         if (maleNames.Count > 0)
                         {
                             chosenName = maleNames[Random.Range(0, maleNames.Count)];
@@ -179,7 +206,7 @@ public class NamingManager : MonoBehaviour
                             Debug.LogError("Error: maleNames list is empty. Check the text file or the default names.");
                         }
                         break;
-                    case false:
+                    case Gender.Female:
                         if (femaleNames.Count > 0)
                         {
                             chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
@@ -195,9 +222,9 @@ public class NamingManager : MonoBehaviour
         }
         else
         {
-            switch (isMale)
+            switch (gender)
             {
-                case true:
+                case Gender.Male:
                     if (maleNames.Count > 0)
                     {
                         chosenName = maleNames[Random.Range(0, maleNames.Count)];
@@ -207,7 +234,7 @@ public class NamingManager : MonoBehaviour
                         Debug.LogError("Error: maleNames list is empty. Check the text file or the default names.");
                     }
                     break;
-                case false:
+                case Gender.Female:
                     if (femaleNames.Count > 0)
                     {
                         chosenName = femaleNames[Random.Range(0, femaleNames.Count)];
@@ -224,7 +251,7 @@ public class NamingManager : MonoBehaviour
         return surname;
     }
 
-    public string PatronymicSurname(string surname, bool isMale)
+    public string PatronymicSurname(string surname, Gender gender)
     {
         // For more information on how the Patronymic/Viking naming system functioned, here is the resource I used: https://www.ellipsis.cx/~liana/names/norse/sg-viking.html
 
@@ -258,8 +285,22 @@ public class NamingManager : MonoBehaviour
         };
 
         // Find the appropriate suffix based on the surname ending
-        string genderSuffix = isMale ? "son" : "dottir"; // <--- Select appropriate suffix based on gender
-        string genderSuffixNoSpecial = isMale ? "son" : "sdottir"; // <--- This one incorporates the possessive "s" for names that aren't given a custom suffix.
+        string genderSuffix = "";
+        string genderSuffixNoSpecial = "";
+        if (gender == Gender.Male) // <--- Select appropriate suffix based on gender
+        {
+            genderSuffix = "son"; // <--- Select appropriate suffix based on gender
+            genderSuffixNoSpecial = "son"; // <--- This one incorporates the possessive "s" for names that aren't given a custom suffix.
+        }
+        else if (gender == Gender.Female)
+        {
+            genderSuffix = "dottir";
+            genderSuffixNoSpecial = "sdottir";
+        }
+        else
+        {
+            Debug.LogError("Gender not assigned. Please assign a gender when using the PatronymicSurname method.");
+        }
 
         if (surname.EndsWith("unn")) // <--- Special case for "unn"
         {
@@ -291,7 +332,7 @@ public class NamingManager : MonoBehaviour
         return surname + genderSuffixNoSpecial;
     } // <--- This method creates a patronymic surname based on the name of the father.
 
-    private (string, string) RecordFullName(bool isMale, bool isChild, string firstName, string lastName) // <--- This method records the full name of a viking and returns it as a tuple (string, string).
+    private (string, string) RecordFullName(Gender gender, bool isChild, string firstName, string lastName) // <--- This method records the full name of a viking and returns it as a tuple (string, string).
     {
         int counter = 0;
         while (true)
@@ -307,7 +348,7 @@ public class NamingManager : MonoBehaviour
 
             if (counter > 1) // <--- This will reroll the first name if it is a duplicate.
             {
-                firstName = ChooseFirstName(isMale); // <--- Choose a new first name and then check it against the same surname.
+                firstName = ChooseFirstName(gender); // <--- Choose a new first name and then check it against the same surname.
                 fullName = firstName + " " + lastName;
 
                 if (fullnameRecord.ContainsKey(fullName))
@@ -339,19 +380,19 @@ public class NamingManager : MonoBehaviour
         }
     }
 
-    public (string, string) GetFullNameQuickly(bool isMale, bool isChild, bool usePatronymics) // <--- This method is used to get a full name quickly. It returns a tuple (string, string).
+    public (string, string) GetFullNameQuickly(Gender gender, bool isChild, bool usePatronymics) // <--- This method is used to get a full name quickly. It returns a tuple (string, string).
     {
-        string firstName = ChooseFirstName(isMale);
-        string lastName = ChooseLastName(isMale); // <--- Use this one for viking without child/patronymics logic.
-        (string, string) fullName = RecordFullName(isMale, isChild, firstName, lastName);
+        string firstName = ChooseFirstName(gender);
+        string lastName = ChooseLastName(gender); // <--- Use this one for viking without child/patronymics logic.
+        (string, string) fullName = RecordFullName(gender, isChild, firstName, lastName);
         Debug.Log($"Full name: {fullName.ToString()}.");
         return fullName;
     }
-    public (string, string) GetFullNameQuickly(bool isMale, bool isChild, bool usePatronymics, string fatherName) // <--- This method is used to get a full name quickly. It returns a tuple (string, string).
+    public (string, string) GetFullNameQuickly(Gender gender, bool isChild, bool usePatronymics, string fatherName) // <--- This method is used to get a full name quickly. It returns a tuple (string, string).
     {
-        string firstName = ChooseFirstName(isMale);
-        string lastName = ChooseLastName(isMale, isChild, usePatronymics, fatherName); // <--- Use this one for children and use of patronymics.
-        (string, string) fullName = RecordFullName(isMale, isChild, firstName, lastName);
+        string firstName = ChooseFirstName(gender);
+        string lastName = ChooseLastName(gender, isChild, usePatronymics, fatherName); // <--- Use this one for children and use of patronymics.
+        (string, string) fullName = RecordFullName(gender, isChild, firstName, lastName);
         Debug.Log($"Full name: {fullName.ToString()}.");
         return fullName;
     }
@@ -363,15 +404,15 @@ public class NamingManager : MonoBehaviour
         string lastName = "Doe";
 
         // First attempt to add the name
-        var result1 = RecordFullName(true, false, firstName, lastName);
+        var result1 = RecordFullName(Gender.Male, false, firstName, lastName);
         Debug.Log($"- First attempt: {result1}");
 
         // Second attempt to add the same name
-        var result2 = RecordFullName(true, false, firstName, lastName);
+        var result2 = RecordFullName(Gender.Male, false, firstName, lastName);
         Debug.Log($"- Second attempt: {result2}");
 
         // Third attempt with a different first name but same last name
-        var result3 = RecordFullName(true, false, "Jane", lastName);
+        var result3 = RecordFullName(Gender.Male, false, "Jane", lastName);
         Debug.Log($"- Third attempt: {result3}");
 
         // Clear the records after testing
