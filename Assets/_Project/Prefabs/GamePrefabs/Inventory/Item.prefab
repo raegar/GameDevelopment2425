@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5113234008881445935}
   - component: {fileID: 2599617193120638087}
   - component: {fileID: 4264963785437696250}
-  - component: {fileID: 7733220994209491572}
   - component: {fileID: 2591275285770073888}
   m_Layer: 5
   m_Name: item
@@ -136,19 +135,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7733220994209491572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247689221358577459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a20b1f1ea767cb943a374d3706e449f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentAfterDrag: {fileID: 0}
 --- !u!114 &2591275285770073888
 MonoBehaviour:
   m_ObjectHideFlags: 0

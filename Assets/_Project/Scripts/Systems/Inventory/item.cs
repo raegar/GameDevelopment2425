@@ -12,12 +12,7 @@ namespace InventorySystem
 
         public Sprite itemSprite;
         public Image itemImage;
-
-        public string iteminformation;
-        public GameObject itemInformationGO;
-        //private TextMeshProUGUI itemInformationTextMesh;
-
-        private bool isClicked = false;
+        public int amount;
 
         private void Start()
         {
@@ -28,22 +23,6 @@ namespace InventorySystem
             itemImage = GetComponentInChildren<Image>();
             itemImage.sprite = itemSprite; // set the item sprite
 
-        }
-
-        public void OnClick()
-        {
-            if (isClicked == false)
-            {
-                itemInformationGO.SetActive(true);
-                //itemInformationTextMesh = itemInformationGO.GetComponentInChildren<TextMeshProUGUI>();
-                //itemInformationTextMesh.SetText(iteminformation);
-                isClicked = true;
-            }
-            else
-            {
-                itemInformationGO.SetActive(false);
-                isClicked = false;
-            }
         }
     }
 }
