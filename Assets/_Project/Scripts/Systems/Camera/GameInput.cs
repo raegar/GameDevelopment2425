@@ -1,17 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using System.Collections;
 using UnityEngine.InputSystem;
+using System;
 
-
-
-[RequireComponent(typeof(PlayerInput))]
 public class GameInput : MonoBehaviour
 {
+    [SerializeField] private InputActionAsset inputActions;
     private PlayerInput playerInput;
     private InputAction moveAction;
     private InputAction pointerPositionAction;
+    private IEnumerator activeCoroutine;
+
+
+
+
+
 
 
 
@@ -21,11 +25,11 @@ public class GameInput : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        
-        if(playerInput.notificationBehavior != PlayerNotifications.InvokeCSharpEvents)
+        if (playerInput = null)
         {
-            playerInput.notificationBehavior = PlayerNotifications.InvokeCSharpEvents;
+            playerInput = gameObject.AddComponent<PlayerInput>();
         }
+        
     }
 
     /// <summary>
@@ -35,42 +39,67 @@ public class GameInput : MonoBehaviour
     {
         if (playerInput != null)
         {
-            moveAction.started  += ctx => Move(ctx.ReadValue<Vector2>(), false);
-            moveAction.canceled += ctx => Move(ctx.ReadValue<Vector2>(), true);
+            moveAction.started  += ctx => Move(ctx.ReadValue<Vector2>());
+            moveAction.canceled += _ => CancelActiveCoroutine();
             playerInput.actions["Pointer Position"].performed += ctx => PointerPosition(ctx.ReadValue<Vector2>());
-            playerInput.actions["Rotate Left"].performed += ctx => RotateLeft(ctx);
+            playerInput.actions["Rotate Left"].performed += _ => RotateLeft();
 
         }
     }
 
-    private void RotateLeft(InputAction.CallbackContext ctx)
+
+    /// <summary>
+    /// As this is a critical system this should never be disabled unless the game is exiting, 
+    /// but it is good practice to unsubscribe from events when the component is disabled to avoid memory leaks.
+    /// </summary>
+    private void OnDisable()
+    {
+
+    }
+
+    private void RotateLeft()
     {
         Debug.Log("Rotate Left");
     }
 
-    /// <summary>
-    /// Unsubscribe from the PlayerInput actions when the component is disabled 
-    /// this should not happen but is important to avoid memory leaks
-    /// </summary>
-    private void OnDisable()
+    private void RotateRight(InputAction.CallbackContext ctx)
     {
-        
+        Debug.Log("Rotate Right");
     }
 
-    // no monobehaviour update methods are used to stay off the hot-path as much as possible.
 
     /// <summary>
     /// Called by the PlayerInput system when the Move action is performed.
     /// </summary>
     /// <param name="vector2">the forward/back/left/right vector of the move</param>
-    public void Move(Vector2 vector2, bool canceled)
+    public void Move(Vector2 vector2)
     {
-        Debug.Log("Move: " + vector2);  
-        while (!canceled)
-        {
-            CameraManager.Instance.MoveCamera(vector2);
-        }
+        // if another coroutine (such as rotation) is active, cancel it
+        StopCoroutine(activeCoroutine);
+        // set the coroutine to movement
+        activeCoroutine = IMove(vector2);
+        // start the coroutine so the action happens continiously until the action is canceled
+        StartCoroutine(activeCoroutine);
     }
+    /// <summary>
+    /// Moves the player in the direction of the vector2 until the action is canceled
+    /// </summary>
+    /// <param name="direction">Direction to move</param>
+    /// <returns></returns>
+    private IEnumerator IMove(Vector2 direction)
+    {
+
+        yield return null;
+    }
+
+    private void CancelActiveCoroutine()
+    {
+        StopCoroutine(activeCoroutine);
+        activeCoroutine = null;
+    }
+
+    private void zoomIn() { }
+    private void zoomOut() { }
 
     /// <summary>
     /// Called by the PlayerInput system only whenever the Pointer Position changes to avoid constant polling
