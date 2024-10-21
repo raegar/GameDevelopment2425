@@ -15,6 +15,7 @@ namespace InventorySystem
         private void Awake()
         {
             instance = this;
+            ListItems();
         }
 
         public void AddItem(Item item)
@@ -24,6 +25,13 @@ namespace InventorySystem
 
         public void ListItems()
         {
+            //clean the inventory before displaying
+            foreach (Transform item in itemContainer)
+            {
+                Destroy(item.gameObject);
+            }
+
+            //going through item list, instatiating them and setting the name and image
             foreach (Item item in itemList)
             {
                 GameObject gameObject = Instantiate(itemTemplate, itemContainer);
@@ -38,8 +46,8 @@ namespace InventorySystem
                 var itemName = gameObject.transform.Find("itemName");
                 if (itemName != null)
                 {
-                    Text text = itemName.GetComponent<Text>();
-                    text.text = item.itemName;
+                    Text text = itemName.GetComponent<Text>(); // needs to be TMP_Text but not working
+                    text.text = item.itemName += item.amount;
 
                 }
             }
