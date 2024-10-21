@@ -14,13 +14,11 @@ using Cinemachine;
         [SerializeField] private float followOffsetMax = 50f;
         [SerializeField] private float followOffsetMinY = 10f;
         [SerializeField] private float followOffsetMaxY = 50f;
-        [SerializeField] private float moveSpeed;
 
         private bool dragPanMoveActive;
         private Vector2 lastMousePosition;
         private float targetFieldOfView = 50;
         private Vector3 followOffset;
-
 
 
         private void Awake() {
@@ -53,6 +51,8 @@ using Cinemachine;
             if (Input.GetKey(KeyCode.D)) inputDir.x = +1f;
 
             Vector3 moveDir = transform.forward * inputDir.z + transform.right * inputDir.x;
+
+            float moveSpeed = 50f;
             transform.position += moveDir * moveSpeed * Time.deltaTime;
         }
 
