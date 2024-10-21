@@ -10,6 +10,7 @@
  * Tip     : Use the GetFullNameQuickly method to get a full name as a tuple. See the TestViking script for an example.
  */
 
+using Codice.CM.Common.Checkin.Partial.ConflictCheckers;
 using PatternLibrary;
 using System.Collections.Generic;
 using System.IO;
@@ -119,6 +120,15 @@ public class NamingManager : Singleton<NamingManager>
 
         maleNames = File.ReadAllLines(path1).ToList();
         femaleNames = File.ReadAllLines(path2).ToList();
+
+        for (int i = 0; i < maleNames.Count; i++) // <--- This will remove any spaces from the names.
+        {
+            maleNames[i] = maleNames[i].Replace(" ", "");
+        }
+        for (int i = 0; i < femaleNames.Count; i++)
+        {
+            femaleNames[i] = femaleNames[i].Replace(" ", "");
+        }
     }
     public string ChooseFirstName(Gender gender)
     {
@@ -332,7 +342,7 @@ public class NamingManager : Singleton<NamingManager>
         return surname + genderSuffixNoSpecial;
     } // <--- This method creates a patronymic surname based on the name of the father.
 
-    private (string, string) RecordFullName(Gender gender, bool isChild, string firstName, string lastName) // <--- This method records the full name of a viking and returns it as a tuple (string, string).
+    private string RecordFullName(Gender gender, bool isChild, string firstName, string lastName) // <--- This method records the full name of a viking and returns it as a string.
     {
         int counter = 0;
         while (true)
@@ -341,7 +351,7 @@ public class NamingManager : Singleton<NamingManager>
             if (counter > 30)
             {
                 Debug.LogError("Error: Unable to record full name. Dictionary length might be too low or available names exhausted.");
-                return ("", ""); // <--- Ensure a return value here
+                return (""); // <--- Ensure a return value here
             }
 
             string fullName = firstName + " " + lastName;
@@ -358,9 +368,9 @@ public class NamingManager : Singleton<NamingManager>
                 else
                 {
                     fullnameRecord.Add(fullName, true);
-                    (string, string) nameTuple = (firstName, lastName); // <--- This will store the full name in a tuple.
-                    Debug.Log($"Full name recorded: {nameTuple.ToString()}."); // <--- This will print the full name of the viking to the console.
-                    return nameTuple;
+                    //(string, string) nameTuple = (firstName, lastName); // <--- This will store the full name in a tuple.
+                    Debug.Log($"Full name recorded: {fullName}."); // <--- This will print the full name of the viking to the console.
+                    return fullName;
                 }
             }
             else
@@ -372,27 +382,27 @@ public class NamingManager : Singleton<NamingManager>
                 else
                 {
                     fullnameRecord.Add(fullName, true);
-                    (string, string) nameTuple = (firstName, lastName); // <--- This will store the full name in a tuple.
-                    Debug.Log($"Full name recorded: {nameTuple.ToString()}."); // <--- This will print the full name of the viking to the console.
-                    return nameTuple;
+                    //(string, string) nameTuple = (firstName, lastName); // <--- This will store the full name in a tuple.
+                    Debug.Log($"Full name recorded: {fullName}."); // <--- This will print the full name of the viking to the console.
+                    return fullName;
                 }
             }
         }
     }
 
-    public (string, string) GetFullNameQuickly(Gender gender, bool isChild, bool usePatronymics) // <--- This method is used to get a full name quickly. It returns a tuple (string, string).
+    public string GetFullNameQuickly(Gender gender, bool isChild, bool usePatronymics) // <--- This method is used to get a full name quickly. It returns a string.
     {
         string firstName = ChooseFirstName(gender);
         string lastName = ChooseLastName(gender); // <--- Use this one for viking without child/patronymics logic.
-        (string, string) fullName = RecordFullName(gender, isChild, firstName, lastName);
+        string fullName = RecordFullName(gender, isChild, firstName, lastName);
         Debug.Log($"Full name: {fullName.ToString()}.");
         return fullName;
     }
-    public (string, string) GetFullNameQuickly(Gender gender, bool isChild, bool usePatronymics, string fatherName) // <--- This method is used to get a full name quickly. It returns a tuple (string, string).
+    public string GetFullNameQuickly(Gender gender, bool isChild, bool usePatronymics, string fatherName) // <--- This method is used to get a full name quickly. It returns a string.
     {
         string firstName = ChooseFirstName(gender);
         string lastName = ChooseLastName(gender, isChild, usePatronymics, fatherName); // <--- Use this one for children and use of patronymics.
-        (string, string) fullName = RecordFullName(gender, isChild, firstName, lastName);
+        string fullName = RecordFullName(gender, isChild, firstName, lastName);
         Debug.Log($"Full name: {fullName.ToString()}.");
         return fullName;
     }
