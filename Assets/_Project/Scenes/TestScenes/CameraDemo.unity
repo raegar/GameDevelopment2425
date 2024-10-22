@@ -18372,6 +18372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735bb786e75386941b9739905c0d28eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 50
 --- !u!114 &455799434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18399,7 +18400,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 455799433}
+        m_TargetAssemblyTypeName: GameInput, ScriptsAssemblyDefinition
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bf21e7bb-0419-4179-8a5f-7a2ab84ffa7f
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -18466,7 +18479,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1795798706}
 --- !u!114 &455799435
 MonoBehaviour:
   m_ObjectHideFlags: 0
