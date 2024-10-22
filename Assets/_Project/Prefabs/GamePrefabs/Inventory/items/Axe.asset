@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef37a4e694045846b39281da9745930, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  itemName: 
-  amount: 0
+  itemName: axe
+  amount: 1
   itemSprite: {fileID: 0}

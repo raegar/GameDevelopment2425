@@ -935,13 +935,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemList:
-  - {fileID: 11400000, guid: 5af35bf128201764d9d594e3b17de018, type: 2}
   - {fileID: 11400000, guid: 7df65a9f936117b4bb46961f453f4325, type: 2}
-  - {fileID: 11400000, guid: 157e5ac10e6a7d94fbd86d9b909cfe3f, type: 2}
-  - {fileID: 11400000, guid: 5eab869650217e049b540b5ded73399f, type: 2}
   itemContainer: {fileID: 1107127374}
   itemTemplate: {fileID: 1247689221358577459, guid: da9e0555bbf321645bd98152be25543d,
     type: 3}
+  itemToAdd: {fileID: 11400000, guid: 687e962ab6a94794ea3423ded18b0164, type: 2}
+  itemStack: {fileID: 11400000, guid: 7df65a9f936117b4bb46961f453f4325, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

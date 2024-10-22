@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d836488bd76ff5043a4036215857a89a, type: 3}
   m_Name: Copper
   m_EditorClassIdentifier: 
-  itemName: 
-  amount: 0
+  itemName: Copper
+  amount: 10
   itemSprite: {fileID: 0}
