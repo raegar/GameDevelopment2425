@@ -12,19 +12,47 @@ namespace InventorySystem
         public Transform itemContainer;
         public GameObject itemTemplate;
 
+        //test
+        public Item itemToAdd;
+        public StackableItem itemStack;
+
         private void Awake()
         {
             instance = this;
+            //test
+            AddItem(itemToAdd);
+            AddItem(itemStack, 5);
+
             ListItems();
+
+            
         }
 
         public void AddItem(Item item)
         {
             itemList.Add(item);
+            ListItems();
         }
         public void RemoveItem(Item item)
         {
             itemList.Remove(item);
+            ListItems();
+        }
+
+        public void AddItem(StackableItem item, int amountToAdd)
+        {
+            if (itemList.Contains(item))
+            {
+                item.amount += amountToAdd;
+            }
+            else
+            {
+                itemList.Add(item);
+            }
+        }
+        public void RemoveItem(StackableItem item, int amountToSubtract)
+        {
+
         }
 
         public void ListItems()
