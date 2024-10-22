@@ -22,6 +22,10 @@ namespace InventorySystem
         {
             itemList.Add(item);
         }
+        public void RemoveItem(Item item)
+        {
+            itemList.Remove(item);
+        }
 
         public void ListItems()
         {
@@ -47,7 +51,7 @@ namespace InventorySystem
                 if (itemName != null)
                 {
                     Text text = itemName.GetComponent<Text>(); // needs to be TMP_Text but not working
-                    text.text = item.itemName += item.amount;
+                    //text.text = item.itemName += item.amount;
 
                 }
             }

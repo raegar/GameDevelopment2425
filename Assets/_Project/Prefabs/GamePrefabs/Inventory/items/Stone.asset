@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef37a4e694045846b39281da9745930, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Stone
   amount: 0
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
