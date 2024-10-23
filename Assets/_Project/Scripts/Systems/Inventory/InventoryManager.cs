@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 namespace InventorySystem
 {
@@ -12,33 +14,19 @@ namespace InventorySystem
         public Transform itemContainer;
         public GameObject itemTemplate;
 
-        //test
-        public Item itemToAdd;
-        public StackableItem itemStack;
-        public StackableItem itemToRemove;
-
         private void Awake()
         {
             instance = this;
-            //test
-            AddItem(itemToAdd);
-            AddItem(itemStack, 5);
-            RemoveItem(itemToRemove, 10);
-
             ListItems();
-
-            
         }
 
         public void AddItem(Item item)
         {
             itemList.Add(item);
-            ListItems();
         }
         public void RemoveItem(Item item)
         {
             itemList.Remove(item);
-            ListItems();
         }
 
         public void AddItem(StackableItem item, int amountToAdd)
@@ -51,14 +39,13 @@ namespace InventorySystem
                 }
                 else
                 {
-                    Debug.Log("not enough space"); //the item has gone over the max amount, display in game
+                    Debug.Log("not enough inventory space"); //the item has gone over the max amount, display in game
                 }
             }
             else
             {
                 itemList.Add(item);
             }
-            ListItems();
         }
         public void RemoveItem(StackableItem item, int amountToSubtract)
         {
@@ -74,10 +61,9 @@ namespace InventorySystem
                     Debug.LogError("item amount is " + item.currentAmount); //make sure it doesnt go below zero
                 }
             }
-            ListItems();
         }
 
-        public void ListItems()
+        public void ListItems() // should be called when opening inventory
         {
             //clean the inventory before displaying
             foreach (Transform item in itemContainer)
@@ -100,14 +86,14 @@ namespace InventorySystem
                 var itemName = gameObject.transform.Find("itemName");
                 if (itemName != null)
                 {
-                    Text text = itemName.GetComponent<Text>(); // needs to be TMP_Text but not working
+                    TextMeshProUGUI text = itemName.GetComponent<TextMeshProUGUI>(); // needs to be TMP_Text but not working
                     if (item is StackableItem)
                     {
-                        //text.text = item.itemName += item.amount;
+                        text.text = item.itemName;
                     }
                     else
                     {
-                        //text.text = item.itemName
+                        text.text = item.itemName;
                     }
                 }
             }
