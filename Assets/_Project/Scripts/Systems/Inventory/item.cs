@@ -6,7 +6,6 @@ namespace InventorySystem
     public class Item : ScriptableObject
     {
         public string itemName;
-        public int amount;
         public Sprite itemSprite;
     }
 }

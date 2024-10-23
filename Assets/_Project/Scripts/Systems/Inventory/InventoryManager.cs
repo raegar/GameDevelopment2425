@@ -45,7 +45,14 @@ namespace InventorySystem
         {
             if (itemList.Contains(item))
             {
-                item.amount += amountToAdd;
+                if (item.currentAmount + amountToAdd <= item.maxAmount)
+                {
+                    item.currentAmount += amountToAdd;
+                }
+                else
+                {
+                    Debug.Log("not enough space"); //the item has gone over the max amount, display in game
+                }
             }
             else
             {
@@ -57,19 +64,15 @@ namespace InventorySystem
         {
             if (itemList.Contains(item))
             {
-                item.amount -= amountToSubtract;
-                if (item.amount == 0)
+                item.currentAmount -= amountToSubtract;
+                if (item.currentAmount == 0)
                 {
                     itemList.Remove(item);
                 }
-                else if (item.amount <0)
+                else if (item.currentAmount < 0)
                 {
-                    Debug.LogError("item amount is " + item.amount); //make sure it doesnt go below zero
+                    Debug.LogError("item amount is " + item.currentAmount); //make sure it doesnt go below zero
                 }
-            }
-            else
-            {
-                itemList.Remove(item);
             }
             ListItems();
         }
@@ -98,10 +101,14 @@ namespace InventorySystem
                 if (itemName != null)
                 {
                     Text text = itemName.GetComponent<Text>(); // needs to be TMP_Text but not working
-                    //text.text = item.itemName += item.amount;
-
-                    Debug.Log(item.itemName + item.amount);
-
+                    if (item is StackableItem)
+                    {
+                        //text.text = item.itemName += item.amount;
+                    }
+                    else
+                    {
+                        //text.text = item.itemName
+                    }
                 }
             }
         }
