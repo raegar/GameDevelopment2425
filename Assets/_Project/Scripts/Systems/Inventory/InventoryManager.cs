@@ -15,6 +15,7 @@ namespace InventorySystem
         //test
         public Item itemToAdd;
         public StackableItem itemStack;
+        public StackableItem itemToRemove;
 
         private void Awake()
         {
@@ -22,6 +23,7 @@ namespace InventorySystem
             //test
             AddItem(itemToAdd);
             AddItem(itemStack, 5);
+            RemoveItem(itemToRemove, 10);
 
             ListItems();
 
@@ -49,10 +51,27 @@ namespace InventorySystem
             {
                 itemList.Add(item);
             }
+            ListItems();
         }
         public void RemoveItem(StackableItem item, int amountToSubtract)
         {
-
+            if (itemList.Contains(item))
+            {
+                item.amount -= amountToSubtract;
+                if (item.amount == 0)
+                {
+                    itemList.Remove(item);
+                }
+                else if (item.amount <0)
+                {
+                    Debug.LogError("item amount is " + item.amount); //make sure it doesnt go below zero
+                }
+            }
+            else
+            {
+                itemList.Remove(item);
+            }
+            ListItems();
         }
 
         public void ListItems()
@@ -80,6 +99,8 @@ namespace InventorySystem
                 {
                     Text text = itemName.GetComponent<Text>(); // needs to be TMP_Text but not working
                     //text.text = item.itemName += item.amount;
+
+                    Debug.Log(item.itemName + item.amount);
 
                 }
             }
