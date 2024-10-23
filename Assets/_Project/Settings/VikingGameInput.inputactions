@@ -33,31 +33,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Zoom In",
-                    "type": "Value",
-                    "id": "75a5ef94-570f-4712-a4b3-1c8218d88d68",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Zoom Out",
+                    "name": "Zoom",
                     "type": "Value",
                     "id": "ea35f2a2-9df4-4d47-ac72-0eb6e8172c6b",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Pointer Position",
-                    "type": "Value",
-                    "id": "2f23510d-5ea3-434f-90ce-1bc270e478fa",
-                    "expectedControlType": "",
+                    "name": "Camera Drag",
+                    "type": "Button",
+                    "id": "239cd5dd-0bf8-4e46-99b3-f8883757477e",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -195,39 +186,6 @@
                 },
                 {
                     "name": "",
-                    "id": "941e35f7-6ec7-4894-8de9-80661d7491b6",
-                    "path": "<Mouse>/scroll/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Zoom In",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "97ee3f99-8d4f-4f63-a8a6-ba808379baae",
-                    "path": "<Touchscreen>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pointer Position",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "74b479e8-0eaa-4dcc-8285-8dad6b16194a",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pointer Position",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "159f6555-89ac-4286-94e0-6dff57f860d8",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -251,11 +209,33 @@
                 {
                     "name": "",
                     "id": "2098ab45-153e-4c1f-b95b-413c19193a6b",
-                    "path": "<Mouse>/scroll/up",
+                    "path": "<Mouse>/scroll",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Zoom Out",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f292d04b-4de0-4f21-b759-89079cb53001",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8323dff7-981b-4ff0-b888-10ff18b87851",
+                    "path": "<Touchscreen>/touch1/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera Drag",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
