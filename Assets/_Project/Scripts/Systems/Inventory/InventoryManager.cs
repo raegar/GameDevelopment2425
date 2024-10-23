@@ -86,15 +86,17 @@ namespace InventorySystem
                 var itemName = gameObject.transform.Find("itemName");
                 if (itemName != null)
                 {
-                    TextMeshProUGUI text = itemName.GetComponent<TextMeshProUGUI>(); // needs to be TMP_Text but not working
-                    if (item is StackableItem)
-                    {
-                        text.text = item.itemName;
-                    }
-                    else
-                    {
-                        text.text = item.itemName;
-                    }
+                    TextMeshProUGUI text = itemName.GetComponent<TextMeshProUGUI>();
+                    text.text = item.itemName;
+                }
+            }
+            foreach (StackableItem stackable in itemContainer) // doesnt work yet
+            {
+                var itemAmount = gameObject.transform.Find("amountText");
+                if (itemAmount != null)
+                {
+                    TextMeshProUGUI amountText = itemAmount.GetComponent<TextMeshProUGUI>();
+                    amountText.text = stackable.currentAmount.ToString() + "/" + stackable.maxAmount.ToString();
                 }
             }
         }
