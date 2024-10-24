@@ -1,8 +1,12 @@
+/* Author Jess
+ * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+ * Purpose: This script handles the setting and instantiating of items within the inventory UI. 
+ *          It has methods to add and remove both items and stackable items from the inventory.
+*/
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 namespace InventorySystem
 {
