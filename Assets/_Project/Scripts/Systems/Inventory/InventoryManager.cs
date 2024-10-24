@@ -25,7 +25,7 @@ namespace InventorySystem
             instance = this;
             ListItems();
         }
-
+        //add and remove Items
         public void AddItem(Item item)
         {
             itemList.Add(item);
@@ -35,6 +35,7 @@ namespace InventorySystem
             itemList.Remove(item);
         }
 
+        //add and remove StackableItems
         public void AddItem(StackableItem item, int amountToAdd)
         {
             if (itemList.Contains(item))
@@ -46,7 +47,8 @@ namespace InventorySystem
                 }
                 else
                 {
-                    notificationText.text = "not enough inventory space"; //the item has gone over the max amount, display in game
+                    //the item has gone over the max amount, display in game
+                    notificationText.text = "not enough inventory space"; 
                 }
             }
             else
@@ -63,9 +65,9 @@ namespace InventorySystem
                 {
                     itemList.Remove(item);
                 }
-                else if (item.currentAmount < 0)
+                else if (item.currentAmount < 0) //make sure it doesnt go below zero
                 {
-                    Debug.LogError("item amount is " + item.currentAmount); //make sure it doesnt go below zero
+                    Debug.LogError("item amount is " + item.currentAmount); 
                 }
             }
         }
