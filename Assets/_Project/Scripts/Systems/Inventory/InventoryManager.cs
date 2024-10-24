@@ -14,6 +14,8 @@ namespace InventorySystem
         public Transform itemContainer;
         public GameObject itemTemplate;
 
+        public TextMeshProUGUI notificationText;
+
         private void Awake()
         {
             instance = this;
@@ -33,13 +35,14 @@ namespace InventorySystem
         {
             if (itemList.Contains(item))
             {
+                //checks if adding the items goes over the maxAmount
                 if (item.currentAmount + amountToAdd <= item.maxAmount)
                 {
                     item.currentAmount += amountToAdd;
                 }
                 else
                 {
-                    Debug.Log("not enough inventory space"); //the item has gone over the max amount, display in game
+                    notificationText.text = "not enough inventory space"; //the item has gone over the max amount, display in game
                 }
             }
             else
@@ -71,32 +74,36 @@ namespace InventorySystem
                 Destroy(item.gameObject);
             }
 
-            //going through item list, instatiating them and setting the name and image
+            //going through item list to instatiating them 
             foreach (Item item in itemList)
             {
                 GameObject gameObject = Instantiate(itemTemplate, itemContainer);
 
+                //setting itemImage
                 var itemImage = gameObject.transform.Find("itemImage");
-
                 if (itemImage != null)
                 {
                     Image image = itemImage.GetComponent<Image>();
                     image.sprite = item.itemSprite;
                 }
+
+                //setting itemName
                 var itemName = gameObject.transform.Find("itemName");
                 if (itemName != null)
                 {
                     TextMeshProUGUI text = itemName.GetComponent<TextMeshProUGUI>();
                     text.text = item.itemName;
                 }
-            }
-            foreach (StackableItem stackable in itemContainer) // doesnt work yet
-            {
-                var itemAmount = gameObject.transform.Find("amountText");
-                if (itemAmount != null)
+
+                //setting itemAmount if its stackable
+                if (item is StackableItem stackable)
                 {
-                    TextMeshProUGUI amountText = itemAmount.GetComponent<TextMeshProUGUI>();
-                    amountText.text = stackable.currentAmount.ToString() + "/" + stackable.maxAmount.ToString();
+                    var itemAmount = gameObject.transform.Find("amountText");
+                    if (itemAmount != null)
+                    {
+                        TextMeshProUGUI amountText = itemAmount.GetComponent<TextMeshProUGUI>();
+                        amountText.text = stackable.currentAmount.ToString() + "/" + stackable.maxAmount.ToString();
+                    }
                 }
             }
         }
