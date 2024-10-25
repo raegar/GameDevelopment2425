@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0e47687acefb56a42aa46707dd0b8f34
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153826
+  packageName: Low Poly Water - Builtin & URP - Poseidon
+  packageVersion: 1.8.6
+  assetPath: Assets/Polaris - Low Poly Ecosystem/Poseidon - Low Poly Water System/Sample/Scenes/DemoRiverSettings.lighting
+  uploadId: 572787

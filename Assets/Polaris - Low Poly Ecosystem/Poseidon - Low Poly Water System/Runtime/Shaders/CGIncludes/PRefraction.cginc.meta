@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8e6d6f769fe5d4c44873a50964a1f65a
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153826
+  packageName: Low Poly Water - Builtin & URP - Poseidon
+  packageVersion: 1.8.6
+  assetPath: Assets/Polaris - Low Poly Ecosystem/Poseidon - Low Poly Water System/Runtime/Shaders/CGIncludes/PRefraction.cginc
+  uploadId: 572787

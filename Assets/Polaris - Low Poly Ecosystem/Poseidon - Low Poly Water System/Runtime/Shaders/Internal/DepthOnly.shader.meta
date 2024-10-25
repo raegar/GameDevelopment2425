@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6fa7f04c47cf5924b8be8cb8c6c49b7b
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153826
+  packageName: Low Poly Water - Builtin & URP - Poseidon
+  packageVersion: 1.8.6
+  assetPath: Assets/Polaris - Low Poly Ecosystem/Poseidon - Low Poly Water System/Runtime/Shaders/Internal/DepthOnly.shader
+  uploadId: 572787
