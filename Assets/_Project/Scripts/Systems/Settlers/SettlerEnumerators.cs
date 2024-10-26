@@ -23,10 +23,10 @@ public enum StatType // The different types of stats that a settler can have
 
 public enum Gender // The gender of the settler - only used cosmetically & for family procreation
 {
-    Male,Female
+    Male, Female
 }
 
-public enum SocialStatus 
+public enum SocialStatus
 {
     Unassigned, // A settler that has not been assigned a social status
     Thrall, // A slave or servant
@@ -34,4 +34,3 @@ public enum SocialStatus
     Warrior,// A warrior or soldier
     Jarl,   // A noble or leader
 }
-
