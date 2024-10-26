@@ -31,7 +31,7 @@ namespace GameCamera {
     /// <summary>
     /// MonoBehaviour method called during initialization
     /// </summary>
-    private void awake()
+    private void Awake()
     {
             // check the initial zoom value is not greater than the max zoom value
             if (initialZoom >zoomMax) { initialZoom = zoomMax; }
