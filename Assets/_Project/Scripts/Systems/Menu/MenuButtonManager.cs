@@ -16,13 +16,4 @@ public class MenuButtonManager : MonoBehaviour
     {
 
     }
-    public void SaveGame()
-    {
-
-    }
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
 }
