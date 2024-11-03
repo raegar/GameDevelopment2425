@@ -1,17 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class AutoScroll : MonoBehaviour
 {
     ScrollRect scrollRect;
     public float scrollSpeed = 0.1f;
 
-    void Start()
+    void Awake()
     {
         scrollRect = GetComponent<ScrollRect>();
-        scrollRect.verticalNormalizedPosition = 4f;
-
         //disable manual scrolling
         scrollRect.vertical = false;
         scrollRect.horizontal = false;
@@ -22,5 +19,9 @@ public class AutoScroll : MonoBehaviour
         {
             scrollRect.verticalNormalizedPosition -= scrollSpeed * Time.deltaTime;
         }
+    }
+    public void ResetCredits()
+    {
+        scrollRect.verticalNormalizedPosition = 4f;
     }
 }
