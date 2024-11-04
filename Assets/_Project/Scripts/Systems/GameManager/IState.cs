@@ -1,8 +1,8 @@
 public interface IState 
 { 
-    void OnEnter();
-    void Update();
-    void OnExit();
+    void StateEnter();
+    void StateUpdate();
+    void StateExit();
 }
     
 

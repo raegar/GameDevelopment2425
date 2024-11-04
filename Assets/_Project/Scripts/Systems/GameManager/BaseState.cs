@@ -1,16 +1,17 @@
-public abstract class BaseState : IState
+using UnityEngine;
+public abstract class BaseState : MonoBehaviour , IState
 {
-    public virtual void OnEnter()
+    public virtual void StateEnter()
     {
         //noop
     }
 
-    public virtual void Update()
+    public virtual void StateUpdate()
     {
         //noop
     }
 
-    public virtual void OnExit()
+    public virtual void StateExit()
     {
         //noop
     }

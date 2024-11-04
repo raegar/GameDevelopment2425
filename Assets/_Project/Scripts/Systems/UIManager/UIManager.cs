@@ -2,20 +2,24 @@
  * email(s)     : dm1200@student.aru.ac.uk & jw1519@student.aru.ac.uk
  * License      : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
  * Last Modified: 26/10/2024
- * Purpose      :This script is designed as single point of access for all UI panels in the game.
- *               
+ * Purpose      :This script is designed as single point of access for all UI panels in the game.           
  */
 using UnityEngine;
 using PatternLibrary;
 using AYellowpaper.SerializedCollections;
 using System.Linq;
 
-
 public class UIManager : Singleton<UIManager>
 {
+    // reference to the registered panels scriptable object contining all the panels in the game
+    // [SerializeField] private RegisterPanelsSO registeredPanels; 
+    // [SerializeField] private
+
     // a dictionary of current panels and their visibility
     [Header("For debug purposes only - please do not manually add")]
-    [SerializeField] private SerializedDictionary<PanelBase, bool> panels = new SerializedDictionary<PanelBase, bool>();
+    [SerializeField] private SerializedDictionary<PanelBase, bool> registeredPanels = new SerializedDictionary<PanelBase, bool>();
+
+    // private void InitializePanels() { }
 
     /// <summary>
     /// Registers a panel in the panels dictionary whenever a child class of BasePanel awakes
@@ -25,9 +29,9 @@ public class UIManager : Singleton<UIManager>
     {
         Debug.Log("Registering panel" + panel);
         // if the panel is already registered, log a warning
-        if (!panels.ContainsKey(panel))
+        if (!registeredPanels.ContainsKey(panel))
         {
-            panels.Add(panel, false);
+            registeredPanels.Add(panel, false);
             ClosePanel(panel);
         }
         else
@@ -37,6 +41,8 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    // public PanelBase GetPanelReference(string panelName) {  // return the panel reference }
+
     /// <summary>
     /// Opens a single panel by enabling the game object attached to the panel component
     /// </summary>
@@ -44,10 +50,10 @@ public class UIManager : Singleton<UIManager>
     public void OpenPanel(PanelBase panel)
     {
         // check if the panel is in the dictionary
-        if (panels.ContainsKey(panel))
+        if (registeredPanels.ContainsKey(panel))
         {
             // change the panels status in the dictionary to disabled (false)
-            panels[panel] = true;
+            registeredPanels[panel] = true;
             // enable the game object
             panel.gameObject.SetActive(true);
             // can be extended here to add a standardized sound effect or animation
@@ -68,10 +74,10 @@ public class UIManager : Singleton<UIManager>
     public void ClosePanel(PanelBase panel)
     {
         // check if the panel is in the dictionary
-        if (panels.ContainsKey(panel))
+        if (registeredPanels.ContainsKey(panel))
         {
             // change the panels status in the dictionary to disabled (false)
-            panels[panel] = false;
+            registeredPanels[panel] = false;
             // disable the game object
             panel.gameObject.SetActive(false);
             // can be extended here to add a standardized sound effect or animation
@@ -92,10 +98,10 @@ public class UIManager : Singleton<UIManager>
     public void CloseAllPanels()
     {
         // Move the keys to a list to avoid the .Net 2.1 error
-        foreach (var panel in panels.ToList())
+        foreach (var panel in registeredPanels.ToList())
         {
             // change the panels status in the dictionary to disabled (false)
-            panels[panel.Key] = false;
+            registeredPanels[panel.Key] = false;
             // disable the game object
             panel.Key.gameObject.SetActive(false);
         }
@@ -107,7 +113,7 @@ public class UIManager : Singleton<UIManager>
     /// <returns>true if open / false if closed or not present</returns>
     public bool IsPanelOpen(PanelBase panel)
     {
-        if (panels.ContainsKey(panel)) { return panels[panel]; }
+        if (registeredPanels.ContainsKey(panel)) { return registeredPanels[panel]; }
         else
         {
             // this should not happen but if there is a rogue panel in the scene register it
