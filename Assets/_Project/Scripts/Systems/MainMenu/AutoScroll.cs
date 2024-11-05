@@ -1,3 +1,7 @@
+/*Author: Jess Woodward
+ * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+ * Purpose: this scipt makes it so the credits autoscroll through till the end of the text
+ */
 using UnityEngine;
 using UnityEngine.UI;
 

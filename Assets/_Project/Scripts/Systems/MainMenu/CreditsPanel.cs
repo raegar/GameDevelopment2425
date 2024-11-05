@@ -1,4 +1,7 @@
-
+/*Author: Jess Woodward
+ * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+ * Purpose: the script allows for the credits panel to be opend and closed
+ */
 public class CreditsPanel : PanelBase
 {
     private void Awake()
