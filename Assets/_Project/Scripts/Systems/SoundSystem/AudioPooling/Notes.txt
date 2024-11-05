@@ -1,3 +1,0 @@
-This is a system implemented from here: https://youtu.be/BgpqoRFCNOs / https://github.com/adammyhre/Unity-Audio-Pooling/tree/master/Assets/_Project/Scripts/AudioSystem
-
-As of 31/10/2024 I could not figure out how to get it working.
