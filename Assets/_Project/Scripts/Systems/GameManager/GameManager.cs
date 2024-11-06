@@ -132,7 +132,14 @@ namespace GameProjectManager
         /// <param name="name"></param>
         public void DeleteData(string name)
         {
-            Directory.Delete(savePath + "/" + name, true);
+            if (Directory.Exists(savePath + "/" + saveName))
+            {
+                Directory.Delete(savePath + "/" + name, true);
+            } else
+            {
+                Debug.LogError("Save does not exist");
+                return;
+            }
         }
         
         /// <summary>
@@ -152,10 +159,19 @@ namespace GameProjectManager
         /// </summary>
         public void LoadData(string saveName)
         {
-            foreach (var container in registeredPersistantDataContainers)
+            if (Directory.Exists(savePath + "/" + saveName))
             {
-                container.Key.LoadData(savePath + "/" + saveName);
+                foreach (var container in registeredPersistantDataContainers)
+                {
+                    container.Key.LoadData(savePath + "/" + saveName);
+                }
             }
+            else
+            {
+                Debug.LogError("Save does not exist");
+                return;
+            }
+            
         }
 
         /// <summary>
