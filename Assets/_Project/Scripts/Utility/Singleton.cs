@@ -4,7 +4,7 @@ namespace PatternLibrary
 {   // As this is a base class we wont know the type of child classes until they are implimented so we substitute with T
     public class Singleton<T> : MonoBehaviour where T : Component
     {
-        public bool persistentAcrossScenes = false;
+        public bool persistentAcrossScenes = true;
         protected static T instance;
         public static T Instance
         {
