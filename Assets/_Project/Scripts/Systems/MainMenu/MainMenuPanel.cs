@@ -11,6 +11,7 @@ public class MainMenuPanel : PanelBase
     }
     public void OpenMainMenuPanel()
     {
+        UIManager.Instance.CloseAllPanels();
         UIManager.Instance.OpenPanel(this);
     }
     public void CloseMainMenuPanel()

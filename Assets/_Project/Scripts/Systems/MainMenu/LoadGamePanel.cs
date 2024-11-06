@@ -6,6 +6,7 @@ public class LoadGamePanel : PanelBase
 {
     public void OpenLoadgamePanel()
     {
+        UIManager.Instance.CloseAllPanels();
         UIManager.Instance.OpenPanel(this);
     }
     public void CloseLoadgamePanel()

@@ -398,7 +398,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2110668037}
         m_TargetAssemblyTypeName: MenuPanel, ScriptsAssemblyDefinition
-        m_MethodName: closeMenu
+        m_MethodName: CloseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
