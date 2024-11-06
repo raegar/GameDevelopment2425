@@ -1795,7 +1795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffacb11772f01f45bc2caf8352fbe6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataFilename: SomeDataThing.txt
+  uniqueIdentifier: UniqueName1.txt
   someData: 0
   dataText: {fileID: 717830657}
 --- !u!4 &1445290085
@@ -2347,7 +2347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffacb11772f01f45bc2caf8352fbe6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataFilename: SomeOtherDataThing.txt
+  uniqueIdentifier: Unique2.txt
   someData: 0
   dataText: {fileID: 717830657}
 --- !u!4 &1841532961
