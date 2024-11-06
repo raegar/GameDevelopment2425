@@ -11,6 +11,8 @@ public class SomeDataThing : MonoBehaviour, IPersistantDataContainer
 
     private void Awake()
     {
+        // use something like this to make sure the uniqueIdentifier is unique
+        // please dont all call your files "DATA.txt" or it will break :)
         uniqueIdentifier = this.gameObject.name + uniqueIdentifier;
         RegisterDataProvider();
     }
