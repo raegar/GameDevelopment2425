@@ -58,9 +58,9 @@ namespace GameProjectManager
             // concatinate the two to get the full path
             savePath = savePath + "/" + defaultSaveFolder;
             // Get all the subfolders in the save folder each folder represents a save
-            string[] subfolders = Directory.GetDirectories(savePath);
-            // loop through and find any existing saves
-            foreach (string subfolder in subfolders) { gameSaves.Add(subfolder); }
+            string[] subfolders = Directory.GetDirectories(savePath, "*", SearchOption.TopDirectoryOnly);
+            // loop through and find any existing saves - irritating feature of GetDirectories is that it inserts a \ into the path
+            foreach (string subfolder in subfolders) {gameSaves.Add(subfolder.Replace("\\","/"));}
             // reminder that count is the number of elements in the list not the index
             saveCounter = gameSaves.Count;
         }
@@ -90,11 +90,15 @@ namespace GameProjectManager
             {
                 Debug.LogError("Save already exists");
             }
-            // create a new save folder
-            Directory.CreateDirectory(savePath + "/" + name);
-            foreach (var container in registeredPersistantDataContainers)
+            else
             {
-                container.Key.SaveData(savePath + "/" + name);
+                // create a new save folder
+                Directory.CreateDirectory(savePath + "/" + name);
+                gameSaves.Add(savePath + "/" + name);
+                foreach (var container in registeredPersistantDataContainers)
+                {
+                    container.Key.SaveData(savePath + "/" + name);
+                }
             }
         }
 
@@ -107,9 +111,15 @@ namespace GameProjectManager
             // if no name is provided use the default
             saveCounter++;
             name = saveName + saveCounter.ToString();
+            if (gameSaves.Contains(savePath + "/" + name))
+            {
+                saveCounter++;
+                SaveData();
+            }
             // refactor this later as it's own method with more error checking
             Directory.CreateDirectory(savePath + "/" + name);
             // may need to move this into a coroutine if it gets slow
+            gameSaves.Add(savePath + "/" + name);
             foreach (var container in registeredPersistantDataContainers)
             {
                 container.Key.SaveData(savePath + "/" + name);
@@ -132,10 +142,12 @@ namespace GameProjectManager
         /// <param name="name"></param>
         public void DeleteData(string name)
         {
-            if (Directory.Exists(savePath + "/" + saveName))
+            if (Directory.Exists(savePath + "/" + name))
             {
                 Directory.Delete(savePath + "/" + name, true);
-            } else
+                gameSaves.Remove(savePath +"/" + name);
+            } 
+            else
             {
                 Debug.LogError("Save does not exist");
                 return;
@@ -149,8 +161,12 @@ namespace GameProjectManager
         {
             foreach (var save in gameSaves)
             {
-                Directory.Delete(save, true);
+                if (Directory.Exists(save))
+                {
+                    Directory.Delete(save, true);
+                }
             }
+            gameSaves.Clear();
         }
 
         /// <summary>
