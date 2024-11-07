@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToolItem : MonoBehaviour
+namespace InventorySystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ToolItem : Item
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

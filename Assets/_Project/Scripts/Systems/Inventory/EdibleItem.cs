@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EdibleItem : MonoBehaviour
+namespace InventorySystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class EdibleItem : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
