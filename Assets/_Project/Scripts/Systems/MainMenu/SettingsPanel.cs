@@ -2,15 +2,17 @@
  * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
  * Purpose: the script allows for the settings panel to be opened and closed
  */
-public class SettingsPanel : PanelBase
+namespace menuPanels
 {
-
-    public void OpenSettingsPanel()
+    public class SettingsPanel : PanelBase
     {
-        UIManager.Instance.OpenPanel(this);
-    }
-    public void CloseSettingsPanel() 
-    {
-        UIManager.Instance.ClosePanel(this);
+        public void OpenSettingsPanel()
+        {
+            UIManager.Instance.OpenPanel(this);
+        }
+        public void CloseSettingsPanel()
+        {
+            UIManager.Instance.ClosePanel(this);
+        }
     }
 }

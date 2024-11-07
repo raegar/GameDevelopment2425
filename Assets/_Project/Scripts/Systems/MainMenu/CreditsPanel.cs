@@ -2,19 +2,22 @@
  * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
  * Purpose: the script allows for the credits panel to be opend and closed
  */
-public class CreditsPanel : PanelBase
+namespace menuPanels
 {
-    private void Awake()
+    public class CreditsPanel : PanelBase
     {
-        base.Awake();
-    }
-    public void OpenCreditsPanel()
-    {
-        UIManager.Instance.OpenPanel(this);
-        GetComponentInChildren<AutoScroll>().ResetCredits();
-    }
-    public void CloseCreditsPanel()
-    {
-        UIManager.Instance.ClosePanel(this);
+        private void Awake()
+        {
+            base.Awake();
+        }
+        public void OpenCreditsPanel()
+        {
+            UIManager.Instance.OpenPanel(this);
+            GetComponentInChildren<AutoScroll>().ResetCredits();
+        }
+        public void CloseCreditsPanel()
+        {
+            UIManager.Instance.ClosePanel(this);
+        }
     }
 }

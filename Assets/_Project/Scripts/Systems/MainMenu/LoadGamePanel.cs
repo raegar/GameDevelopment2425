@@ -2,15 +2,18 @@
  * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
  * Purpose: the script allows for the load game panel to be opened and closed
  */
-public class LoadGamePanel : PanelBase
+namespace menuPanels
 {
-    public void OpenLoadgamePanel()
+    public class LoadGamePanel : PanelBase
     {
-        UIManager.Instance.CloseAllPanels();
-        UIManager.Instance.OpenPanel(this);
-    }
-    public void CloseLoadgamePanel()
-    { 
-        UIManager.Instance.ClosePanel(this);
+        public void OpenLoadgamePanel()
+        {
+            UIManager.Instance.CloseAllPanels();
+            UIManager.Instance.OpenPanel(this);
+        }
+        public void CloseLoadgamePanel()
+        {
+            UIManager.Instance.ClosePanel(this);
+        }
     }
 }
