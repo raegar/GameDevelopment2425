@@ -6,7 +6,7 @@ using UnityEngine;
 public class MeshGenerator : MonoBehaviour
 {
     private Mesh mesh;
-
+    
     private Vector3[] vertices;
     private int[] triangles;
     private Vector2[] uvs;
