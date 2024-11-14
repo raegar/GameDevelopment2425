@@ -185,7 +185,7 @@ namespace sc.terrain.proceduralpainter
             //This is necessary, since painting data is serialized asynchronously.
             //- If the scene were to be closed the TerrainAPI looses reference to the terrains
             //- Doing manual painting after using the Terrain Painter, then saving, will loose those modifications
-            AssetDatabase.SaveAssets();
+            //AssetDatabase.SaveAssets();
             
         }
         
