@@ -4,7 +4,7 @@
  */
 public class MenuPanel : PanelBase
 {
-    void Awake()
+    protected override void Awake()
     {
         base.Awake();
     }

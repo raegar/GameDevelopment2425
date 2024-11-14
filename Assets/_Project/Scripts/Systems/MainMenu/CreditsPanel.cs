@@ -6,7 +6,7 @@ namespace menuPanels
 {
     public class CreditsPanel : PanelBase
     {
-        private void Awake()
+        protected override void Awake()
         {
             base.Awake();
         }
