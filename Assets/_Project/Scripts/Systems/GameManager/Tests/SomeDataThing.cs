@@ -19,7 +19,7 @@ public class SomeDataThing : MonoBehaviour, IPersistantDataContainer
 
     public void RegisterDataProvider()
     {
-        GameManager.Instance.RegisterDataProvider(this);
+        SaveManager.Instance.RegisterDataProvider(this);
     }
     /// <summary>
     /// Sets up any data for a new game here.

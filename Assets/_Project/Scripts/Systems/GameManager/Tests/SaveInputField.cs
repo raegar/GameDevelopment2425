@@ -18,8 +18,8 @@ public class SaveInputField : MonoBehaviour
     {
         if (input == "")
         {
-            GameManager.Instance.SaveData();
+            SaveManager.Instance.SaveData();
         }
-        else { GameManager.Instance.SaveData(input); }
+        else { SaveManager.Instance.SaveData(input); }
     }
 }

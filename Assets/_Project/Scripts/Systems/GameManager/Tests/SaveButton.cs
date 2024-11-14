@@ -18,7 +18,7 @@ public class SaveButton : MonoBehaviour
     public void OnClick()
     {
         Debug.Log("SaveButton.OnClick()");
-        if (inputField.text == "") { GameManager.Instance.SaveData(); }
-        else { GameManager.Instance.SaveData(inputField.text); }
+        if (inputField.text == "") { SaveManager.Instance.SaveData(); }
+        else { SaveManager.Instance.SaveData(inputField.text); }
     }
 }
