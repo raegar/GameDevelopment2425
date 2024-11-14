@@ -1,5 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+/* Author Jess
+ * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+ * Purpose: This script handles an array of equiptable items so this can be refreced
+*/
+
 using UnityEngine;
 
 namespace InventorySystem

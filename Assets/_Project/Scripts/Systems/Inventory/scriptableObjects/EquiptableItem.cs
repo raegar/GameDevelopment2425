@@ -1,5 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+/* Author Jess
+ * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+ * Purpose: This is a scriptable object that holds information on equiptable items such as armor
+*/
+
 using UnityEngine;
 
 namespace InventorySystem
