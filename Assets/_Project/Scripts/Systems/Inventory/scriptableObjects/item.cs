@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace InventorySystem
 {
-    [CreateAssetMenu (fileName = "New item", menuName = "create new item")]
+    [CreateAssetMenu (fileName = "New item", menuName = "create item/item")]
     public class Item : ScriptableObject
     {
         public string itemName;
