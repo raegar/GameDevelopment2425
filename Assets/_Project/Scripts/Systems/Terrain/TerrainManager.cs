@@ -56,8 +56,14 @@ namespace terrain
         private void RepaintTerrain()
         {
             TerrainPainter TPainter = GetComponent<TerrainPainter>();
-            TPainter.AssignActiveTerrains();
-            TPainter.RepaintAll();
+
+            Terrain terrain = FindAnyObjectByType<Terrain>();
+            if(terrain != null)
+            {
+                TPainter.AssignActiveTerrains();
+                TPainter.RepaintAll();
+            }
+            
         }
 
     }
