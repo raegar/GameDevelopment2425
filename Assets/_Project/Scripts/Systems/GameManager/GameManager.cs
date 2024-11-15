@@ -11,11 +11,15 @@ using UnityEngine.UI;
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
 using GameProjectManager;
+using PatternLibrary;
+using AYellowpaper.SerializedCollections.Editor.Data;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public bool isPaused = false;
     public int mainMenuSceneIndex = 1;
@@ -29,8 +33,9 @@ public class GameManager : MonoBehaviour
     // A reference to the loading operation so we can update the progress bar
     private AsyncOperation loadOperation;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         if (UIManager.Instance != null)
         {
             Instantiate(UIManagerPrefab, transform.root);
@@ -48,21 +53,27 @@ public class GameManager : MonoBehaviour
         LoadMenuScene();
     }
     private void LoadMenuScene()
-    {   
-        // try to find a progress bar in the scene
-        var foundSliderObjects = FindObjectsOfType<Slider>();
-        if (foundSliderObjects.Length > 0)
+    {
+        if (progressBar == null)
         {
-            // reset the properties of the progress bar to what we need
-            progressBar = foundSliderObjects[0];
-            progressBar.maxValue = 1f;
-            progressBar.minValue = 0f;
-            progressBar.value = 0f;
+            // try to find a progress bar in the scene
+            var foundSliderObjects = FindObjectsOfType<Slider>();
+            if (foundSliderObjects.Length > 0)
+            {
+                // reset the properties of the progress bar to what we need
+                progressBar = foundSliderObjects[0];
+            }
+            else
+            {
+                // The script will still work without a progress bar - but it should be there.
+                Debug.LogError("No progress bar found in scene");
+            }
         }
         else
         {
-            // The script will still work without a progress bar - but it should be there.
-            Debug.LogError("No progress bar found in scene");
+            progressBar.maxValue = 1f;
+            progressBar.minValue = 0f;
+            progressBar.value = 0f;
         }
         // Using a a coroutine to spread the loading and instantiation of systems over multiple frames
         StartCoroutine(ILoadMenuScene());

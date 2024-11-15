@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LoaderPanel : MonoBehaviour
+public class LoaderPanel : PanelBase
+
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Slider progressBar;
+    protected override void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Awake();
+        if (progressBar == null)
+        {
+            progressBar = GetComponentInChildren<Slider>();
+        }
+        if (progressBar != null)
+        {
+            GameManager.Instance.progressBar = progressBar;
+        }
     }
 }

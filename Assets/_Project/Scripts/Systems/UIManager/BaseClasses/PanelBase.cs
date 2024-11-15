@@ -8,8 +8,10 @@
  */
 using UnityEngine;
 
+
 public abstract class PanelBase : MonoBehaviour
 {
+    
     /// <summary>
     /// The Unity Awake method used for initialisation
     /// </summary>

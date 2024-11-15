@@ -4,22 +4,35 @@
  * Last Modified: 26/10/2024
  * Purpose      :This script is designed as single point of access for all UI panels in the game.           
  */
-using UnityEngine;
+
 using PatternLibrary;
 using AYellowpaper.SerializedCollections;
 using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
+using System;
+
 
 public class UIManager : Singleton<UIManager>
 {
     // reference to the registered panels scriptable object contining all the panels in the game
-    // [SerializeField] private RegisterPanelsSO registeredPanels; 
-    // [SerializeField] private
+    public RegisteredPanelsSO  NamedPanelPrefabs;
+    // reference to the canvas root
+    [SerializeField] private GameObject CanvasRoot;
+    
 
     // a dictionary of current panels and their visibility
     [Header("For debug purposes only - please do not manually add")]
     [SerializeField] private SerializedDictionary<PanelBase, bool> registeredPanels = new SerializedDictionary<PanelBase, bool>();
 
-    // private void InitializePanels() { }
+    private void InitializePanels()
+    {
+        foreach (var panel in NamedPanelPrefabs.panels)
+        {
+            Instantiate(panel.Value,CanvasRoot.transform);
+            Register(panel.Value);
+        }
+    }
 
     /// <summary>
     /// Registers a panel in the panels dictionary whenever a child class of BasePanel awakes
@@ -27,21 +40,26 @@ public class UIManager : Singleton<UIManager>
     /// <param name="panel"></param>
     public void Register(PanelBase panel)
     {
-        Debug.Log("Registering panel" + panel);
         // if the panel is already registered, log a warning
         if (!registeredPanels.ContainsKey(panel))
         {
             registeredPanels.Add(panel, false);
             ClosePanel(panel);
         }
-        else
-        {
-            // shouldn't ever happen, but sanity check
-            Debug.LogWarning($"{panel} already registered");
-        }
     }
 
-    // public PanelBase GetPanelReference(string panelName) {  // return the panel reference }
+    public PanelBase GetPanelReference(string panelName) 
+    {
+        if (NamedPanelPrefabs.panels.ContainsKey(panelName))
+        {
+            return NamedPanelPrefabs.panels[panelName];
+        }
+        else
+        {
+            Debug.LogWarning("Panel not found in dictionary");
+            return null;
+        }
+    }
 
     /// <summary>
     /// Opens a single panel by enabling the game object attached to the panel component
@@ -67,6 +85,19 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    public void OpenPanel(string panel)
+    { 
+     if (NamedPanelPrefabs.panels.ContainsKey(panel))
+        {
+            OpenPanel(NamedPanelPrefabs.panels[panel]);
+        }
+        else
+        {
+            Debug.LogWarning("Panel not found in dictionary");
+        }
+
+    }
+
     /// <summary>
     /// Closes a single panel
     /// </summary>
@@ -86,6 +117,18 @@ public class UIManager : Singleton<UIManager>
         {
             // this should not happen but if there is a rogue panel in the scene register it
             Register(panel);
+        }
+    }
+
+    public void ClosePanel(string panel)
+    {
+        if (NamedPanelPrefabs.panels.ContainsKey(panel))
+        {
+            ClosePanel(NamedPanelPrefabs.panels[panel]);
+        }
+        else
+        {
+            Debug.LogWarning("Panel not found in dictionary");
         }
     }
 
@@ -118,6 +161,19 @@ public class UIManager : Singleton<UIManager>
         {
             // this should not happen but if there is a rogue panel in the scene register it
             Register(panel);
+            return false;
+        }
+    }
+
+    public bool IsPanelOpen(string panel)
+    {
+        if (NamedPanelPrefabs.panels.ContainsKey(panel))
+        {
+            return IsPanelOpen(NamedPanelPrefabs.panels[panel]);
+        }
+        else
+        {
+            Debug.LogWarning("Panel not found in dictionary");
             return false;
         }
     }
