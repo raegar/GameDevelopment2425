@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
-using GameProjectManager;
+using SaveSystem;
 using PatternLibrary;
 using AYellowpaper.SerializedCollections.Editor.Data;
 
@@ -36,12 +36,14 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        if (UIManager.Instance != null)
+        if (UIManagerPrefab != null)
         {
             Instantiate(UIManagerPrefab, transform.root);
         }
         else
         {
+            // cause the singleton to self instantiate
+            var _tmp = UIManager.Instance;
             Debug.LogError("UIManager reference missing");
         }
     }
@@ -49,7 +51,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        // UIManager.Instance.OpenPanel("Loader"); // add string override
+        UIManager.Instance.OpenPanel("Loader");
         LoadMenuScene();
     }
     private void LoadMenuScene()
@@ -102,11 +104,12 @@ public class GameManager : Singleton<GameManager>
             if (progressBar != null) { progressBar.value += counter; }
             yield return null;
         }
+        yield return new WaitForSeconds(3f);    
         // if we have a progress bar set it to fully done.
         if (progressBar != null) { progressBar.value = 1f; }
         loadOperation.allowSceneActivation = true;
-        // UIManager.Instance.ClosePanel("Loader"); // add string override
-        // UIManager.Instance.OpenPanel("MainMenu"); // add string override
+        UIManager.Instance.ClosePanel("Loader"); // add string override
+        //UIManager.Instance.OpenPanel("MainMenu"); // add string override
         // SoundManager.Instance.PlayMusic("MainMenu");
     }
 

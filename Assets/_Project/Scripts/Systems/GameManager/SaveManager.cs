@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PatternLibrary;
 
-namespace GameProjectManager
+namespace SaveSystem
 {
     public class SaveManager : Singleton<SaveManager>
     {

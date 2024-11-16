@@ -1,14 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
+using SaveSystem;
 
 public class MainMenuPanel : PanelBase
 {
-    [SerializeField] private Button newGameButton;
-    [SerializeField] private Button continueButton;
-    [SerializeField] private Button loadGameButton;
-    [SerializeField] private Button settingsButton;
-    [SerializeField] private Button exitButton;
+    [SerializeField] private GameObject NewGamePanel;
+    [SerializeField] private GameObject HasSavesPanel;
 
+    
+    private void OnEnable()
+    {
+        // check if there are any saves
+        if (SaveManager.Instance.saveCounter > 0)
+        {
+            HasSavesPanel.SetActive(true);
+            NewGamePanel.SetActive(false);
+        }
+        else
+        {
+            HasSavesPanel.SetActive(false);
+            NewGamePanel.SetActive(true);
+        }
+    }
     public void NewGame() 
     {
         

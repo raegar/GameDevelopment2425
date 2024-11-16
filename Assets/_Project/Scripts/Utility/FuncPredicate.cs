@@ -1,6 +1,6 @@
 using System;
 
-namespace GameProjectManager
+namespace SaveSystem
 {
     public class FuncPredicate : IPredicate
     {

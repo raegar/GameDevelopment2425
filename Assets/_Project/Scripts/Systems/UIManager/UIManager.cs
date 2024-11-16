@@ -19,18 +19,23 @@ public class UIManager : Singleton<UIManager>
     public RegisteredPanelsSO  NamedPanelPrefabs;
     // reference to the canvas root
     [SerializeField] private GameObject CanvasRoot;
-    
-
     // a dictionary of current panels and their visibility
     [Header("For debug purposes only - please do not manually add")]
     [SerializeField] private SerializedDictionary<PanelBase, bool> registeredPanels = new SerializedDictionary<PanelBase, bool>();
 
+    protected override void Awake()
+    {
+        base.Awake();
+        InitializePanels();
+    }
     private void InitializePanels()
     {
         foreach (var panel in NamedPanelPrefabs.panels)
         {
-            Instantiate(panel.Value,CanvasRoot.transform);
-            Register(panel.Value);
+            Debug.Log("Instantiating panel: " + panel.Key);
+            var _go = Instantiate(panel.Value,CanvasRoot.transform);
+            _go.name = panel.Key;
+            //Register(panel.Value);
         }
     }
 
@@ -80,6 +85,7 @@ public class UIManager : Singleton<UIManager>
         {
             // this should not happen but if there is a rogue panel in the scene register it
             Register(panel);
+            Debug.LogWarning("Rogue Panel" + panel);
             // try again
             OpenPanel(panel);
         }

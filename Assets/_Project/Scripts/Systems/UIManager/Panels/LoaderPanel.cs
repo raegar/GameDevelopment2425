@@ -9,7 +9,7 @@ public class LoaderPanel : PanelBase
     [SerializeField] private Slider progressBar;
     protected override void Awake()
     {
-        base.Awake();
+        //base.Awake();
         if (progressBar == null)
         {
             progressBar = GetComponentInChildren<Slider>();

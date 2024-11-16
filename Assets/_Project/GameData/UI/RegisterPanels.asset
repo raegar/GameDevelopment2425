@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: RegisterPanels
   m_EditorClassIdentifier: 
   panels:
-    _serializedList: []
+    _serializedList:
+    - Key: Loader
+      Value: {fileID: 5247209999438281303, guid: 7dd7b9995beece643a267e511d5436bf,
+        type: 3}
+    - Key: MainMenu
+      Value: {fileID: 5247209999438281303, guid: 7dd7b9995beece643a267e511d5436bf,
+        type: 3}
