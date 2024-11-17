@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 529f14c95497dd5458a90322ee53e61f, type: 3}
   priority: 200
-  volume: 0.109
+  volume: 0.1
   pitch: 1
   randomPitch: 0
   randomPitchRange: 0.1
-  maxDistance: 200
+  maxDistance: 150
   rolloffMode: 2
