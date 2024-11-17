@@ -1,18 +1,34 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 using PatternLibrary;
+using UnityEditor;
+
+public class ReadOnlyAttribute : PropertyAttribute { }
+
+#if UNITY_EDITOR
+[CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
+public class ReadOnlyDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        GUI.enabled = false;
+        EditorGUI.PropertyField(position, property, label);
+        GUI.enabled = true;
+    }
+}
+#endif
 
 public class SpatialSFXPool : Singleton<SpatialSFXPool>
 {
     public GameObject objectToPool;
-    public int poolSize = 32;
+    public int initialPoolSize = 32;
     public bool canGrow = true;
     public int maxPoolSize = 32;
     public int minPoolSize;
 
     private IObjectPool<GameObject> pool;
+    [ReadOnly] [SerializeField] private int currentPoolSize;
 
     protected override void Awake()
     {
@@ -22,30 +38,42 @@ public class SpatialSFXPool : Singleton<SpatialSFXPool>
     private void Start()
     {
         AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
-        poolSize -= audioSources.Length;
+        initialPoolSize -= audioSources.Length;
         maxPoolSize -= audioSources.Length;
 
-        if (poolSize > maxPoolSize || minPoolSize > maxPoolSize)
+        if (initialPoolSize > maxPoolSize || minPoolSize > maxPoolSize)
         {
-            poolSize = maxPoolSize;
+            initialPoolSize = maxPoolSize;
             minPoolSize = maxPoolSize;
         }
         if (minPoolSize == 0)
         {
-            minPoolSize = poolSize;
+            minPoolSize = initialPoolSize;
         }
 
-        pool = new ObjectPool<GameObject>(CreatePooledObject, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck: true, defaultCapacity: poolSize, maxSize: maxPoolSize);
-        for (int i = 0; i < poolSize; i++)
+        pool = new ObjectPool<GameObject>(CreatePooledObject, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck: true, defaultCapacity: initialPoolSize, maxSize: maxPoolSize);
+        for (int i = 0; i < initialPoolSize; i++)
         {
             GameObject pooledObject = CreatePooledObject();
             pool.Release(pooledObject);
         }
+
+        DragDropSound[] dragDroppables = FindObjectsOfType<DragDropSound>();
+
+        foreach (DragDropSound dragDroppable in dragDroppables)
+        {
+            if (dragDroppable.GetComponent<PlayOnEnable>())
+            {
+                dragDroppable.GetComponent<PlayOnEnable>().OnPoolCreated();
+            }
+        }
+
     }
 
     private GameObject CreatePooledObject()
     {
         GameObject pooledObject = Instantiate(objectToPool, transform.position, Quaternion.identity, transform);
+        currentPoolSize++;
         return pooledObject;
     }
 
@@ -62,6 +90,7 @@ public class SpatialSFXPool : Singleton<SpatialSFXPool>
     private void OnDestroyPooledObject(GameObject obj)
     {
         Destroy(obj);
+        currentPoolSize--;
     }
 
     public GameObject GetFromPool()
@@ -96,10 +125,12 @@ public class SpatialSFXPool : Singleton<SpatialSFXPool>
         ReturnToPool(obj);
     }
 
-    public void ReturnToPoolAfterSoundInstant(GameObject obj)
+    public void ReturnToPoolInstant(GameObject obj)
     {
         SoundObject soundObject = obj.GetComponent<SoundObject>();
         soundObject.linkedObject = null;
         ReturnToPool(obj);
     }
 }
+
+

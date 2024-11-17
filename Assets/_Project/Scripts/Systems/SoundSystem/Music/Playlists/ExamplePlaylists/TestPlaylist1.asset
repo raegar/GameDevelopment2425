@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2efe4189d3a6c4a40befd57dbdc4dae0, type: 3}
-  m_Name: Footstep
+  m_Script: {fileID: 11500000, guid: 6ec1227ce3e0aea45a746eece74037a3, type: 3}
+  m_Name: TestPlaylist1
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 40a4552bc731e0444b45dcff95606b38, type: 3}
-  priority: 1
-  volume: 1
-  pitch: 1
-  randomPitch: 1
-  randomPitchRange: 1
-  maxDistance: 35
-  rolloffMode: 1
+  playlist:
+  - {fileID: 11400000, guid: 7222ecd059cee5449ae61210ce0fb13e, type: 2}
+  - {fileID: 11400000, guid: 3a05150c8f4693249af7ac17b8a456e5, type: 2}

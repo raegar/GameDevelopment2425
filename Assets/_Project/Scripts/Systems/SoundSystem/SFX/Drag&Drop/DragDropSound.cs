@@ -7,5 +7,9 @@ public class DragDropSound : MonoBehaviour
     protected virtual void Awake()
     {
         soundReceiver = GetComponent<SoundReceiver>();
+        if (soundReceiver == null)
+        {
+            soundReceiver = gameObject.AddComponent<SoundReceiver>();
+        }
     }
 }

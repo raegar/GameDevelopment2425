@@ -28,4 +28,7 @@ public class SoundData : ScriptableObject
     [Header("(0.1 to 500) Range at which the sound can be heard")]
     [Range(0.1f, 500f)] // Unity's default max distance for 3D sound range is 500
     public float maxDistance = 500f;
+
+    [Header("Rolloff type - how should distance from sound be handled")]
+    public AudioRolloffMode rolloffMode = AudioRolloffMode.Linear;
 }

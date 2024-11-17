@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MusicManager : Singleton<MusicManager>
 {
-    private AudioSource musicSource; // the audio source component that plays the music
+    public AudioSource musicSource; // the audio source component that plays the music
 
     [SerializeField] private Playlist currentPlaylist; // the currently selected playlist
     [SerializeField] private TrackData currentSong; // the currently playing song and its data (track name, artist name and the actual audio clip)

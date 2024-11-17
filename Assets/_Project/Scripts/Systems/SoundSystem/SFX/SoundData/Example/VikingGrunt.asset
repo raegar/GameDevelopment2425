@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe4189d3a6c4a40befd57dbdc4dae0, type: 3}
   m_Name: VikingGrunt
   m_EditorClassIdentifier: 
-  audioMixerGroup: {fileID: 24300002, guid: abe50ea48564fb84697b0f763c4df913, type: 2}
   audioClip: {fileID: 8300000, guid: c7bb46fdd0732d649b747c4a3c02ba77, type: 3}
   priority: 200
   volume: 1
   pitch: 1
   randomPitch: 0
   randomPitchRange: 0.1
-  maxDistance: 300
+  maxDistance: 100
+  rolloffMode: 1

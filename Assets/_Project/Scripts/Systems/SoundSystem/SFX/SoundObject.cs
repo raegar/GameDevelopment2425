@@ -5,6 +5,8 @@ public class SoundObject : MonoBehaviour
     public AudioSource audioSource;
     public GameObject linkedObject;
 
+    private bool paused = false;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -12,6 +14,10 @@ public class SoundObject : MonoBehaviour
 
     public void SetUpData(SoundData soundData)
     {
+        if (audioSource.rolloffMode != soundData.rolloffMode)
+        {
+            audioSource.rolloffMode = soundData.rolloffMode;
+        }
         audioSource.clip = soundData.audioClip;
         audioSource.priority = soundData.priority;
         audioSource.volume = soundData.volume;
@@ -36,11 +42,23 @@ public class SoundObject : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (linkedObject != null && !audioSource.isPlaying)
+        if (!audioSource.isPlaying && audioSource.time != 0)
         {
-            SpatialSFXPool.Instance.StopCoroutine(SpatialSFXPool.Instance.ReturnToPoolAfterSound(gameObject, audioSource.clip.length));
-            SpatialSFXPool.Instance.ReturnToPoolAfterSoundInstant(gameObject);
+            paused = true;
+        }
+        
+        if (paused == false)
+        {
+            if (linkedObject != null && !audioSource.isPlaying)
+            {
+                SpatialSFXPool.Instance.StopCoroutine(SpatialSFXPool.Instance.ReturnToPoolAfterSound(gameObject, audioSource.clip.length));
+                SpatialSFXPool.Instance.ReturnToPoolInstant(gameObject);
+            }
+
+            else if (linkedObject == null)
+            {
+                SpatialSFXPool.Instance.ReturnToPoolInstant(gameObject);
+            }
         }
     }
-
 }

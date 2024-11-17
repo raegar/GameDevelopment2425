@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ec1227ce3e0aea45a746eece74037a3, type: 3}
-  m_Name: Tutorial Playlist
+  m_Script: {fileID: 11500000, guid: 2efe4189d3a6c4a40befd57dbdc4dae0, type: 3}
+  m_Name: UIClick
   m_EditorClassIdentifier: 
-  playlist:
-  - {fileID: 11400000, guid: 7222ecd059cee5449ae61210ce0fb13e, type: 2}
-  - {fileID: 11400000, guid: 3a05150c8f4693249af7ac17b8a456e5, type: 2}
+  audioClip: {fileID: 8300000, guid: 0defae909a2cab34692488100f318e9c, type: 3}
+  priority: 256
+  volume: 1
+  pitch: 1
+  randomPitch: 0
+  randomPitchRange: 0.1
+  maxDistance: 500
+  rolloffMode: 1

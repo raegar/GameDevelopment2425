@@ -31,6 +31,5 @@ public class UISoundManager : Singleton<UISoundManager>
         audioSource.clip = soundData.audioClip;
         audioSource.priority = soundData.priority;
         audioSource.volume = soundData.volume;
-        audioSource.pitch = soundData.pitch;
     }
 }
