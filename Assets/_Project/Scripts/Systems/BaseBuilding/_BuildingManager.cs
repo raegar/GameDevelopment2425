@@ -8,7 +8,7 @@ public class _BuildingManager : MonoBehaviour
 {
     public GameObject[] objects;
     [SerializeField] private Material[] materials;
-    private GameObject pendingObject;
+    public GameObject pendingObject;
     private Vector3 pos;
     private RaycastHit hit;
 
@@ -38,6 +38,8 @@ public class _BuildingManager : MonoBehaviour
                 pendingObject.transform.position = pos;
             }
 
+            UpdateMaterials();
+
             if (Input.GetMouseButtonDown(0) && canPlace)
             {
                 PlaceObject();
@@ -48,7 +50,7 @@ public class _BuildingManager : MonoBehaviour
                 RotateObject();
             }
 
-            UpdateMaterials();
+            
         }
     }
 
