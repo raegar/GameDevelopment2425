@@ -19,7 +19,7 @@ namespace terrain
         [SerializeField] private int gridSizeZ = 3;
 
         [Tooltip("Size of the square terrain.")]
-        [Min(16)]
+        [Min(8)]
         [SerializeField] private int terrainSize = 64;
 
         [Tooltip("Maximum height of the terrain.")]
