@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace InventorySystem
 {
-    [CreateAssetMenu(fileName = "New item", menuName = "create new stackable item")]
+    [CreateAssetMenu(fileName = "New item", menuName = "create item/stackable item")]
     public class StackableItem : Item
     {
         public int currentAmount;
