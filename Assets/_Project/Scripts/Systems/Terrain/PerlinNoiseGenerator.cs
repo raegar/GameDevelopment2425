@@ -1,28 +1,33 @@
 using UnityEngine;
 
 
-namespace terrain{
+namespace terrain {
     public class PerlinNoiseGenerator : MonoBehaviour
     {
         private Terrain terrain;
-        [Tooltip("Size of the square terrain.")] // Give the terrain manager the responsibility to set this.
-        public int terrainSize = 64;
-        [Tooltip("Maximum height of the terrain.")] // Give the terrain manager the responsibility to set this.
-        public float maxY = 5.0f;
-        [Tooltip("Controls the scale (Aka zoom) of the Perlin noise.")] // Give the terrain manager the responsibility to set this.
-        public float scale = 25.0f;
-        [Tooltip("Offset of the terrain (used to tile terrains).")] // Give the terrain manager the responsibility to set this.
-        public float offSetX = 0.0f;
-        [Tooltip("Offset of the terrain (used to tile terrains).")] // Give the terrain manager the responsibility to set this.
-        public float offSetZ = 0.0f;
-        [Tooltip("Set a 'random' seed to create a unique pattern.")] // Give the terrain manager the responsibility to set this.
-        public int seed = 0;
+        [SerializeField] private int terrainSize = 64;
+        [SerializeField] private float maxY = 5.0f;
+        [SerializeField] private float scale = 25.0f;
+        [SerializeField] private float offSetX = 0.0f;
+        [SerializeField] private float offSetZ = 0.0f;
+        [SerializeField] private int seed = 0;
 
         private void Start()
         {
             terrain = GetComponent<Terrain>();
             GenerateNoise();
         }
+
+        public void ConfigureGenerator(int terrainSize, float maxY, float scale, float offSetX, float offSetZ, int seed)
+        {
+            this.terrainSize = terrainSize;
+            this.maxY = maxY;
+            this.scale = scale;
+            this.offSetX = offSetX;
+            this.offSetZ = offSetZ;
+            this.seed = seed;
+    }
+
 
         private void GenerateNoise()
         {
