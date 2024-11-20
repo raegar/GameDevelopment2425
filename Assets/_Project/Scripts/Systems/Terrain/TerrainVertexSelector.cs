@@ -1,11 +1,11 @@
-using GluonGui.Dialog;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TerrainVertexSelector : MonoBehaviour
 {
-    
+    public GameObject selectionFramePrefab;
+    private List<(List<(Terrain terrain, Vector3 vertex)> selectedVertices, GameObject frame, Vector3 worldPosition)> activeManipulators 
+      = new List<(List<(Terrain terrain, Vector3 vertex)> selectedVertices, GameObject frame, Vector3 worldPosition)>();
 
     void Update()
     {
@@ -16,6 +16,20 @@ public class TerrainVertexSelector : MonoBehaviour
             {
                 var terrainsAndVertices = CheckForNeighbours(result.terrain, result.heightmapPosition);
                 Debug.Log(terrainsAndVertices.Count);
+                GameObject newFrame = Instantiate(selectionFramePrefab, result.worldPosition, Quaternion.identity);
+                activeManipulators.Add((terrainsAndVertices, newFrame, result.worldPosition));
+
+
+                foreach (var manipulator in activeManipulators)
+                {
+                    foreach (var vertex in manipulator.selectedVertices)
+                    {
+                        Debug.Log(vertex.terrain);
+                        Debug.Log(vertex.vertex);
+                    }
+                    Debug.Log(manipulator.frame);
+                    Debug.Log(manipulator.worldPosition);
+                }
             }
         }
             
