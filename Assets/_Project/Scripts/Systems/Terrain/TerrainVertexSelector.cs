@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TerrainVertexSelector : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class TerrainVertexSelector : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0) && !IsPointerOverUIElement()) 
         {
             var result = SelectNearestVertex();
             if(result.terrain != null)
@@ -33,7 +35,8 @@ public class TerrainVertexSelector : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
+
+        if (Input.GetMouseButtonDown(1) && !IsPointerOverUIElement())
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
@@ -52,6 +55,20 @@ public class TerrainVertexSelector : MonoBehaviour
             }
 
         } 
+    }
+
+    private bool IsPointerOverUIElement()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
+    public void ClearSelection()
+    {
+        foreach(var manipulator in activeManipulators)
+        {
+            Destroy(manipulator.frame);
+        }
+        activeManipulators.Clear();
     }
 
     private List<(Terrain terrain, Vector3 vertex)> CheckForNeighbours(Terrain terrain, Vector3 heightmapPosition)
