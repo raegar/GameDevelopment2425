@@ -32,7 +32,26 @@ public class TerrainVertexSelector : MonoBehaviour
                 }
             }
         }
-            
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                GameObject hitObject = hit.collider.gameObject;
+                Debug.Log(hitObject);
+                for (int i = 0; i < activeManipulators.Count; i++)
+                {
+                    if (hitObject == activeManipulators[i].frame)
+                    {
+                        Destroy(hit.collider.gameObject);
+                        activeManipulators.RemoveAt(i);
+                    }
+                }
+
+            }
+
+        } 
     }
 
     private List<(Terrain terrain, Vector3 vertex)> CheckForNeighbours(Terrain terrain, Vector3 heightmapPosition)
