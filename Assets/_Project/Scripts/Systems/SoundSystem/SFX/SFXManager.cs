@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SFXManager : Singleton<SFXManager>
 {
-    public List<SoundData> dataList;
+    public SoundData[] dataList;
 
     public void StopSFXPooled(GameObject soundObject)
     {

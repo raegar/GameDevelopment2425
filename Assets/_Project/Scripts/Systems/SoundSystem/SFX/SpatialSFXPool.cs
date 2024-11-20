@@ -95,10 +95,6 @@ public class SpatialSFXPool : Singleton<SpatialSFXPool>
 
     public GameObject GetFromPool()
     {
-        if (pool.Get() == null)
-        {
-            
-        }
         return pool.Get();
     }
 
