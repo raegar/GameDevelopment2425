@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class TerrainVertexSelector : MonoBehaviour
 {
     public GameObject selectionFramePrefab;
-    private List<(List<(Terrain terrain, Vector3 vertex)> selectedVertices, GameObject frame, Vector3 worldPosition)> activeManipulators 
+    public List<(List<(Terrain terrain, Vector3 vertex)> selectedVertices, GameObject frame, Vector3 worldPosition)> activeManipulators 
       = new List<(List<(Terrain terrain, Vector3 vertex)> selectedVertices, GameObject frame, Vector3 worldPosition)>();
 
     void Update()
@@ -62,14 +62,7 @@ public class TerrainVertexSelector : MonoBehaviour
         return EventSystem.current.IsPointerOverGameObject();
     }
 
-    public void ClearSelection()
-    {
-        foreach(var manipulator in activeManipulators)
-        {
-            Destroy(manipulator.frame);
-        }
-        activeManipulators.Clear();
-    }
+    
 
     private List<(Terrain terrain, Vector3 vertex)> CheckForNeighbours(Terrain terrain, Vector3 heightmapPosition)
     {
