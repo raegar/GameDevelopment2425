@@ -5,7 +5,10 @@ using UnityEngine.EventSystems;
 
 public class TerrainVertexSelector : MonoBehaviour
 {
+    // The box that surrounds a selected vertex
     public GameObject selectionFramePrefab;
+
+    // Stores all selected vertices (their terrains and neighbours) and associated selection frame
     public List<(List<VertexPositionData> selectedVertices, GameObject frame)> activeManipulators 
       = new List<(List<VertexPositionData> selectedVertices, GameObject frame)>();
 
@@ -13,14 +16,17 @@ public class TerrainVertexSelector : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIElement()) 
         {
-            // Get the nearest vertex on click
+            // Get the nearest vertex on click - returns a tuple
             var result = SelectNearestVertex();
+
             if(result.terrain != null)
             {
                 // Check if the vertex is on the edge of the mesh
                 List<VertexPositionData> terrainsAndVertices = CheckForNeighbours(result.terrain, result.heightmapPosition);
+
                 // Create a frame at the selected position
                 GameObject newFrame = Instantiate(selectionFramePrefab, result.worldPosition, Quaternion.identity);
+
                 // Add the terrain and any neighbours, as well as the frame object, to a list
                 activeManipulators.Add((terrainsAndVertices, newFrame));
             }
@@ -86,32 +92,37 @@ public class TerrainVertexSelector : MonoBehaviour
     {
         // List to store all terrains and corresponding vertices
         List<VertexPositionData> vertexPositionDatas = new List<VertexPositionData>();
+
         // Stores the selected terrain
         vertexPositionDatas.Add(CreateVertexPositionData(terrain, heightmapPosition));
-        // 
-        int resolutionZeroIndexed = terrain.terrainData.heightmapResolution -1;
+
+        // Adds one for each edge case that is true, if 2 edge cases are true then its in the corner 
         int trueConditions = 0;
+
+        // Check top edge
         if (heightmapPosition.x == 0)
         {
             Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, -terrain.terrainData.size.x, 0);
             if(neighbour != null)
             {
-                Vector3 neighbourVertex = new Vector3(resolutionZeroIndexed, heightmapPosition.y , heightmapPosition.z);
+                Vector3 neighbourVertex = new Vector3(terrain.terrainData.heightmapResolution - 1, heightmapPosition.y , heightmapPosition.z);
                 vertexPositionDatas.Add(CreateVertexPositionData(neighbour, neighbourVertex));
                 trueConditions++;
             }
         }
+        // Check left edge
         if (heightmapPosition.z == 0)
         {
             Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, 0, -terrain.terrainData.size.z);
             if (neighbour != null)
             {
-                Vector3 neighbourVertex = new Vector3(heightmapPosition.x, heightmapPosition.y, resolutionZeroIndexed);
+                Vector3 neighbourVertex = new Vector3(heightmapPosition.x, heightmapPosition.y, terrain.terrainData.heightmapResolution - 1);
                 vertexPositionDatas.Add(CreateVertexPositionData(neighbour, neighbourVertex));
                 trueConditions++;
             }
         }
-        if (heightmapPosition.x == resolutionZeroIndexed)
+        // Check bottom edge
+        if (heightmapPosition.x == terrain.terrainData.heightmapResolution - 1)
         {
             Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, terrain.terrainData.size.x, 0);
             if (neighbour != null)
@@ -121,7 +132,8 @@ public class TerrainVertexSelector : MonoBehaviour
                 trueConditions++;
             }
         }
-        if (heightmapPosition.z == resolutionZeroIndexed)
+        // Check right edge
+        if (heightmapPosition.z == terrain.terrainData.heightmapResolution - 1)
         {
             Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, 0, terrain.terrainData.size.x);
             if (neighbour != null)
@@ -134,39 +146,40 @@ public class TerrainVertexSelector : MonoBehaviour
         // If this is true then its a corner and this gets the diagonally adjacent terrain
         if (trueConditions == 2)
         {
+            // Check top left corner
             if (heightmapPosition.x == 0 && heightmapPosition.z == 0)
             {
-                // Handle top left corner
+                
                 Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, -terrain.terrainData.size.x, -terrain.terrainData.size.z);
                 if (neighbour != null)
                 {
-                    Vector3 neighbourVertex = new Vector3(resolutionZeroIndexed, heightmapPosition.y, resolutionZeroIndexed);
+                    Vector3 neighbourVertex = new Vector3(terrain.terrainData.heightmapResolution - 1, heightmapPosition.y, terrain.terrainData.heightmapResolution - 1);
                     vertexPositionDatas.Add(CreateVertexPositionData(neighbour, neighbourVertex));
                 }
             }
-            else if (heightmapPosition.x == 0 && heightmapPosition.z == resolutionZeroIndexed)
+            // Check top right corner
+            else if (heightmapPosition.x == 0 && heightmapPosition.z == terrain.terrainData.heightmapResolution - 1)
             {
-                // Handle top right corner
                 Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, -terrain.terrainData.size.x, terrain.terrainData.size.z);
                 if (neighbour != null)
                 {
-                    Vector3 neighbourVertex = new Vector3(resolutionZeroIndexed, heightmapPosition.y, 0);
+                    Vector3 neighbourVertex = new Vector3(terrain.terrainData.heightmapResolution - 1, heightmapPosition.y, 0);
                     vertexPositionDatas.Add(CreateVertexPositionData(neighbour, neighbourVertex));
                 }
             }
-            else if (heightmapPosition.x == resolutionZeroIndexed && heightmapPosition.z == 0)
+            // Check bottom left corner
+            else if (heightmapPosition.x == terrain.terrainData.heightmapResolution - 1 && heightmapPosition.z == 0)
             {
-                // Handle bottom left corner
                 Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, terrain.terrainData.size.x, -terrain.terrainData.size.z);
                 if (neighbour != null)
                 {
-                    Vector3 neighbourVertex = new Vector3(0, heightmapPosition.y, resolutionZeroIndexed);
+                    Vector3 neighbourVertex = new Vector3(0, heightmapPosition.y, terrain.terrainData.heightmapResolution - 1);
                     vertexPositionDatas.Add(CreateVertexPositionData(neighbour, neighbourVertex));
                 }
             }
-            else if (heightmapPosition.x == resolutionZeroIndexed && heightmapPosition.z == resolutionZeroIndexed)
+            // Check bottom right corner
+            else if (heightmapPosition.x == terrain.terrainData.heightmapResolution - 1 && heightmapPosition.z == terrain.terrainData.heightmapResolution - 1)
             {
-                // Handle bottom right corner
                 Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, terrain.terrainData.size.x, terrain.terrainData.size.z);
                 if (neighbour != null)
                 {
@@ -178,10 +191,7 @@ public class TerrainVertexSelector : MonoBehaviour
         return vertexPositionDatas;
     }
 
-    
-
-
-
+    // Gets the nearest vertex to the clicked point
     private (Terrain terrain, Vector3 heightmapPosition, Vector3 worldPosition) SelectNearestVertex()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -190,7 +200,7 @@ public class TerrainVertexSelector : MonoBehaviour
             // Check if the object hit contains a terrain
             if (hit.collider.gameObject.GetComponent<Terrain>())
             {
-                // Assign hit terrain
+                // Store the hit terrain
                 Terrain terrain = hit.collider.gameObject.GetComponent<Terrain>();
 
                 // Convert world position to local position on the terrain
@@ -205,38 +215,22 @@ public class TerrainVertexSelector : MonoBehaviour
                 int nearestX = Mathf.RoundToInt(coordX);
                 int nearestZ = Mathf.RoundToInt(coordZ);
 
-                //Debug.Log($"Nearest vertex coordinates: X={nearestX}, Z={nearestZ}");
-
                 // Get the height at this point
                 float height = terrain.terrainData.GetHeight(nearestX, nearestZ);
 
+                // Store vertex position
                 Vector3 vertexHeightmapPosition = new Vector3(nearestX, height, nearestZ);
 
+                // Store world position
                 Vector3 vertexWorldPosition = new Vector3(nearestX / ((float)terrain.terrainData.heightmapResolution - 1) * terrain.terrainData.size.x,
                                                           height,
                                                           nearestZ / ((float)terrain.terrainData.heightmapResolution - 1) * terrain.terrainData.size.z)
                                                           + terrain.transform.position;
 
-                //Debug.Log($"Vertex heightmap position: {vertexHeightmapPosition}");
-                //Debug.Log($"Vertex world position: {vertexWorldPosition}");
-
-                // Visualize the vertex
-                HighlightVertex(vertexWorldPosition);
                 return (terrain, vertexHeightmapPosition, vertexWorldPosition);
             }
         }
         return (null, Vector3.zero, Vector3.zero);
-    }
-
-    
-
-    void HighlightVertex(Vector3 vertexPosition)
-    {
-        // Creates a small sphere to mark the vertex
-        GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        marker.transform.position = vertexPosition;
-        marker.transform.localScale = Vector3.one * 0.5f; // Adjust size as needed
-        Destroy(marker, 1f); // Destroy the marker after a short time
     }
 }
 

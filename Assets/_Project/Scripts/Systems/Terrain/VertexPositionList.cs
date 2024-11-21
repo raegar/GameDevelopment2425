@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VertexPositionList : MonoBehaviour
+public class VertexPositionList
 {
-    private List<VertexPositionData> vertexPositionDatas = new List<VertexPositionData>();
-    private Vector3 worldPosition;
+    public List<VertexPositionData> vertexPositionDatas { get; private set; } = new List<VertexPositionData>();
+    public GameObject frame { get; private set; }
 
-    public void AddData(VertexPositionData data) { vertexPositionDatas.Add(data); }
-    public void SetWorldPosition(Vector3 position) { worldPosition = position; }
+    public void SetListData(VertexPositionData data, GameObject frame)
+    {
+        vertexPositionDatas.Add(data);
+        this.frame = frame;
+    }
+
 }

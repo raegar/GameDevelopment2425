@@ -431,8 +431,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242903346}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.31879073, y: 0.6317316, z: -0.31955394, w: -0.6302166}
-  m_LocalPosition: {x: 73.50609, y: 11.48476, z: 64.60087}
+  m_LocalRotation: {x: -0.3857562, y: 0.5930293, z: -0.38667268, w: -0.5916018}
+  m_LocalPosition: {x: 46.759335, y: 19.31963, z: 61.32058}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1065,7 +1065,6 @@ GameObject:
   - component: {fileID: 725643959}
   - component: {fileID: 725643958}
   - component: {fileID: 725643957}
-  - component: {fileID: 725643960}
   m_Layer: 5
   m_Name: RaiseTerrain
   m_TagString: Untagged
@@ -1136,7 +1135,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 725643958}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 691481081}
+        m_TargetAssemblyTypeName: TerrainUI, ScriptsAssemblyDefinition
+        m_MethodName: RaiseTerrain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &725643958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1175,18 +1186,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725643955}
   m_CullTransparentMesh: 1
---- !u!114 &725643960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725643955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d716cc926e74140b76bd42896117b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &766091693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,7 +1438,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 904445687}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 691481081}
+        m_TargetAssemblyTypeName: TerrainUI, ScriptsAssemblyDefinition
+        m_MethodName: LowerTerrain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &904445687
 MonoBehaviour:
   m_ObjectHideFlags: 0
