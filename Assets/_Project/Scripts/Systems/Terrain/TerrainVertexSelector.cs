@@ -13,48 +13,59 @@ namespace terrain
         public List<(List<VertexPositionData> selectedVertices, GameObject frame)> activeManipulators
           = new List<(List<VertexPositionData> selectedVertices, GameObject frame)>();
 
+        private bool canManipulateTerrain;
+
         void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIElement())
+            if (canManipulateTerrain)
             {
-                // Get the nearest vertex on click - returns a tuple
-                var result = SelectNearestVertex();
-
-                if (result.terrain != null)
+                if (Input.GetMouseButtonDown(0) && !IsPointerOverUIElement())
                 {
-                    // Check if the vertex is on the edge of the mesh
-                    List<VertexPositionData> terrainsAndVertices = CheckForNeighbours(result.terrain, result.heightmapPosition);
+                    // Get the nearest vertex on click - returns a tuple
+                    var result = SelectNearestVertex();
 
-                    // Create a frame at the selected position
-                    GameObject newFrame = Instantiate(selectionFramePrefab, result.worldPosition, Quaternion.identity);
-
-                    // Add the terrain and any neighbours, as well as the frame object, to a list
-                    activeManipulators.Add((terrainsAndVertices, newFrame));
-                }
-            }
-
-
-            if (Input.GetMouseButtonDown(1) && !IsPointerOverUIElement())
-            {
-                // Perform a raycast
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-                    // Check if the object hit is a selection frame
-                    GameObject hitObject = hit.collider.gameObject;
-                    for (int i = 0; i < activeManipulators.Count; i++)
+                    if (result.terrain != null)
                     {
-                        if (hitObject == activeManipulators[i].frame)
+                        // Check if the vertex is on the edge of the mesh
+                        List<VertexPositionData> terrainsAndVertices = CheckForNeighbours(result.terrain, result.heightmapPosition);
+
+                        // Create a frame at the selected position
+                        GameObject newFrame = Instantiate(selectionFramePrefab, result.worldPosition, Quaternion.identity);
+
+                        // Add the terrain and any neighbours, as well as the frame object, to a list
+                        activeManipulators.Add((terrainsAndVertices, newFrame));
+                    }
+                }
+
+
+                if (Input.GetMouseButtonDown(1) && !IsPointerOverUIElement())
+                {
+                    // Perform a raycast
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out RaycastHit hit))
+                    {
+                        // Check if the object hit is a selection frame
+                        GameObject hitObject = hit.collider.gameObject;
+                        for (int i = 0; i < activeManipulators.Count; i++)
                         {
-                            // If it is destroy it and remove it from the list
-                            Destroy(hit.collider.gameObject);
-                            activeManipulators.RemoveAt(i);
+                            if (hitObject == activeManipulators[i].frame)
+                            {
+                                // If it is destroy it and remove it from the list
+                                Destroy(hit.collider.gameObject);
+                                activeManipulators.RemoveAt(i);
+                            }
                         }
+
                     }
 
                 }
-
             }
+            
+        }
+
+        public void ToggleTerrinControls()
+        {
+            canManipulateTerrain = !canManipulateTerrain;
         }
 
         // This is a helper to stop interactions with the terrain when over a UI element

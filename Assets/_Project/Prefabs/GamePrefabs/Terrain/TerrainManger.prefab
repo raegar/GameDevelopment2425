@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 9011532911261942607}
   - component: {fileID: 3344896423678518669}
   - component: {fileID: 4717499593807533944}
+  - component: {fileID: 101909422205625841}
+  - component: {fileID: 5512829272581123707}
   m_Layer: 0
   m_Name: TerrainManger
   m_TagString: Untagged
@@ -45,7 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af2d410bf489d842a543a60d605af5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrains: []
+  terrains:
+  - {fileID: 0}
   splatmapResolution: 256
   colorMapResolution: 256
   layerSettings:
@@ -60,8 +63,8 @@ MonoBehaviour:
   autoRepaint: 0
   terrainListeners: []
   bounds:
-    m_Center: {x: NaN, y: NaN, z: NaN}
-    m_Extent: {x: NaN, y: NaN, z: NaN}
+    m_Center: {x: 16, y: 2.5, z: 16}
+    m_Extent: {x: 16, y: 2.5, z: 16}
   filterShader: {fileID: 4800000, guid: 0f44df78e3d64d9cb2616cac3d84cb77, type: 3}
 --- !u!114 &4717499593807533944
 MonoBehaviour:
@@ -81,3 +84,29 @@ MonoBehaviour:
   maxY: 5
   scale: 25
   seed: 1501
+--- !u!114 &101909422205625841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559591314254011073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee6a9655ef2b22149abe51ee09da8353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionFramePrefab: {fileID: 6026967355975731607, guid: 53f48e14fe07ff3449440cdc6559bcb4,
+    type: 3}
+--- !u!114 &5512829272581123707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559591314254011073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15544cded13a6a04dbdae4fca167d8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
