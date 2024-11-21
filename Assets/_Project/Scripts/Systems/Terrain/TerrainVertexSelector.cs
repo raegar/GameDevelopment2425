@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 public class TerrainVertexSelector : MonoBehaviour
 {
     public GameObject selectionFramePrefab;
-    public List<(List<(Terrain terrain, Vector3 vertex)> selectedVertices, GameObject frame, Vector3 worldPosition)> activeManipulators 
-      = new List<(List<(Terrain terrain, Vector3 vertex)> selectedVertices, GameObject frame, Vector3 worldPosition)>();
+    public List<(List<VertexPositionData> selectedVertices, GameObject frame, Vector3 worldPosition)> activeManipulators 
+      = new List<(List<VertexPositionData> selectedVertices, GameObject frame, Vector3 worldPosition)>();
 
     void Update()
     {
@@ -16,22 +16,12 @@ public class TerrainVertexSelector : MonoBehaviour
             var result = SelectNearestVertex();
             if(result.terrain != null)
             {
-                var terrainsAndVertices = CheckForNeighbours(result.terrain, result.heightmapPosition);
-                Debug.Log(terrainsAndVertices.Count);
+                List<VertexPositionData> terrainsAndVertices = CheckForNeighbours(result.terrain, result.heightmapPosition);
+                //Debug.Log(terrainsAndVertices.Count);
                 GameObject newFrame = Instantiate(selectionFramePrefab, result.worldPosition, Quaternion.identity);
                 activeManipulators.Add((terrainsAndVertices, newFrame, result.worldPosition));
 
 
-                foreach (var manipulator in activeManipulators)
-                {
-                    foreach (var vertex in manipulator.selectedVertices)
-                    {
-                        Debug.Log(vertex.terrain);
-                        Debug.Log(vertex.vertex);
-                    }
-                    Debug.Log(manipulator.frame);
-                    Debug.Log(manipulator.worldPosition);
-                }
             }
         }
 
@@ -64,51 +54,67 @@ public class TerrainVertexSelector : MonoBehaviour
 
     
 
-    private List<(Terrain terrain, Vector3 vertex)> CheckForNeighbours(Terrain terrain, Vector3 heightmapPosition)
+    private List<VertexPositionData> CheckForNeighbours(Terrain terrain, Vector3 heightmapPosition)
     {
-        List<(Terrain terrain, Vector3 vertex)> terrainsAndVertices = new List<(Terrain terrain, Vector3 vertex)>();
-        terrainsAndVertices.Add((terrain, heightmapPosition));
+        //List<(Terrain terrain, Vector3 vertex)> terrainsAndVertices = new List<(Terrain terrain, Vector3 vertex)>();
+        List<VertexPositionData> vertexPositionDatas = new List<VertexPositionData>();
+        //terrainsAndVertices.Add((terrain, heightmapPosition));
+        VertexPositionData selectedVertexPositionData = new VertexPositionData();
+        selectedVertexPositionData.SetPositionData(terrain, heightmapPosition);
+        vertexPositionDatas.Add(selectedVertexPositionData);
         int resolutionZeroIndexed = terrain.terrainData.heightmapResolution -1;
         int trueConditions = 0;
         if (heightmapPosition.x == 0)
         {
-            Terrain neighbor = GetNeighbourTerrain(terrain.transform.position, -terrain.terrainData.size.x, 0);
-            if(neighbor != null)
+            Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, -terrain.terrainData.size.x, 0);
+            if(neighbour != null)
             {
 
                 //find corrisponding neighbor vertices
                 Vector3 neighbourVertex = new Vector3(resolutionZeroIndexed, heightmapPosition.y , heightmapPosition.z);
-                terrainsAndVertices.Add((neighbor, neighbourVertex));
+                //terrainsAndVertices.Add((neighbor, neighbourVertex));
+                VertexPositionData vertexPositionData = new VertexPositionData();
+                vertexPositionData.SetPositionData(neighbour, neighbourVertex);
+                vertexPositionDatas.Add(vertexPositionData);
                 trueConditions++;
             }
         }
         if (heightmapPosition.z == 0)
         {
-            Terrain neighbor = GetNeighbourTerrain(terrain.transform.position, 0, -terrain.terrainData.size.z);
-            if (neighbor != null)
+            Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, 0, -terrain.terrainData.size.z);
+            if (neighbour != null)
             {
                 Vector3 neighbourVertex = new Vector3(heightmapPosition.x, heightmapPosition.y, resolutionZeroIndexed);
-                terrainsAndVertices.Add((neighbor, neighbourVertex));
+                //terrainsAndVertices.Add((neighbor, neighbourVertex));
+                VertexPositionData vertexPositionData = new VertexPositionData();
+                vertexPositionData.SetPositionData(neighbour, neighbourVertex);
+                vertexPositionDatas.Add(vertexPositionData);
                 trueConditions++;
             }
         }
         if (heightmapPosition.x == resolutionZeroIndexed)
         {
-            Terrain neighbor = GetNeighbourTerrain(terrain.transform.position, terrain.terrainData.size.x, 0);
-            if (neighbor != null)
+            Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, terrain.terrainData.size.x, 0);
+            if (neighbour != null)
             {
                 Vector3 neighbourVertex = new Vector3(0, heightmapPosition.y, heightmapPosition.z);
-                terrainsAndVertices.Add((neighbor, neighbourVertex));
+                //terrainsAndVertices.Add((neighbor, neighbourVertex));
+                VertexPositionData vertexPositionData = new VertexPositionData();
+                vertexPositionData.SetPositionData(neighbour, neighbourVertex);
+                vertexPositionDatas.Add(vertexPositionData);
                 trueConditions++;
             }
         }
         if (heightmapPosition.z == resolutionZeroIndexed)
         {
-            Terrain neighbor = GetNeighbourTerrain(terrain.transform.position, 0, terrain.terrainData.size.x);
-            if (neighbor != null)
+            Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, 0, terrain.terrainData.size.x);
+            if (neighbour != null)
             {
                 Vector3 neighbourVertex = new Vector3(heightmapPosition.x, heightmapPosition.y, 0);
-                terrainsAndVertices.Add((neighbor, neighbourVertex));
+                //terrainsAndVertices.Add((neighbor, neighbourVertex));
+                VertexPositionData vertexPositionData = new VertexPositionData();
+                vertexPositionData.SetPositionData(neighbour, neighbourVertex);
+                vertexPositionDatas.Add(vertexPositionData);
                 trueConditions++;
             }
         }
@@ -119,50 +125,62 @@ public class TerrainVertexSelector : MonoBehaviour
             if (heightmapPosition.x == 0 && heightmapPosition.z == 0)
             {
                 //handle top left
-                Terrain neighbor = GetNeighbourTerrain(terrain.transform.position, -terrain.terrainData.size.x, -terrain.terrainData.size.z);
-                if (neighbor != null)
+                Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, -terrain.terrainData.size.x, -terrain.terrainData.size.z);
+                if (neighbour != null)
                 {
                     Vector3 neighbourVertex = new Vector3(resolutionZeroIndexed, heightmapPosition.y, resolutionZeroIndexed);
-                    terrainsAndVertices.Add((neighbor, neighbourVertex));
+                    //terrainsAndVertices.Add((neighbor, neighbourVertex));
+                    VertexPositionData vertexPositionData = new VertexPositionData();
+                    vertexPositionData.SetPositionData(neighbour, neighbourVertex);
+                    vertexPositionDatas.Add(vertexPositionData);
                 }
             }
             else if (heightmapPosition.x == 0 && heightmapPosition.z == resolutionZeroIndexed)
             {
                 //handle top right
                 Debug.Log($"Top right");
-                Terrain neighbor = GetNeighbourTerrain(terrain.transform.position, -terrain.terrainData.size.x, terrain.terrainData.size.z);
-                if (neighbor != null)
+                Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, -terrain.terrainData.size.x, terrain.terrainData.size.z);
+                if (neighbour != null)
                 {
                     Vector3 neighbourVertex = new Vector3(resolutionZeroIndexed, heightmapPosition.y, 0);
-                    terrainsAndVertices.Add((neighbor, neighbourVertex));
+                    //terrainsAndVertices.Add((neighbor, neighbourVertex));
+                    VertexPositionData vertexPositionData = new VertexPositionData();
+                    vertexPositionData.SetPositionData(neighbour, neighbourVertex);
+                    vertexPositionDatas.Add(vertexPositionData);
                 }
             }
             else if (heightmapPosition.x == resolutionZeroIndexed && heightmapPosition.z == 0)
             {
                 //handle bottom left
                 Debug.Log($"bottom left");
-                Terrain neighbor = GetNeighbourTerrain(terrain.transform.position, terrain.terrainData.size.x, -terrain.terrainData.size.z);
-                if (neighbor != null)
+                Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, terrain.terrainData.size.x, -terrain.terrainData.size.z);
+                if (neighbour != null)
                 {
                     Vector3 neighbourVertex = new Vector3(0, heightmapPosition.y, resolutionZeroIndexed);
-                    terrainsAndVertices.Add((neighbor, neighbourVertex));
+                    //terrainsAndVertices.Add((neighbor, neighbourVertex));
+                    VertexPositionData vertexPositionData = new VertexPositionData();
+                    vertexPositionData.SetPositionData(neighbour, neighbourVertex);
+                    vertexPositionDatas.Add(vertexPositionData);
                 }
             }
             else if (heightmapPosition.x == resolutionZeroIndexed && heightmapPosition.z == resolutionZeroIndexed)
             {
                 //handle bottom right
                 Debug.Log($"bottom Right");
-                Terrain neighbor = GetNeighbourTerrain(terrain.transform.position, terrain.terrainData.size.x, terrain.terrainData.size.z);
-                if (neighbor != null)
+                Terrain neighbour = GetNeighbourTerrain(terrain.transform.position, terrain.terrainData.size.x, terrain.terrainData.size.z);
+                if (neighbour != null)
                 {
                     Vector3 neighbourVertex = new Vector3(0, heightmapPosition.y, 0);
-                    terrainsAndVertices.Add((neighbor, neighbourVertex));
+                    //terrainsAndVertices.Add((neighbor, neighbourVertex));
+                    VertexPositionData vertexPositionData = new VertexPositionData();
+                    vertexPositionData.SetPositionData(neighbour, neighbourVertex);
+                    vertexPositionDatas.Add(vertexPositionData);
                 }
             }
 
         }
 
-        return terrainsAndVertices;
+        return vertexPositionDatas;
     }
 
     private Terrain GetNeighbourTerrain(Vector3 currentPosition, float offsetX, float offsetZ)

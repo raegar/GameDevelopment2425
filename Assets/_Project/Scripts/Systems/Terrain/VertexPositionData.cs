@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VertexPositionData : MonoBehaviour
+public class VertexPositionData
 {
-    private GameObject terrainObject;
-    private Vector3 terrainPosition;
+    public Terrain terrain { get; private set; }
+    public Vector3 vertex { get; private set; }
 
-    public void SetPositionData(GameObject terrain, Vector3 location)
+    public void SetPositionData(Terrain terrain, Vector3 vertex)
     {
-        terrainObject = terrain;
-        terrainPosition = location;
+        this.terrain = terrain;
+        this.vertex = vertex;
     }
 
 
