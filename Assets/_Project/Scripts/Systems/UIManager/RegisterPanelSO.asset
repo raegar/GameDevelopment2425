@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0542a2be37c8c8b4ab38afd44f1b231b, type: 3}
+  m_Name: RegisterPanelSO
+  m_EditorClassIdentifier: 
+  registeredPanels:
+    _serializedList:
+    - Key: Inventory
+      Value: {fileID: 8363193703896230555, guid: 1c01e032435773a4c9953a186983991f,
+        type: 3}
+    - Key: Settler
+      Value: {fileID: 4299077782521758861, guid: 5194a3eb3874bf6449f130178e025d14,
+        type: 3}
