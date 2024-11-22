@@ -8,6 +8,7 @@ using UnityEditor;
 
 namespace terrain
 {
+    
     public class TerrainManager : MonoBehaviour
     {
         [Tooltip("Number of terrain tiles.")]
