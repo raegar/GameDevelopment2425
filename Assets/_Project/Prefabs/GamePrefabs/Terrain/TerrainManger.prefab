@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9011532911261942607}
-  - component: {fileID: 3344896423678518669}
   - component: {fileID: 4717499593807533944}
   - component: {fileID: 101909422205625841}
   - component: {fileID: 5512829272581123707}
+  - component: {fileID: 3686600299389606094}
   m_Layer: 0
   m_Name: TerrainManger
   m_TagString: Untagged
@@ -35,37 +35,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3344896423678518669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559591314254011073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6af2d410bf489d842a543a60d605af5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrains:
-  - {fileID: 0}
-  splatmapResolution: 256
-  colorMapResolution: 256
-  layerSettings:
-  - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: a026f67c6452bb7488422ec75c67c660, type: 2}
-    modifierStack:
-    - {fileID: 0}
-  - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: eb742adf8ec7a8b4684109a139de6019, type: 2}
-    modifierStack:
-    - {fileID: 0}
-  autoRepaint: 0
-  terrainListeners: []
-  bounds:
-    m_Center: {x: 16, y: 2.5, z: 16}
-    m_Extent: {x: 16, y: 2.5, z: 16}
-  filterShader: {fileID: 4800000, guid: 0f44df78e3d64d9cb2616cac3d84cb77, type: 3}
 --- !u!114 &4717499593807533944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +79,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15544cded13a6a04dbdae4fca167d8b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3686600299389606094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559591314254011073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842161becaba7144194cc91899d84793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrain: {fileID: 0}
+  terrain1: {fileID: 0}
+  terrain2: {fileID: 0}
+  terrain3: {fileID: 0}
+  customMaterial: {fileID: 2100000, guid: 1e70e69fd93b7384784ac08066334ff6, type: 2}
