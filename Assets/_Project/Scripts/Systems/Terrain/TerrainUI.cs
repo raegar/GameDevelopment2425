@@ -56,7 +56,7 @@ namespace terrain
                 terrainVertexSelector.activeManipulators[i].frame.transform.position = framePosition;
 
                 // Repaint the terrain
-                AssignTerrainMaterial terrainMaterial = new AssignTerrainMaterial();
+                AssignTerrainMaterial terrainMaterial = GetComponent<AssignTerrainMaterial>();
                 terrainMaterial.UpdateTextures();
                 //TerrainPainter tPainter = GetComponent<TerrainPainter>();
                 //tPainter.RepaintAll();
