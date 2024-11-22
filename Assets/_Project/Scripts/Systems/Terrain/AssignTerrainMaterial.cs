@@ -1,21 +1,31 @@
 using UnityEngine;
 
-public class AssignTerrainMaterial : MonoBehaviour
+namespace terrain
 {
-    public Terrain terrain;
-    public Terrain terrain1;
-    public Terrain terrain2;
-    public Terrain terrain3;
-    public Material customMaterial;
-
-    void Start()
+    public class AssignTerrainMaterial : MonoBehaviour
     {
-        if (terrain != null && customMaterial != null)
+        public Material customMaterial;
+
+        void Start()
         {
-            terrain.materialTemplate = customMaterial;
-            terrain1.materialTemplate = customMaterial;
-            terrain2.materialTemplate = customMaterial;
-            terrain3.materialTemplate = customMaterial;
+            Terrain[] terrains = FindObjectsOfType<Terrain>();
+
+            foreach (Terrain terrain in terrains)
+            {
+                terrain.materialTemplate = customMaterial;
+            }
         }
+
+        public void UpdateTextures()
+        {
+            Terrain[] terrains = FindObjectsOfType<Terrain>();
+
+            foreach (Terrain terrain in terrains)
+            {
+                terrain.materialTemplate = customMaterial;
+            }
+        }
+
     }
 }
+
