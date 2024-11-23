@@ -1,10 +1,9 @@
 using PatternLibrary;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UISoundManager : Singleton<UISoundManager>
 {
-    public List<SoundData> dataList;
+    [SerializeField] private SoundData[] dataList;
 
     public AudioSource audioSource;
 
@@ -12,12 +11,22 @@ public class UISoundManager : Singleton<UISoundManager>
     {
         base.Awake();
         audioSource = GetComponent<AudioSource>();
+        Debug.Log($"UI Sound List Size: {dataList.Length}. Instance ID: {GetInstanceID()}", this);
     }
 
     public void PlaySound(int index)
     {
-        SetUpData(dataList[index]);
-        audioSource.PlayOneShot(audioSource.clip);
+        if (dataList.Length <= index)
+        {
+            Debug.LogError($"UI Sound Index Out of Range: {index}. Datalist length: {dataList.Length}. Instance ID: {GetInstanceID()}", this);
+            return;
+        }
+        else
+        {
+            Debug.Log($"UI Sound Index Called: {index}, {dataList[index]}");
+            SetUpData(dataList[index]);
+            audioSource.PlayOneShot(audioSource.clip);
+        }
     }
 
     public void StopUISounds()

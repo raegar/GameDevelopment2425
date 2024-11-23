@@ -30,6 +30,9 @@ public class SpatialSFXPool : Singleton<SpatialSFXPool>
     private IObjectPool<GameObject> pool;
     [ReadOnly] [SerializeField] private int currentPoolSize;
 
+
+    public bool poolCreated = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -67,6 +70,8 @@ public class SpatialSFXPool : Singleton<SpatialSFXPool>
                 dragDroppable.GetComponent<PlayOnEnable>().OnPoolCreated();
             }
         }
+
+        poolCreated = true;
 
     }
 

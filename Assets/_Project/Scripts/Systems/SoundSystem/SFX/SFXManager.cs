@@ -1,5 +1,4 @@
 using PatternLibrary;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SFXManager : Singleton<SFXManager>

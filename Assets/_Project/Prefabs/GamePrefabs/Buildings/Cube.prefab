@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4407785034449334311}
   - component: {fileID: 3336049108588318486}
   - component: {fileID: -6007922230910645278}
+  - component: {fileID: 2318202528923459523}
+  - component: {fileID: -1132558672934610653}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Object
@@ -168,3 +170,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fcfb4b13322b70479eaa4f6a15f2a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2318202528923459523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790066881014854346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14882375da5801478dbb22ca893fc95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundObject: {fileID: 0}
+--- !u!114 &-1132558672934610653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790066881014854346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf644a6f5e52cd459cb344dd4ec9eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipIndexToPlay: 3

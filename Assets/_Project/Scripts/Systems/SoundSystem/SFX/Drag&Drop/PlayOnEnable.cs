@@ -7,6 +7,16 @@ public class PlayOnEnable : DragDropSound
 
     [SerializeField] private bool loop;
     private bool toggleOnEnable = false;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (SpatialSFXPool.Instance.poolCreated)
+        {
+            OnPoolCreated();
+        }
+    }
+
     public void OnPoolCreated()
     {
         soundReceiver.SoundBehaviour(clipIndexToPlay, loop);
