@@ -1,4 +1,3 @@
-using sc.terrain.proceduralpainter;
 using UnityEngine;
 
 namespace terrain
@@ -57,8 +56,10 @@ namespace terrain
                 terrainVertexSelector.activeManipulators[i].frame.transform.position = framePosition;
 
                 // Repaint the terrain
-                TerrainPainter tPainter = GetComponent<TerrainPainter>();
-                tPainter.RepaintAll();
+                AssignTerrainMaterial terrainMaterial = GetComponent<AssignTerrainMaterial>();
+                terrainMaterial.UpdateTextures();
+                //TerrainPainter tPainter = GetComponent<TerrainPainter>();
+                //tPainter.RepaintAll();
             }
         }
 
