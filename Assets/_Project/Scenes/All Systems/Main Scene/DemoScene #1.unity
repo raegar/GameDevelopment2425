@@ -680,6 +680,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1212210692}
+        m_TargetAssemblyTypeName: UISoundManager, ScriptsAssemblyDefinition
+        m_MethodName: PlaySound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &102892148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,6 +1102,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1212210692}
+        m_TargetAssemblyTypeName: UISoundManager, ScriptsAssemblyDefinition
+        m_MethodName: PlaySound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &139253225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,8 +1182,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedObject: {fileID: 0}
-  objNameText: {fileID: 0}
-  objUi: {fileID: 0}
+  objNameText: {fileID: 253823885}
+  objUi: {fileID: 537451622}
 --- !u!4 &204946233
 Transform:
   m_ObjectHideFlags: 0
@@ -1320,7 +1344,7 @@ PrefabInstance:
     - target: {fileID: 1450257362802522149, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
         type: 3}
       propertyPath: dataList.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1450257362802522149, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
         type: 3}
@@ -1332,7 +1356,8 @@ PrefabInstance:
         type: 3}
       propertyPath: dataList.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: bca21833d8c16ac45b3fc79d025bd1a7,
+        type: 2}
     - target: {fileID: 1450257362802522149, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
         type: 3}
       propertyPath: dataList.Array.data[2]
@@ -1341,7 +1366,7 @@ PrefabInstance:
     - target: {fileID: 1450257362802522149, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
         type: 3}
       propertyPath: persistentAcrossScenes
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5745727154914160610, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
         type: 3}
@@ -1398,10 +1423,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: SFXManager and Pool
       objectReference: {fileID: 0}
+    - target: {fileID: 6192612987299189572, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7889499240751084890, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
         type: 3}
       propertyPath: dataList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7889499240751084890, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
         type: 3}
@@ -1420,6 +1450,12 @@ PrefabInstance:
       propertyPath: dataList.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: a11b265b928aa4a468bad12309ef4a56,
+        type: 2}
+    - target: {fileID: 7889499240751084890, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
+        type: 3}
+      propertyPath: dataList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 74ac93f811f94554588d6fcad0fdf6c2,
         type: 2}
     - target: {fileID: 7889499240751084890, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
         type: 3}
@@ -1449,7 +1485,7 @@ PrefabInstance:
     - target: {fileID: 8996420177652896378, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
         type: 3}
       propertyPath: persistentAcrossScenes
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2500,6 +2536,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1212210692}
+        m_TargetAssemblyTypeName: UISoundManager, ScriptsAssemblyDefinition
+        m_MethodName: PlaySound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &801118428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2713,7 +2761,8 @@ MonoBehaviour:
   rotateAmount: 45
   gridSize: 0.5
   canPlace: 1
-  gridToggle: {fileID: 0}
+  playSound: 1
+  gridToggle: {fileID: 930461452}
   layerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -3000,6 +3049,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: _BuildingManager, ScriptsAssemblyDefinition
         m_MethodName: ToggleGrid
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1212210692}
+        m_TargetAssemblyTypeName: UISoundManager, ScriptsAssemblyDefinition
+        m_MethodName: PlaySound
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3763,6 +3824,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140720413}
   m_CullTransparentMesh: 1
+--- !u!114 &1212210692 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1450257362802522149, guid: 0b0a2ce271f35bd43a0c4b5f0df82c6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 321814760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c8abc3ea7b4fc44b16d7a27c61d5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1257868584
 GameObject:
   m_ObjectHideFlags: 0
@@ -4093,6 +4166,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: terrain.TerrainVertexSelector, ScriptsAssemblyDefinition
         m_MethodName: ToggleTerrinControls
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1212210692}
+        m_TargetAssemblyTypeName: UISoundManager, ScriptsAssemblyDefinition
+        m_MethodName: PlaySound
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4508,6 +4593,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1212210692}
+        m_TargetAssemblyTypeName: UISoundManager, ScriptsAssemblyDefinition
+        m_MethodName: PlaySound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1675200095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4744,6 +4841,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: terrain.TerrainUI, ScriptsAssemblyDefinition
         m_MethodName: ClearSelection
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1212210692}
+        m_TargetAssemblyTypeName: UISoundManager, ScriptsAssemblyDefinition
+        m_MethodName: PlaySound
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5102,6 +5211,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1212210692}
+        m_TargetAssemblyTypeName: UISoundManager, ScriptsAssemblyDefinition
+        m_MethodName: PlaySound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1849248088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5235,6 +5356,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1212210692}
+        m_TargetAssemblyTypeName: UISoundManager, ScriptsAssemblyDefinition
+        m_MethodName: PlaySound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1887871889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5360,6 +5493,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: terrain.TerrainUI, ScriptsAssemblyDefinition
         m_MethodName: LowerTerrain
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1212210692}
+        m_TargetAssemblyTypeName: UISoundManager, ScriptsAssemblyDefinition
+        m_MethodName: PlaySound
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

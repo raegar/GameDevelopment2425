@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe4189d3a6c4a40befd57dbdc4dae0, type: 3}
   m_Name: Building Sound
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  priority: 128
+  audioClip: {fileID: 8300000, guid: 6f90b6ba1b62c774b9b46ba479de1f7a, type: 3}
+  priority: 185
   volume: 1
   pitch: 1
-  randomPitch: 0
-  randomPitchRange: 0.1
-  maxDistance: 500
+  randomPitch: 1
+  randomPitchRange: 0.2
+  maxDistance: 200
   rolloffMode: 1
