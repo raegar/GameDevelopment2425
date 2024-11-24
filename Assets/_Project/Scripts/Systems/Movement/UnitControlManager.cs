@@ -7,6 +7,7 @@ public class UnitControlManager : Singleton<UnitControlManager>
     [Header("References")]
     public UnitMovementScript selectedUnit;
     public Camera gameCamera;
+    public GameObject settlerPanel, inventoryPanel;
 
     private void Update()
     {
@@ -39,12 +40,16 @@ public class UnitControlManager : Singleton<UnitControlManager>
         }
         selectedUnit = unit;
         selectedUnit.selectedIcon.SetActive(true);
+        UIManager.Instance.OpenPanel(settlerPanel.GetComponent<PanelBase>());
+        UIManager.Instance.OpenPanel(inventoryPanel.GetComponent<PanelBase>());
     }
 
     public void DeselectUnit(UnitMovementScript unit)
     {
         selectedUnit.selectedIcon.SetActive(false);
         selectedUnit = null;
+        UIManager.Instance.ClosePanel(settlerPanel.GetComponent<PanelBase>());
+        UIManager.Instance.ClosePanel(inventoryPanel.GetComponent<PanelBase>());
     }
     public void Order(Vector3 orderPos)
     {
