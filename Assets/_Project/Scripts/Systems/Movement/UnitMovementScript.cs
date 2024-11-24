@@ -9,6 +9,9 @@ public class UnitMovementScript : MonoBehaviour
     public bool mouseOver = false;
     public NavMeshAgent agent;
 
+    [Header("Animation")]
+    public Animator animator;
+
     public enum Affiliation
     {
         Friendly,
@@ -18,7 +21,7 @@ public class UnitMovementScript : MonoBehaviour
 
     [Header("Attributes")]
     public Affiliation affiliation;
-    [SerializeField] private Color friendlyColor, enemyColor, neutralColor;
+    [SerializeField] private Material friendlyColor, enemyColor, neutralColor;
     public float stoppingDistance = 0.5f;
 
     private void Awake()
@@ -26,17 +29,19 @@ public class UnitMovementScript : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = stoppingDistance;
 
+        animator = GetComponent<Animator>();
+
         switch (affiliation)
         {
             case Affiliation.Friendly:
-                selectedIcon.GetComponent<Renderer>().material.color = friendlyColor;
-                destinationIcon.GetComponent<Renderer>().material.color = friendlyColor;
+                selectedIcon.GetComponent<Renderer>().material = friendlyColor;
+                destinationIcon.GetComponent<Renderer>().material = friendlyColor;
                 break;
             case Affiliation.Enemy:
-                selectedIcon.GetComponent<Renderer>().material.color = enemyColor;
+                selectedIcon.GetComponent<Renderer>().material = enemyColor;
                 break;
             case Affiliation.Neutral:
-                selectedIcon.GetComponent<Renderer>().material.color = neutralColor;
+                selectedIcon.GetComponent<Renderer>().material = neutralColor;
                 break;
         }
     }
@@ -51,10 +56,23 @@ public class UnitMovementScript : MonoBehaviour
         // Check if the agent has reached its destination
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
+            animator.SetBool("isWalking", false);
+            if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Walking")
+            {
+                //animator.Play("Idle");
+            }
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
             {
                 destinationIcon.SetActive(false);
                 destinationIcon.transform.parent = this.transform;
+            }
+        }
+        else
+        {
+            animator.SetBool("isWalking", true);
+            if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Idle")
+            {
+                //animator.Play("Walking");
             }
         }
     }

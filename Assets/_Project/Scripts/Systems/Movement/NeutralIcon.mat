@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyIcon
+  m_Name: NeutralIcon
   m_Shader: {fileID: 4800000, guid: 22d7cc1e3d1197644888a44eba8601e4, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -126,8 +126,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.19345689, b: 0, a: 1}
-    - _Color: {r: 1, g: 0.19306931, b: 0, a: 1}
+    - _BaseColor: {r: 0.36658788, g: 1, b: 0, a: 1}
+    - _Color: {r: 0.9475136, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
