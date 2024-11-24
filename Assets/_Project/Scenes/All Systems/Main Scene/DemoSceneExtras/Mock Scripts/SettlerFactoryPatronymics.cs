@@ -1,10 +1,6 @@
-using PatternLibrary;
-using UnityEngine;
-using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
-using System.Collections;
-using UnityEngine.InputSystem.EnhancedTouch;
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using UnityEngine;
 namespace SettlerSystem
 {
     public class SettlerFactoryPatronymics : SettlerFactory
