@@ -1,5 +1,8 @@
+/* Author Jess
+ * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+ * Purpose: This script handles the viking inventory
+*/
 using InventorySystem;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -25,10 +28,13 @@ namespace vikingInventory
         }
         public void AddItem(Item item)
         {
-            itemList.Add(item);
             if (itemList.Count == maxItemAmount)
             {
-                //put items in storage if invent is full
+                //put items into storage if invent is full
+            }
+            else
+            {
+                itemList.Add(item);
             }
         }
         public void RemoveItem(Item item)
