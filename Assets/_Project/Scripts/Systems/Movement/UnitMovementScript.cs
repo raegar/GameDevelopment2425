@@ -43,25 +43,21 @@ public class UnitMovementScript : MonoBehaviour
         lineRenderer.endWidth = 0.1f;
         lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
-        // Set the LineRenderer material based on affiliation
-        Material lineMaterial = UnitControlManager.Instance.lineMaterial;
         switch (affiliation)
         {
             case Affiliation.Friendly:
                 selectedIcon.GetComponent<Renderer>().material = friendlyColor;
                 destinationIcon.GetComponent<Renderer>().material = friendlyColor;
-                lineMaterial.SetColor("_Color", friendlyColor.color);
                 break;
             case Affiliation.Enemy:
                 selectedIcon.GetComponent<Renderer>().material = enemyColor;
-                lineMaterial.SetColor("_Color", enemyColor.color);
                 break;
             case Affiliation.Neutral:
                 selectedIcon.GetComponent<Renderer>().material = neutralColor;
-                lineMaterial.SetColor("_Color", neutralColor.color);
                 break;
         }
-        lineRenderer.material = lineMaterial; // Assign the material to the LineRenderer
+        
+        lineRenderer.material = UnitControlManager.Instance.lineMaterial;
 
         // Toggle line functionality based on useLines
         lineRenderer.enabled = useLines;

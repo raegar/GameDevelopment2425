@@ -42,7 +42,10 @@ public class UnitControlManager : Singleton<UnitControlManager>
         selectedUnit = unit;
         selectedUnit.selectedIcon.SetActive(true);
         UIManager.Instance.OpenPanel(settlerPanel.GetComponent<PanelBase>());
-        UIManager.Instance.OpenPanel(inventoryPanel.GetComponent<PanelBase>());
+        if (unit.affiliation == Affiliation.Friendly)
+        {
+            UIManager.Instance.OpenPanel(inventoryPanel.GetComponent<PanelBase>());
+        }
     }
 
     public void DeselectUnit(UnitMovementScript unit)

@@ -17,7 +17,7 @@ namespace SettlerSystem
         }
 
 
-        public override GameObject CreateCustom(SocialStatus socialStatus = SocialStatus.Unassigned, int familyID = 0, bool usePatronymics = true, Gender gender = Gender.Male)
+        public override GameObject CreateCustom(SocialStatus socialStatus = SocialStatus.Unassigned, int familyID = 0, bool usePatronymics = true, Gender gender = Gender.Male, bool randomFather = false)
         {
             GameObject _go = new GameObject();
             _go.tag = "Settler";
@@ -25,14 +25,21 @@ namespace SettlerSystem
             settler.gender = gender;
             settler.familyID = familyID;
             settler.forename = NamingManager.Instance.ChooseFirstName(settler.gender);
+
+            if (randomFather == true)
+            {
+                fatherNameTest = NamingManager.Instance.ChooseFirstName(Gender.Male);
+            }
+
             if (fatherNameTest.Length > 0)
             {
-                settler.surname = NamingManager.Instance.ChooseLastName(settler.gender, true, true, fatherNameTest);
+                settler.surname = NamingManager.Instance.ChooseLastName(settler.gender, usePatronymics, true, fatherNameTest);
             }
             else
             {
                 settler.surname = NamingManager.Instance.ChooseLastName(settler.gender, false, true, fatherNameTest);
             }
+
             _go.name = $"Settler_{settler.forename}_{settler.surname}";
             settler.skills = new SerializedDictionary<string, int>(settlerSkillDictionary.skills);
             settler.traits = new SerializedDictionary<string, List<SettlerModifiers>>();

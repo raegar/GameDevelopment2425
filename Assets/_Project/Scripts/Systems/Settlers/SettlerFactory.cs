@@ -44,7 +44,7 @@ namespace SettlerSystem
             return _go;
         }
 
-        public virtual GameObject CreateCustom(SocialStatus socialStatus, int familyID, bool usePatronymics, Gender gender)
+        public virtual GameObject CreateCustom(SocialStatus socialStatus, int familyID, bool usePatronymics, Gender gender, bool randomFather)
         {
             // this method is virtual to allow for overriding in child classes
             return null;

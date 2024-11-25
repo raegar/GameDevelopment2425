@@ -9,6 +9,7 @@ namespace SettlerSystem
         [SerializeField] private Gender gender;
         [SerializeField] private string foreName, surName;
         [SerializeField] private SystemType systemSelection;
+        [SerializeField] private bool randomFather;
         
         public enum SystemType
         {
@@ -33,7 +34,7 @@ namespace SettlerSystem
                     thisSettler = SettlerFactory.Instance.Create().GetComponent<Settler>();
                     break;
                 case SystemType.SettlerFactoryPatronymics:
-                    thisSettler = SettlerFactoryPatronymics.Instance.CreateCustom(SocialStatus.Unassigned, 0, true, gender).GetComponent<Settler>();
+                    thisSettler = SettlerFactoryPatronymics.Instance.CreateCustom(SocialStatus.Unassigned, 0, true, gender, randomFather).GetComponent<Settler>();
                     break;
             }
 
