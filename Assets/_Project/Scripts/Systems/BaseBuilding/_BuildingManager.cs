@@ -17,6 +17,7 @@ public class _BuildingManager : MonoBehaviour
     bool gridOn = true;
 
     public bool canPlace = true;
+    public bool playSound = false;
 
     [SerializeField] private Toggle gridToggle;
     [SerializeField] private LayerMask layerMask;
@@ -57,6 +58,10 @@ public class _BuildingManager : MonoBehaviour
     public void PlaceObject() //Method to place objects once they have been selected
     {
         pendingObject.GetComponent<MeshRenderer>().material = materials[2];
+        if (playSound)
+        {
+            pendingObject.GetComponent<PlayWhenCalled>().PlaySound();
+        }
         pendingObject = null;
     }
 

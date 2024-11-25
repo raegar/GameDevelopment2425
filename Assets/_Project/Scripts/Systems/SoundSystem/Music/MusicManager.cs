@@ -16,6 +16,8 @@ public class MusicManager : Singleton<MusicManager>
 
     private bool isFading; // flag to indicate if a fade operation is in progress
 
+    [SerializeField] private bool playOnAwake = true;
+
     protected override void Awake()
     {
         base.Awake();
@@ -24,6 +26,11 @@ public class MusicManager : Singleton<MusicManager>
         if (playlists.Length > 0)
         {
             currentPlaylist = playlists[0]; // set the initial playlist to the first one in the array
+        }
+
+        if (playOnAwake)
+        {
+            PlayPlaylist(false);
         }
     }
 

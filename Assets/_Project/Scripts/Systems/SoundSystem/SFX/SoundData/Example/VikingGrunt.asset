@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe4189d3a6c4a40befd57dbdc4dae0, type: 3}
   m_Name: VikingGrunt
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: c7bb46fdd0732d649b747c4a3c02ba77, type: 3}
+  audioClip: {fileID: 8300000, guid: a76de422c9399984cac77ef826628086, type: 3}
   priority: 200
   volume: 1
-  pitch: 1
+  pitch: 0.9
   randomPitch: 0
   randomPitchRange: 0.1
   maxDistance: 100
