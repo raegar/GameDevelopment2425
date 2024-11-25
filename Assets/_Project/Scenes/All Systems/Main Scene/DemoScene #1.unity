@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 68aacaad876c087479c6462fd51cbf23, type: 2}
-  m_BuildHeightMesh: 0
+  m_BuildHeightMesh: 1
 --- !u!114 &127619257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5073,13 +5073,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 790066881014854346, guid: 3e18e8687e275764c808f631bc66fdb7, type: 3}
-  - {fileID: 4161163792045208439, guid: 2ddd2079ace1abe46a5a03e979282fed, type: 3}
-  - {fileID: 7618392221841227751, guid: 3546784371502794d84716e0037458f0, type: 3}
+  - {fileID: 790066881014854346, guid: af9667fcb626f084a8709cf7654821ea, type: 3}
+  - {fileID: 790066881014854346, guid: 53d49bbe96f90a940a3f7d4677a2364b, type: 3}
+  - {fileID: 790066881014854346, guid: 9d437824cedbaf84fbd5e37357927c26, type: 3}
   materials:
   - {fileID: 2100000, guid: f530d9c78bec1ef4193a53d5499b62e5, type: 2}
   - {fileID: 2100000, guid: a2e459c71aaa8764390d86ae501da930, type: 2}
-  - {fileID: 2100000, guid: f50394b71cef28e479c8a6a4cf1d9a36, type: 2}
+  - {fileID: 2100000, guid: 260206b34d9e44e41bca02847aca91d1, type: 2}
   pendingObject: {fileID: 0}
   rotateAmount: 45
   gridSize: 0.5
