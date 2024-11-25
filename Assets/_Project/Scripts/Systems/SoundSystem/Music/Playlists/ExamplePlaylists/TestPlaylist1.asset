@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TestPlaylist1
   m_EditorClassIdentifier: 
   playlist:
-  - {fileID: 11400000, guid: 7222ecd059cee5449ae61210ce0fb13e, type: 2}
   - {fileID: 11400000, guid: 3a05150c8f4693249af7ac17b8a456e5, type: 2}
+  - {fileID: 11400000, guid: 7222ecd059cee5449ae61210ce0fb13e, type: 2}

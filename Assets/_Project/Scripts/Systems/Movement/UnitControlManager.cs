@@ -8,6 +8,7 @@ public class UnitControlManager : Singleton<UnitControlManager>
     public UnitMovementScript selectedUnit;
     public Camera gameCamera;
     public GameObject settlerPanel, inventoryPanel;
+    public Material lineMaterial;
 
     private void Update()
     {
