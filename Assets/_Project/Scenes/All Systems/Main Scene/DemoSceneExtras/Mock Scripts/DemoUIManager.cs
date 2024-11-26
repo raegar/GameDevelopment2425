@@ -14,6 +14,13 @@ public class DemoUIManager : Singleton<DemoUIManager>
                 break;
             case false:
                 canvasObjects[index].SetActive(true);
+                foreach (var obj in canvasObjects)
+                {
+                    if (obj != canvasObjects[index])
+                    {
+                        obj.SetActive(false);
+                    }
+                }
                 break;
         }
     }
