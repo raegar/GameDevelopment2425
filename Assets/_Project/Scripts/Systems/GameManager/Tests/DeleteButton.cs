@@ -1,4 +1,4 @@
-using GameProjectManager;
+using SaveSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +16,6 @@ public class DeleteButton : MonoBehaviour
     }
     void OnClick()
     {
-        GameManager.Instance.DeleteData(deleteName);
+        SaveManager.Instance.DeleteData(deleteName);
     }
 }

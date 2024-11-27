@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542a2be37c8c8b4ab38afd44f1b231b, type: 3}
-  m_Name: RegisterPanelSO
+  m_Name: RegisterPanels
   m_EditorClassIdentifier: 
-  registeredPanels:
+  panels:
     _serializedList:
-    - Key: Inventory
-      Value: {fileID: 8363193703896230555, guid: 1c01e032435773a4c9953a186983991f,
+    - Key: Loader
+      Value: {fileID: 5247209999438281303, guid: 7dd7b9995beece643a267e511d5436bf,
         type: 3}
-    - Key: Settler
-      Value: {fileID: 4299077782521758861, guid: 5194a3eb3874bf6449f130178e025d14,
+    - Key: MainMenu
+      Value: {fileID: 5012002617165845186, guid: b832b21b70fdddf4e9dbd56afd717915,
         type: 3}

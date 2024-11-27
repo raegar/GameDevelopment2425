@@ -8,14 +8,16 @@
  */
 using UnityEngine;
 
+
 public abstract class PanelBase : MonoBehaviour
 {
+    
     /// <summary>
     /// The Unity Awake method used for initialisation
     /// </summary>
     protected virtual void Awake()
     {
         // registers the panel with the UIManager so it can be opened and closed from any script.
-        UIManager.Instance.Register(this);
+       // UIManager.Instance.Register(this);
     }
 }
