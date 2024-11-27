@@ -7,176 +7,97 @@
 
 using PatternLibrary;
 using AYellowpaper.SerializedCollections;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
-using System;
-
 
 public class UIManager : Singleton<UIManager>
 {
     // reference to the registered panels scriptable object contining all the panels in the game
     public RegisteredPanelsSO  NamedPanelPrefabs;
     // reference to the canvas root
-    [SerializeField] private GameObject CanvasRoot;
+    public GameObject canvasRoot;
     // a dictionary of current panels and their visibility
     [Header("For debug purposes only - please do not manually add")]
-    [SerializeField] private SerializedDictionary<PanelBase, bool> registeredPanels = new SerializedDictionary<PanelBase, bool>();
-
+    [SerializeField] private SerializedDictionary<string, PanelBase> panelsToInstantiate; 
+    [SerializeField] private SerializedDictionary<string, PanelBase> registeredPanels;
+    
     protected override void Awake()
     {
+        // enable singleton functionality
         base.Awake();
+        // move the panels from the scriptable object to the dictionary
+        panelsToInstantiate = NamedPanelPrefabs.panels;
+     
         InitializePanels();
     }
+
+    /// <summary>
+    /// Instantiates all the prefabs in the panelsToInstantiate dictionary
+    /// into gameObjects and stores the references in the registeredPanels dictionary
+    /// </summary>
     private void InitializePanels()
     {
-        foreach (var panel in NamedPanelPrefabs.panels)
+        foreach (var panel in panelsToInstantiate)
         {
-            Debug.Log("Instantiating panel: " + panel.Key);
-            var _go = Instantiate(panel.Value,CanvasRoot.transform);
+            var _go = Instantiate(panel.Value,canvasRoot.transform);
             _go.name = panel.Key;
-            //Register(panel.Value);
+            Debug.Log("Instantiated panel: " + panel.Key);
+            // if the panel is already registered, log a warning
+            if (!registeredPanels.ContainsKey(panel.Key))
+            {
+                registeredPanels.Add(panel.Key, _go);
+                Debug.Log("Registered panel: " + _go);
+                ClosePanel(panel.Key);
+            }
         }
     }
 
     /// <summary>
-    /// Registers a panel in the panels dictionary whenever a child class of BasePanel awakes
+    /// Opens a named panel
     /// </summary>
-    /// <param name="panel"></param>
-    public void Register(PanelBase panel)
-    {
-        // if the panel is already registered, log a warning
-        if (!registeredPanels.ContainsKey(panel))
-        {
-            registeredPanels.Add(panel, false);
-            ClosePanel(panel);
-        }
-    }
-
-    public PanelBase GetPanelReference(string panelName) 
-    {
-        if (NamedPanelPrefabs.panels.ContainsKey(panelName))
-        {
-            return NamedPanelPrefabs.panels[panelName];
-        }
-        else
-        {
-            Debug.LogWarning("Panel not found in dictionary");
-            return null;
-        }
-    }
-
-    /// <summary>
-    /// Opens a single panel by enabling the game object attached to the panel component
-    /// </summary>
-    /// <param name="panel"></param>
-    public void OpenPanel(PanelBase panel)
-    {
-        // check if the panel is in the dictionary
-        if (registeredPanels.ContainsKey(panel))
-        {
-            // change the panels status in the dictionary to disabled (false)
-            registeredPanels[panel] = true;
-            // enable the game object
-            panel.gameObject.SetActive(true);
-            // can be extended here to add a standardized sound effect or animation
-        }
-        else
-        {
-            // this should not happen but if there is a rogue panel in the scene register it
-            Register(panel);
-            Debug.LogWarning("Rogue Panel" + panel);
-            // try again
-            OpenPanel(panel);
-        }
-    }
-
+    /// <param name="panel">panel to open</param>
     public void OpenPanel(string panel)
     { 
-     if (NamedPanelPrefabs.panels.ContainsKey(panel))
-        {
-            OpenPanel(NamedPanelPrefabs.panels[panel]);
-        }
+     if (registeredPanels.ContainsKey(panel))
+        { registeredPanels[panel].gameObject.SetActive(true);}
         else
-        {
-            Debug.LogWarning("Panel not found in dictionary");
-        }
-
+        { Debug.LogWarning("Panel not found in dictionary");}
     }
 
     /// <summary>
-    /// Closes a single panel
+    /// closes a named panel
     /// </summary>
-    /// <param name="panel">the panel to be closed</param>
-    public void ClosePanel(PanelBase panel)
-    {
-        // check if the panel is in the dictionary
-        if (registeredPanels.ContainsKey(panel))
-        {
-            // change the panels status in the dictionary to disabled (false)
-            registeredPanels[panel] = false;
-            // disable the game object
-            panel.gameObject.SetActive(false);
-            // can be extended here to add a standardized sound effect or animation
-        }
-        else
-        {
-            // this should not happen but if there is a rogue panel in the scene register it
-            Register(panel);
-        }
-    }
-
+    /// <param name="panel">panel to close</param>
     public void ClosePanel(string panel)
     {
-        if (NamedPanelPrefabs.panels.ContainsKey(panel))
-        {
-            ClosePanel(NamedPanelPrefabs.panels[panel]);
-        }
+        if (registeredPanels.ContainsKey(panel))
+        { registeredPanels[panel].gameObject.SetActive(false);}
         else
-        {
-            Debug.LogWarning("Panel not found in dictionary");
-        }
+        { Debug.LogWarning("Panel not found in dictionary"); }
     }
 
-    // A OpenAllPanels() method has not been included as it is not a expected use case
+    // A OpenAllPanels() method has NOT been included as it is not a expected use case
 
     /// <summary>
-    /// Closes all registered panels. Had to use Linq as 
-    /// .Net 2.1 does not support changing values during enumeration
+    /// Closes all registered panels
     /// </summary>
     public void CloseAllPanels()
     {
         // Move the keys to a list to avoid the .Net 2.1 error
-        foreach (var panel in registeredPanels.ToList())
+        foreach (var panel in registeredPanels)
         {
-            // change the panels status in the dictionary to disabled (false)
-            registeredPanels[panel.Key] = false;
-            // disable the game object
-            panel.Key.gameObject.SetActive(false);
-        }
-    }
-    /// <summary>
-    /// Queries the dictionary to see if a panel is open
-    /// </summary>
-    /// <param name="panel">the panel to check</param>
-    /// <returns>true if open / false if closed or not present</returns>
-    public bool IsPanelOpen(PanelBase panel)
-    {
-        if (registeredPanels.ContainsKey(panel)) { return registeredPanels[panel]; }
-        else
-        {
-            // this should not happen but if there is a rogue panel in the scene register it
-            Register(panel);
-            return false;
+            panel.Value.gameObject.SetActive(false);
         }
     }
 
-    public bool IsPanelOpen(string panel)
+    /// <summary>
+    /// Returns the bool status of a panel
+    /// </summary>
+    /// <param name="panel">panel to check</param>
+    /// <returns>actve/inactive</returns>
+    public bool PanelStatus(string panel)
     {
-        if (NamedPanelPrefabs.panels.ContainsKey(panel))
-        {
-            return IsPanelOpen(NamedPanelPrefabs.panels[panel]);
-        }
+        if (registeredPanels.ContainsKey(panel))
+        { return registeredPanels[panel].gameObject.activeInHierarchy;}
         else
         {
             Debug.LogWarning("Panel not found in dictionary");

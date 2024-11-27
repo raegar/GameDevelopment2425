@@ -10,10 +10,10 @@ public class MenuPanel : PanelBase
     }
     public void OpenMenu()
     {
-        UIManager.Instance.OpenPanel(this);
+       // UIManager.Instance.OpenPanel(this);
     }
     public void CloseMenu()
     {
-        UIManager.Instance.ClosePanel(this);
+      //  UIManager.Instance.ClosePanel(this);
     }
 }

@@ -1,25 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
 using SaveSystem;
+using UnityEngine.EventSystems;
 
 public class MainMenuPanel : PanelBase
 {
     [SerializeField] private GameObject NewGamePanel;
     [SerializeField] private GameObject HasSavesPanel;
+    [SerializeField] private EventSystem eventsystem;
+    [SerializeField] private Canvas canvas;
 
-    
+
     private void OnEnable()
     {
-        // check if there are any saves
-        if (SaveManager.Instance.saveCounter > 0)
+        if (eventsystem == null) { eventsystem = GetComponentInParent<EventSystem>(); }
+        Canvas.ForceUpdateCanvases();
+        if (canvas == null)
         {
-            HasSavesPanel.SetActive(true);
-            NewGamePanel.SetActive(false);
-        }
-        else
-        {
-            HasSavesPanel.SetActive(false);
-            NewGamePanel.SetActive(true);
+            canvas = GetComponentInParent<Canvas>();
+
+            // check if there are any saves
+            if (SaveManager.Instance.saveCounter > 0)
+            {
+                HasSavesPanel.SetActive(true);
+                NewGamePanel.SetActive(false);
+            }
+            else
+            {
+                HasSavesPanel.SetActive(false);
+                NewGamePanel.SetActive(true);
+            }
+            // TODO select firstGameObject 
         }
     }
     public void NewGame() 

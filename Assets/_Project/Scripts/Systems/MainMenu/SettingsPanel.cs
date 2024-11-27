@@ -8,11 +8,11 @@ namespace menuPanels
     {
         public void OpenSettingsPanel()
         {
-            UIManager.Instance.OpenPanel(this);
+           // UIManager.Instance.OpenPanel(this);
         }
         public void CloseSettingsPanel()
         {
-            UIManager.Instance.ClosePanel(this);
+           // UIManager.Instance.ClosePanel(this);
         }
     }
 }

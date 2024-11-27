@@ -8,12 +8,12 @@ namespace menuPanels
     {
         public void OpenLoadgamePanel()
         {
-            UIManager.Instance.CloseAllPanels();
-            UIManager.Instance.OpenPanel(this);
+          //  UIManager.Instance.CloseAllPanels();
+           // UIManager.Instance.OpenPanel(this);
         }
         public void CloseLoadgamePanel()
         {
-            UIManager.Instance.ClosePanel(this);
+           // UIManager.Instance.ClosePanel(this);
         }
     }
 }

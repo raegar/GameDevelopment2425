@@ -25,33 +25,32 @@ public class GameManager : Singleton<GameManager>
     public int mainMenuSceneIndex = 1;
     public int mainGameSceneIndex = 2;
     public string fileToLoad;
-    // loaded seperately to allow for showing the loading screen
-    public GameObject UIManagerPrefab;
     public List<GameObject> systemsToInstantiate;
     // A reference to the loading progress bar in the scene
     public Slider progressBar;
     // A reference to the loading operation so we can update the progress bar
     private AsyncOperation loadOperation;
+    public GameObject canvasRoot;
 
     protected override void Awake()
     {
         base.Awake();
-        if (UIManagerPrefab != null)
+        if (systemsToInstantiate != null)
         {
-            Instantiate(UIManagerPrefab, transform.root);
+            foreach (var system in systemsToInstantiate)
+            {
+                Instantiate(system,transform.root);
+            }
         }
         else
         {
-            // cause the singleton to self instantiate
-            var _tmp = UIManager.Instance;
-            Debug.LogError("UIManager reference missing");
+            Debug.LogError("No systems to instantiate");
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        UIManager.Instance.OpenPanel("Loader");
         LoadMenuScene();
     }
     private void LoadMenuScene()
@@ -108,8 +107,9 @@ public class GameManager : Singleton<GameManager>
         // if we have a progress bar set it to fully done.
         if (progressBar != null) { progressBar.value = 1f; }
         loadOperation.allowSceneActivation = true;
-        UIManager.Instance.ClosePanel("Loader"); // add string override
-        //UIManager.Instance.OpenPanel("MainMenu"); // add string override
+        
+        UIManager.Instance.canvasRoot.transform.SetParent(null,false);
+        UIManager.Instance.OpenPanel("MainMenu"); // add string override
         // SoundManager.Instance.PlayMusic("MainMenu");
     }
 
