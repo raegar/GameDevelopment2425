@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 8740374195034945625}
   - component: {fileID: 2795135979919557100}
   - component: {fileID: 6283014120162178050}
-  - component: {fileID: 6607721861945030973}
   - component: {fileID: 4407785034449334311}
   - component: {fileID: -6007922230910645278}
   - component: {fileID: 2318202528923459523}
   - component: {fileID: -1132558672934610653}
+  - component: {fileID: 7456257511452966406}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Building1
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790066881014854346}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 1035c21e7a3c5c34d81c6aba35357e83, type: 3}
 --- !u!23 &6283014120162178050
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f50394b71cef28e479c8a6a4cf1d9a36, type: 2}
+  - {fileID: 2100000, guid: 260206b34d9e44e41bca02847aca91d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,27 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6607721861945030973
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790066881014854346}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4407785034449334311
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -174,3 +153,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipIndexToPlay: 3
+--- !u!65 &7456257511452966406
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790066881014854346}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.6143456, y: 8.001904, z: 3.6051483}
+  m_Center: {x: 0, y: 4.000952, z: 0}

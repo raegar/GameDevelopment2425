@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using SaveSystem;
+using GameProjectManager;
 using UnityEngine.UI;
 
 public class SaveButton : MonoBehaviour
@@ -18,7 +18,7 @@ public class SaveButton : MonoBehaviour
     public void OnClick()
     {
         Debug.Log("SaveButton.OnClick()");
-        if (inputField.text == "") { SaveManager.Instance.SaveData(); }
-        else { SaveManager.Instance.SaveData(inputField.text); }
+        if (inputField.text == "") { GameManager.Instance.SaveData(); }
+        else { GameManager.Instance.SaveData(inputField.text); }
     }
 }

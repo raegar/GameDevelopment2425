@@ -1,6 +1,6 @@
 using System.IO;
 using UnityEngine;
-using SaveSystem;
+using GameProjectManager;
 using TMPro;
 
 public class SomeDataThing : MonoBehaviour, IPersistantDataContainer
@@ -19,7 +19,7 @@ public class SomeDataThing : MonoBehaviour, IPersistantDataContainer
 
     public void RegisterDataProvider()
     {
-        SaveManager.Instance.RegisterDataProvider(this);
+        GameManager.Instance.RegisterDataProvider(this);
     }
     /// <summary>
     /// Sets up any data for a new game here.

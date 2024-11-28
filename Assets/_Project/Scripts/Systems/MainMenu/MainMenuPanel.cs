@@ -6,7 +6,7 @@ namespace menuPanels
 {
     public class MainMenuPanel : PanelBase
     {
-        protected override void Awake()
+        private void Awake()
         {
             base.Awake();
             OpenMainMenuPanel();
@@ -14,11 +14,11 @@ namespace menuPanels
         public void OpenMainMenuPanel()
         {
             UIManager.Instance.CloseAllPanels();
-         //   UIManager.Instance.OpenPanel(this);
+            UIManager.Instance.OpenPanel(this);
         }
         public void CloseMainMenuPanel()
         {
-          //  UIManager.Instance.ClosePanel(this);
+            UIManager.Instance.ClosePanel(this);
         }
     }
 }

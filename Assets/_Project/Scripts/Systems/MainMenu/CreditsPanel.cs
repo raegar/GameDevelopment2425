@@ -6,19 +6,18 @@ namespace menuPanels
 {
     public class CreditsPanel : PanelBase
     {
-        protected override void Awake()
+        private void Awake()
         {
             base.Awake();
         }
         public void OpenCreditsPanel()
         {
-           // UIManager.Instance.OpenPanel(this);
+            UIManager.Instance.OpenPanel(this);
             GetComponentInChildren<AutoScroll>().ResetCredits();
         }
         public void CloseCreditsPanel()
         {
-           //
-           //UIManager.Instance.ClosePanel(this);
+            UIManager.Instance.ClosePanel(this);
         }
     }
 }

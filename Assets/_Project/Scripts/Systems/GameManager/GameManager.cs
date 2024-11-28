@@ -1,189 +1,210 @@
 /* Author  : Don MacSween
  * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
- * Purpose : This script is a state for the state manager that initializes the game from the first scene load
- *              it is intended to load the main game menu and instantiate the systems requred from the systemsToInstantiate ScriptableObject
+ * Purpose : This is the game's main Manager designed to manage the state and flow of the game
+ * 
  */
-
+using System.IO;
 using System.Collections;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
-using SaveSystem;
+using UnityEngine;
 using PatternLibrary;
-using AYellowpaper.SerializedCollections.Editor.Data;
 
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
-public class GameManager : Singleton<GameManager>
+namespace GameProjectManager
 {
-    public bool isPaused = false;
-    public int mainMenuSceneIndex = 1;
-    public int mainGameSceneIndex = 2;
-    public string fileToLoad;
-    public List<GameObject> systemsToInstantiate;
-    // A reference to the loading progress bar in the scene
-    public Slider progressBar;
-    // A reference to the loading operation so we can update the progress bar
-    private AsyncOperation loadOperation;
-    public GameObject canvasRoot;
+    public class GameManager : Singleton<GameManager>
+    {
+        public StateMachine gameState = new StateMachine();
 
-    protected override void Awake()
-    {
-        base.Awake();
-        if (systemsToInstantiate != null)
-        {
-            foreach (var system in systemsToInstantiate)
-            {
-                Instantiate(system,transform.root);
-            }
-        }
-        else
-        {
-            Debug.LogError("No systems to instantiate");
-        }
-    }
+        // stsatemachine states
+        public BaseState initalizeFromLoad;
+        public BaseState mainMenu;
+        public BaseState mainGame;
+        public BaseState gamePaused;
+        public BaseState gameFileOperation;
+       
+        // SaveSystem
+        public Dictionary<IPersistantDataContainer, bool> registeredPersistantDataContainers
+                                                       = new Dictionary<IPersistantDataContainer, bool>();
+        public int numRegisteredContainers;
+        public string savePath;
+        // using a subfolder so we dont clash with other unity games.
+        public string defaultSaveFolder = "AllfatherSaves";
+        public string saveName = "Game";
+        public int saveCounter;
+        public List<string> gameSaves = new List<string>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        LoadMenuScene();
-    }
-    private void LoadMenuScene()
-    {
-        if (progressBar == null)
+        /// <summary>
+        ///  Unity MonoBehaviour called once on object creation
+        /// </summary>
+        protected override void Awake()
+        { 
+            // execute the base singleton functionality
+            base.Awake();
+            // ValidateStates();
+            InitialiseSaveSystem();
+            numRegisteredContainers = registeredPersistantDataContainers.Count;
+        }
+
+        /// <summary>
+        /// Gets everything ready for the save system to work
+        /// </summary>
+        private void InitialiseSaveSystem() 
         {
-            // try to find a progress bar in the scene
-            var foundSliderObjects = FindObjectsOfType<Slider>();
-            if (foundSliderObjects.Length > 0)
+            // Get the path to save in for this platform
+            savePath = Application.persistentDataPath;
+            // Check if the default save folder exists and create it if it doesn't
+            if (!Directory.Exists(savePath + "/" + defaultSaveFolder))
+            { Directory.CreateDirectory(savePath + "/" + defaultSaveFolder); }
+            // concatinate the two to get the full path
+            savePath = savePath + "/" + defaultSaveFolder;
+            // Get all the subfolders in the save folder each folder represents a save
+            string[] subfolders = Directory.GetDirectories(savePath, "*", SearchOption.TopDirectoryOnly);
+            // loop through and find any existing saves - irritating feature of GetDirectories is that it inserts a \ into the path
+            foreach (string subfolder in subfolders) {gameSaves.Add(subfolder.Replace("\\","/"));}
+            // reminder that count is the number of elements in the list not the index
+            saveCounter = gameSaves.Count;
+        }
+
+        /// <summary>
+        /// Called by objects implimenting the IPersistantDataContainer interface on Awake()
+        /// </summary>
+        /// <param name="container">The data container to be registered</param>
+        public void RegisterDataProvider(IPersistantDataContainer container)
+        {
+            // add each container to the dictionary
+            registeredPersistantDataContainers.Add(container, true);
+        }
+
+        /// <summary>
+        /// Provides a list of all the saves in the default save folder for use in the UI
+        /// </summary>
+        /// <returns></returns>
+        public List<string> ListSaves() { return gameSaves; }
+
+        /// <summary>
+        ///  Loops through all registered data containers and calls their SaveData method
+        /// </summary>
+        public void SaveData(string name)
+        {
+            if (Directory.Exists(savePath + "/" + name))
             {
-                // reset the properties of the progress bar to what we need
-                progressBar = foundSliderObjects[0];
+                Debug.LogError("Save already exists");
             }
             else
             {
-                // The script will still work without a progress bar - but it should be there.
-                Debug.LogError("No progress bar found in scene");
+                // create a new save folder
+                Directory.CreateDirectory(savePath + "/" + name);
+                gameSaves.Add(savePath + "/" + name);
+                foreach (var container in registeredPersistantDataContainers)
+                {
+                    container.Key.SaveData(savePath + "/" + name);
+                }
             }
         }
-        else
+
+        /// <summary>
+        ///  Override of SaveDate where no name is provided
+        ///  Loops through all registered data containers and calls their SaveData method
+        /// </summary>
+        public void SaveData()
         {
-            progressBar.maxValue = 1f;
-            progressBar.minValue = 0f;
-            progressBar.value = 0f;
+            // if no name is provided use the default
+            saveCounter++;
+            name = saveName + saveCounter.ToString();
+            if (gameSaves.Contains(savePath + "/" + name))
+            {
+                saveCounter++;
+                SaveData();
+            }
+            // refactor this later as it's own method with more error checking
+            Directory.CreateDirectory(savePath + "/" + name);
+            // may need to move this into a coroutine if it gets slow
+            gameSaves.Add(savePath + "/" + name);
+            foreach (var container in registeredPersistantDataContainers)
+            {
+                container.Key.SaveData(savePath + "/" + name);
+            }
         }
-        // Using a a coroutine to spread the loading and instantiation of systems over multiple frames
-        StartCoroutine(ILoadMenuScene());
-    }
-    /// <summary>
-    /// Loads the main menu scene and instantiates the systems from the systemsToInstantiate ScriptableObject
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator ILoadMenuScene()
-    {
-        //choose which scene to load via scriptable object
-        loadOperation = SceneManager.LoadSceneAsync(mainMenuSceneIndex);
-        // don't allow the scene to activate until we are ready
-        loadOperation.allowSceneActivation = false;
-        while (loadOperation.progress < 0.9f)
+
+
+        /// <summary>
+        /// Overwrites a specific save in the game by deleting it and then saving it again
+        /// </summary>
+        /// <param name="name"></param>
+        public void OverwriteData (string name)
         {
-            // if we have a progress bar update it as the scene loads
-            if (progressBar != null) { progressBar.value = loadOperation.progress; }
-            yield return null;
+            DeleteData(name);
+            SaveData(name);
         }
-        var counter = systemsToInstantiate.Count / 0.1f;
-        foreach (var system in systemsToInstantiate)
+        /// <summary>
+        /// Deletes a specific save from the game
+        /// </summary>
+        /// <param name="name"></param>
+        public void DeleteData(string name)
         {
-            Instantiate(system);
-            // if we have a progress bar update it as the systems instantiate
-            if (progressBar != null) { progressBar.value += counter; }
-            yield return null;
+            if (Directory.Exists(savePath + "/" + name))
+            {
+                Directory.Delete(savePath + "/" + name, true);
+                gameSaves.Remove(savePath +"/" + name);
+            } 
+            else
+            {
+                Debug.LogError("Save does not exist");
+                return;
+            }
         }
-        yield return new WaitForSeconds(3f);    
-        // if we have a progress bar set it to fully done.
-        if (progressBar != null) { progressBar.value = 1f; }
-        loadOperation.allowSceneActivation = true;
         
-        UIManager.Instance.canvasRoot.transform.SetParent(null,false);
-        UIManager.Instance.OpenPanel("MainMenu"); // add string override
-        // SoundManager.Instance.PlayMusic("MainMenu");
-    }
+        /// <summary>
+        /// Deletes all saved from the game USE WITH EXTREME CAUTION!
+        /// </summary>
+        public void DeleteAllData()
+        {
+            foreach (var save in gameSaves)
+            {
+                if (Directory.Exists(save))
+                {
+                    Directory.Delete(save, true);
+                }
+            }
+            gameSaves.Clear();
+        }
 
-    public void LoadMainGame(string LoadFile = "new")
-    {
-        fileToLoad = LoadFile;
-        // UIManager.Instance.OpenPanel("Loader"); // add string override
-        // try to find a progress bar in the scene
-        Slider[] foundSliderObjects = FindObjectsOfType<Slider>();
-        if (foundSliderObjects.Length > 0)
+        /// <summary>
+        /// Loops through all registered data containers and calls their LoadData method
+        /// providing a path they can load their data from
+        /// </summary>
+        public void LoadData(string saveName)
         {
-            // reset the properties of the progress bar to what we need
-            progressBar = foundSliderObjects[0];
-            progressBar.maxValue = 1f;
-            progressBar.minValue = 0f;
-            progressBar.value = 0f;
+            if (Directory.Exists(savePath + "/" + saveName))
+            {
+                foreach (var container in registeredPersistantDataContainers)
+                {
+                    container.Key.LoadData(savePath + "/" + saveName);
+                }
+            }
+            else
+            {
+                Debug.LogError("Save does not exist");
+                return;
+            }
+            
         }
-        else
-        {
-            // The script will still work without a progress bar - but it should be there.
-            Debug.LogError("No progress bar found in scene");
-        }
-        // Using a a coroutine to spread the loading and instantiation of systems over multiple frames
-        StartCoroutine(ILoadGameScene());
-    }
 
-    IEnumerator ILoadGameScene()
-    {
-        //choose which scene to load via scriptable object
-        loadOperation = SceneManager.LoadSceneAsync(mainGameSceneIndex);
-        // don't allow the scene to activate until we are ready
-        loadOperation.allowSceneActivation = false;
-        while (loadOperation.progress < 0.9f)
+        /// <summary>
+        ///  Loops through all registered data containers and calls their NewData method
+        /// </summary>
+        public void NewGame()
         {
-            // if we have a progress bar update it as the scene loads
-            if (progressBar != null) { progressBar.value = loadOperation.progress; }
-            yield return null;
+            foreach (var container in registeredPersistantDataContainers)
+            {
+                container.Key.NewGameData();
+            }
         }
-        if (fileToLoad == "new")
-        {
-            SaveManager.Instance.NewData();
-        }
-        else
-        {
-            SaveManager.Instance.LoadData(fileToLoad);
-        }
-        // UIManager.Instance.ClosePanel("Loader"); //Add string override
-        // other system stuff here
-        // if we have a progress bar set it to fully done.
-        if (progressBar != null) { progressBar.value = 1f; }
-        loadOperation.allowSceneActivation = true;
-        // ready to play
-    }
+        // LoadLast - extension for later
+        // NewData
+        // Pause
+        // Resume
+        // Quit
 
-    public void ContinueGame()
-    {
-        if (PlayerPrefs.HasKey("LastSave"))
-        {
-            LoadMainGame(PlayerPrefs.GetString("LastSave"));
-        }
-    }
-
-    public void NewGame()
-    {
-        LoadMainGame("new");
-    }
-
-    public void ExitGame()
-    {
-#if UNITY_EDITOR
-        EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
     }
 }
-
-

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using SaveSystem;
+using GameProjectManager;
 
 public class SaveInputField : MonoBehaviour
 {
@@ -18,8 +18,8 @@ public class SaveInputField : MonoBehaviour
     {
         if (input == "")
         {
-            SaveManager.Instance.SaveData();
+            GameManager.Instance.SaveData();
         }
-        else { SaveManager.Instance.SaveData(input); }
+        else { GameManager.Instance.SaveData(input); }
     }
 }
