@@ -1,7 +1,8 @@
 using UnityEngine;
 
 
-namespace terrain {
+namespace terrain 
+{
     public class PerlinNoiseGenerator : MonoBehaviour
     {
         private Terrain terrain;

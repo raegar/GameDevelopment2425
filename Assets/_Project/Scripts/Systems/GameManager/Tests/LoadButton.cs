@@ -1,4 +1,4 @@
-using GameProjectManager;
+using SaveSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +26,6 @@ public class LoadButton : MonoBehaviour
     }
     void OnClick()
     {
-        GameManager.Instance.LoadData(loadName);
+        SaveManager.Instance.LoadData(loadName);
     }
 }

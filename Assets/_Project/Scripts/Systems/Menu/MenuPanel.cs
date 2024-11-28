@@ -4,16 +4,16 @@
  */
 public class MenuPanel : PanelBase
 {
-    void Awake()
+    protected override void Awake()
     {
         base.Awake();
     }
     public void OpenMenu()
     {
-        UIManager.Instance.OpenPanel(this);
+       // UIManager.Instance.OpenPanel(this);
     }
     public void CloseMenu()
     {
-        UIManager.Instance.ClosePanel(this);
+      //  UIManager.Instance.ClosePanel(this);
     }
 }
