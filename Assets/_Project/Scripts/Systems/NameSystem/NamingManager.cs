@@ -10,12 +10,10 @@
  * Tip     : Use the GetFullNameQuickly method to get a full name as a tuple. See the TestViking script for an example.
  */
 
-using Codice.CM.Common.Checkin.Partial.ConflictCheckers;
 using PatternLibrary;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unity.VisualScripting.YamlDotNet.Serialization;
 using UnityEngine;
 
 public class NamingManager : Singleton<NamingManager>

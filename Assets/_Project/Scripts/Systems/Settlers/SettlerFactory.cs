@@ -16,9 +16,9 @@ namespace SettlerSystem
     public class SettlerFactory : Singleton<SettlerFactory>
     {
         // source of Settler randomization
-        [SerializeField] private SettlerRandomizer settlerRandomizer;
-        [SerializeField] private SettlerBaseStats settlerBaseStats;
-        [SerializeField] private SettlerSkillDictionary settlerSkillDictionary;
+        [SerializeField] protected SettlerRandomizer settlerRandomizer;
+        [SerializeField] protected SettlerBaseStats settlerBaseStats;
+        [SerializeField] protected SettlerSkillDictionary settlerSkillDictionary;
         protected override void Awake()
         {
             base.Awake();
@@ -44,13 +44,18 @@ namespace SettlerSystem
             return _go;
         }
 
+        public virtual GameObject CreateCustom(SocialStatus socialStatus, int familyID, bool usePatronymics, Gender gender, bool randomFather)
+        {
+            // this method is virtual to allow for overriding in child classes
+            return null;
+        }
+
         /// <summary>
         /// Generates a random gender based on the bias in the SettlerRandomizer
         /// </summary>
         /// <returns>enum Gender</returns>
         private Gender GenerateRandomisedGender()
         {
-           
             if (Random.Range(0, 100) < settlerRandomizer.genderCreationBias)
             { return Gender.Male; } else {return Gender.Female;}
         }

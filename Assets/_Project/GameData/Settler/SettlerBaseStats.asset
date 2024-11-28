@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: SettlerBaseStats
   m_EditorClassIdentifier: 
   wasBornInSettlement: 1
-  health: 0
-  maxHealth: 0
+  health: 100
+  maxHealth: 100
   gender: 0
-  socialStatus: 0
+  socialStatus: 1
   ageInDays: 1
   hunger: 1
   fatigue: 1
   happiness: 0.5
-  attack: 0
-  defence: 0
+  attack: 1
+  defence: 1
   moneyOwned: 0
