@@ -7,7 +7,7 @@
 
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
-using AYellowpaper.SerializedCollections.Editor;
+//using AYellowpaper.SerializedCollections.Editor;
 
 namespace SettlerSystem
 {

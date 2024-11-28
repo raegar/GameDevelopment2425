@@ -26,18 +26,24 @@ namespace SettlerSystem
             settler.familyID = familyID;
             settler.forename = NamingManager.Instance.ChooseFirstName(settler.gender);
 
+            string fatherNameTestInstance = "";
+
             if (randomFather == true)
             {
-                fatherNameTest = NamingManager.Instance.ChooseFirstName(Gender.Male);
+                fatherNameTestInstance = NamingManager.Instance.ChooseFirstName(Gender.Male);
+            }
+            else
+            {
+                fatherNameTestInstance = fatherNameTest;
             }
 
             if (fatherNameTest.Length > 0)
             {
-                settler.surname = NamingManager.Instance.ChooseLastName(settler.gender, usePatronymics, true, fatherNameTest);
+                settler.surname = NamingManager.Instance.ChooseLastName(settler.gender, usePatronymics, true, fatherNameTestInstance);
             }
             else
             {
-                settler.surname = NamingManager.Instance.ChooseLastName(settler.gender, false, true, fatherNameTest);
+                settler.surname = NamingManager.Instance.ChooseLastName(settler.gender, false, true, fatherNameTestInstance);
             }
 
             _go.name = $"Settler_{settler.forename}_{settler.surname}";

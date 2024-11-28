@@ -29,4 +29,5 @@ public class SFXManager : Singleton<SFXManager>
     {
         soundObject.SetUpData(dataList[index]);
     }
+
 }
