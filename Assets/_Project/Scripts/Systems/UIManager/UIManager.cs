@@ -4,103 +4,120 @@
  * Last Modified: 26/10/2024
  * Purpose      :This script is designed as single point of access for all UI panels in the game.           
  */
-
+using UnityEngine;
 using PatternLibrary;
 using AYellowpaper.SerializedCollections;
-using UnityEngine;
+using System.Linq;
 
 public class UIManager : Singleton<UIManager>
 {
     // reference to the registered panels scriptable object contining all the panels in the game
-    public RegisteredPanelsSO  NamedPanelPrefabs;
-    // reference to the canvas root
-    public GameObject canvasRoot;
+    // [SerializeField] private RegisterPanelsSO registeredPanels; 
+    // [SerializeField] private
+
     // a dictionary of current panels and their visibility
     [Header("For debug purposes only - please do not manually add")]
-    [SerializeField] private SerializedDictionary<string, PanelBase> panelsToInstantiate; 
-    [SerializeField] private SerializedDictionary<string, PanelBase> registeredPanels;
-    
-    protected override void Awake()
-    {
-        // enable singleton functionality
-        base.Awake();
-        // move the panels from the scriptable object to the dictionary
-        panelsToInstantiate = NamedPanelPrefabs.panels;
-     
-        InitializePanels();
-    }
+    [SerializeField] private SerializedDictionary<PanelBase, bool> registeredPanels = new SerializedDictionary<PanelBase, bool>();
+
+    // private void InitializePanels() { }
 
     /// <summary>
-    /// Instantiates all the prefabs in the panelsToInstantiate dictionary
-    /// into gameObjects and stores the references in the registeredPanels dictionary
+    /// Registers a panel in the panels dictionary whenever a child class of BasePanel awakes
     /// </summary>
-    private void InitializePanels()
+    /// <param name="panel"></param>
+    public void Register(PanelBase panel)
     {
-        foreach (var panel in panelsToInstantiate)
+        Debug.Log("Registering panel" + panel);
+        // if the panel is already registered, log a warning
+        if (!registeredPanels.ContainsKey(panel))
         {
-            var _go = Instantiate(panel.Value,canvasRoot.transform);
-            _go.name = panel.Key;
-            Debug.Log("Instantiated panel: " + panel.Key);
-            // if the panel is already registered, log a warning
-            if (!registeredPanels.ContainsKey(panel.Key))
-            {
-                registeredPanels.Add(panel.Key, _go);
-                Debug.Log("Registered panel: " + _go);
-                ClosePanel(panel.Key);
-            }
+            registeredPanels.Add(panel, false);
+            ClosePanel(panel);
+        }
+        else
+        {
+            // shouldn't ever happen, but sanity check
+            Debug.LogWarning($"{panel} already registered");
+        }
+    }
+
+    // public PanelBase GetPanelReference(string panelName) {  // return the panel reference }
+
+    /// <summary>
+    /// Opens a single panel by enabling the game object attached to the panel component
+    /// </summary>
+    /// <param name="panel"></param>
+    public void OpenPanel(PanelBase panel)
+    {
+        // check if the panel is in the dictionary
+        if (registeredPanels.ContainsKey(panel))
+        {
+            // change the panels status in the dictionary to disabled (false)
+            registeredPanels[panel] = true;
+            // enable the game object
+            panel.gameObject.SetActive(true);
+            // can be extended here to add a standardized sound effect or animation
+        }
+        else
+        {
+            // this should not happen but if there is a rogue panel in the scene register it
+            Register(panel);
+            // try again
+            OpenPanel(panel);
         }
     }
 
     /// <summary>
-    /// Opens a named panel
+    /// Closes a single panel
     /// </summary>
-    /// <param name="panel">panel to open</param>
-    public void OpenPanel(string panel)
-    { 
-     if (registeredPanels.ContainsKey(panel))
-        { registeredPanels[panel].gameObject.SetActive(true);}
-        else
-        { Debug.LogWarning("Panel not found in dictionary");}
-    }
-
-    /// <summary>
-    /// closes a named panel
-    /// </summary>
-    /// <param name="panel">panel to close</param>
-    public void ClosePanel(string panel)
+    /// <param name="panel">the panel to be closed</param>
+    public void ClosePanel(PanelBase panel)
     {
+        // check if the panel is in the dictionary
         if (registeredPanels.ContainsKey(panel))
-        { registeredPanels[panel].gameObject.SetActive(false);}
+        {
+            // change the panels status in the dictionary to disabled (false)
+            registeredPanels[panel] = false;
+            // disable the game object
+            panel.gameObject.SetActive(false);
+            // can be extended here to add a standardized sound effect or animation
+        }
         else
-        { Debug.LogWarning("Panel not found in dictionary"); }
+        {
+            // this should not happen but if there is a rogue panel in the scene register it
+            Register(panel);
+        }
     }
 
-    // A OpenAllPanels() method has NOT been included as it is not a expected use case
+    // A OpenAllPanels() method has not been included as it is not a expected use case
 
     /// <summary>
-    /// Closes all registered panels
+    /// Closes all registered panels. Had to use Linq as 
+    /// .Net 2.1 does not support changing values during enumeration
     /// </summary>
     public void CloseAllPanels()
     {
         // Move the keys to a list to avoid the .Net 2.1 error
-        foreach (var panel in registeredPanels)
+        foreach (var panel in registeredPanels.ToList())
         {
-            panel.Value.gameObject.SetActive(false);
+            // change the panels status in the dictionary to disabled (false)
+            registeredPanels[panel.Key] = false;
+            // disable the game object
+            panel.Key.gameObject.SetActive(false);
         }
     }
-
     /// <summary>
-    /// Returns the bool status of a panel
+    /// Queries the dictionary to see if a panel is open
     /// </summary>
-    /// <param name="panel">panel to check</param>
-    /// <returns>actve/inactive</returns>
-    public bool PanelStatus(string panel)
+    /// <param name="panel">the panel to check</param>
+    /// <returns>true if open / false if closed or not present</returns>
+    public bool IsPanelOpen(PanelBase panel)
     {
-        if (registeredPanels.ContainsKey(panel))
-        { return registeredPanels[panel].gameObject.activeInHierarchy;}
+        if (registeredPanels.ContainsKey(panel)) { return registeredPanels[panel]; }
         else
         {
-            Debug.LogWarning("Panel not found in dictionary");
+            // this should not happen but if there is a rogue panel in the scene register it
+            Register(panel);
             return false;
         }
     }

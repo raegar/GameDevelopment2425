@@ -1,4 +1,4 @@
-using SaveSystem;
+using GameProjectManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +20,7 @@ public class ListSaves : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        saveNames = SaveManager.Instance.ListSaves();
+        saveNames = GameManager.Instance.ListSaves();
         foreach (string saveName in saveNames)
         {
             GameObject button = Instantiate(buttonPrefab, transform);
@@ -32,7 +32,7 @@ public class ListSaves : MonoBehaviour
 
     private void Update ()
     {
-       if (SaveManager.Instance.ListSaves().Count != previousCount)
+       if (GameManager.Instance.ListSaves().Count != previousCount)
         {
             List();
         }

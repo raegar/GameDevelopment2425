@@ -16,22 +16,22 @@ public class PanelTest : MonoBehaviour
     // this is called by a button in the scene
     public void OpenInventoryPanel()
     {
-      // UIManager.Instance.OpenPanel(inventoryPanel);
+       UIManager.Instance.OpenPanel(inventoryPanel);
     }
     public void OpenSettlersPanel()
     {
-       // UIManager.Instance.OpenPanel(settlerPanel);
+        UIManager.Instance.OpenPanel(settlerPanel);
     }
 
     // this is called by a button in the scene
     public void CloseInventoryPanel()
     {
-      //  UIManager.Instance.ClosePanel(inventoryPanel);
+        UIManager.Instance.ClosePanel(inventoryPanel);
     }
     // this is called by a button in the scene
     public void CloseAllPanels()
     {
-       // UIManager.Instance.CloseAllPanels();
+        UIManager.Instance.CloseAllPanels();
     }
 
     private void Start()
@@ -43,6 +43,6 @@ public class PanelTest : MonoBehaviour
     void Update()
     {
         // a sloppy way to update the text on the screen - dont do this in production code
-     //   inventoryStatusText.text = "Inventory Panel Status: " + UIManager.Instance.IsPanelOpen(inventoryPanel);
+        inventoryStatusText.text = "Inventory Panel Status: " + UIManager.Instance.IsPanelOpen(inventoryPanel);
     }
 }
