@@ -13,7 +13,7 @@ public class VikingListPanel : MonoBehaviour
 
     public void OpenVikingListpanel()
     {
-        ListVikings();
+        ListVikingNames();
     }
     public void CloseVikingListpanel()
     {
@@ -28,7 +28,7 @@ public class VikingListPanel : MonoBehaviour
         vikingNameButton.GetComponent<TextMeshProUGUI>().text = viking.ToString(); // get the viking name this should be changed later
         Instantiate(vikingNameButton, listContents); //make the button
     }
-    public void ListVikings() // only done at the start
+    public void ListVikingNames() // only done at the start
     {
         
         foreach (var viking in vikings)
