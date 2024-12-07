@@ -7,18 +7,27 @@ using UnityEngine.UI;
 
 public class SaveButton : MonoBehaviour
 {
-    public TMP_InputField inputField;
+    [SerializeField] private TMP_InputField inputField;
+                     private Button button;
 
     private void Awake()
     {
         if (inputField == null) { inputField = GetComponentInParent<TMP_InputField>(); }
-        Button button = GetComponent<Button>();
+        button = GetComponent<Button>();
+    }
+    private void OnEnable()
+    {
         button.onClick.AddListener(OnClick);
+    }
+    private void OnDisable()
+    {
+        button.onClick.RemoveListener(OnClick);
     }
     public void OnClick()
     {
-        Debug.Log("SaveButton.OnClick()");
-        if (inputField.text == "") { GameManager.Instance.SaveData(); }
-        else { GameManager.Instance.SaveData(inputField.text); }
+      
+            Debug.Log("Save clicked with name");
+            SaveManager.Instance.SaveData(inputField.text);
+
     }
 }

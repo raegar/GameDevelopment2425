@@ -402,8 +402,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 606419324}
   m_HandleRect: {fileID: 606419323}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99996525
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -445,6 +445,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62480265}
+  m_CullTransparentMesh: 1
+--- !u!1 &123981365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123981366}
+  - component: {fileID: 123981368}
+  - component: {fileID: 123981367}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &123981366
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123981365}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1530248995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &123981367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123981365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &123981368
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123981365}
   m_CullTransparentMesh: 1
 --- !u!1 &147429777
 GameObject:
@@ -751,8 +826,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 920254193}
   m_HandleRect: {fileID: 920254192}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1487,17 +1562,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistentAcrossScenes: 1
-  initalizeFromLoad: {fileID: 0}
-  mainMenu: {fileID: 0}
-  mainGame: {fileID: 0}
-  gamePaused: {fileID: 0}
-  gameFileOperation: {fileID: 0}
   numRegisteredContainers: 0
   savePath: 
   defaultSaveFolder: AllfatherSaves
   saveName: Game
   saveCounter: 0
   gameSaves: []
+  promptForDelete: {fileID: 0}
+  promptForOverwrite: {fileID: 0}
+  saveGame: {fileID: 0}
+  loadGame: {fileID: 0}
 --- !u!4 &909092885
 Transform:
   m_ObjectHideFlags: 0
@@ -1667,7 +1741,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 994179654}
   m_OnClick:
     m_PersistentCalls:
@@ -1883,7 +1957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000022270819}
+  m_AnchoredPosition: {x: 0, y: 0.000053926244}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1164900431
@@ -2700,6 +2774,7 @@ RectTransform:
   - {fileID: 1214241902}
   - {fileID: 717830659}
   - {fileID: 1343377271}
+  - {fileID: 123981366}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2929,7 +3004,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e34bb8d0a07b8f45957c62857ac7bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 0}
+  inputField: {fileID: 1786142463}
+  savebutton: {fileID: 994179653}
 --- !u!114 &1786142463
 MonoBehaviour:
   m_ObjectHideFlags: 0

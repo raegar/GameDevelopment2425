@@ -1,25 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using GameProjectManager;
 
 public class SaveInputField : MonoBehaviour
 {
     public TMP_InputField inputField;
-
+    public Button savebutton;
     private void Awake()
     {
         inputField = GetComponent<TMP_InputField>();
-        inputField.onEndEdit.AddListener(OnEndedInputField);
+        inputField.onValueChanged.AddListener(CheckForEmpty);
+        inputField.onEndEdit.AddListener(CheckForEmpty);
     }
 
-    public void OnEndedInputField(string input)
+    public void CheckForEmpty(string input)
     {
+        Debug.Log(input);
         if (input == "")
         {
-            GameManager.Instance.SaveData();
+            savebutton.interactable = false;
         }
-        else { GameManager.Instance.SaveData(input); }
+        else { savebutton.interactable = true; }
     }
 }

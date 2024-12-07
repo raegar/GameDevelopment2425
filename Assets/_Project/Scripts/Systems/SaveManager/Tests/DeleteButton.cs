@@ -16,6 +16,6 @@ public class DeleteButton : MonoBehaviour
     }
     void OnClick()
     {
-        GameManager.Instance.DeleteData(deleteName);
+        SaveManager.Instance.DeleteData(deleteName);
     }
 }

@@ -20,7 +20,7 @@ public class ListSaves : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        saveNames = GameManager.Instance.ListSaves();
+        saveNames = SaveManager.Instance.ListSaves();
         foreach (string saveName in saveNames)
         {
             GameObject button = Instantiate(buttonPrefab, transform);
@@ -32,7 +32,7 @@ public class ListSaves : MonoBehaviour
 
     private void Update ()
     {
-       if (GameManager.Instance.ListSaves().Count != previousCount)
+       if (SaveManager.Instance.ListSaves().Count != previousCount)
         {
             List();
         }

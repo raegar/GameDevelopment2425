@@ -11,36 +11,32 @@ using PatternLibrary;
 
 namespace GameProjectManager
 {
-    public class GameManager : Singleton<GameManager>
-    {
-        public StateMachine gameState = new StateMachine();
-
-        // stsatemachine states
-        public BaseState initalizeFromLoad;
-        public BaseState mainMenu;
-        public BaseState mainGame;
-        public BaseState gamePaused;
-        public BaseState gameFileOperation;
+    public class SaveManager : Singleton<SaveManager>
+    {    
        
         // SaveSystem
         public Dictionary<IPersistantDataContainer, bool> registeredPersistantDataContainers
-                                                       = new Dictionary<IPersistantDataContainer, bool>();
-        public int numRegisteredContainers;
+         = new Dictionary<IPersistantDataContainer, bool>();
+
+        public int    numRegisteredContainers;
         public string savePath;
         // using a subfolder so we dont clash with other unity games.
         public string defaultSaveFolder = "AllfatherSaves";
         public string saveName = "Game";
-        public int saveCounter;
-        public List<string> gameSaves = new List<string>();
+        public int    saveCounter;
+        public        List<string> gameSaves = new List<string>();
+        [SerializeField] private PanelBase promptForDelete;
+        [SerializeField] private PanelBase promptForOverwrite;
+        [SerializeField] private PanelBase saveGame;
+        [SerializeField] private PanelBase loadGame;
 
         /// <summary>
         ///  Unity MonoBehaviour called once on object creation
         /// </summary>
         protected override void Awake()
-        { 
+        {
             // execute the base singleton functionality
             base.Awake();
-            // ValidateStates();
             InitialiseSaveSystem();
             numRegisteredContainers = registeredPersistantDataContainers.Count;
         }
@@ -101,31 +97,7 @@ namespace GameProjectManager
                 }
             }
         }
-
-        /// <summary>
-        ///  Override of SaveDate where no name is provided
-        ///  Loops through all registered data containers and calls their SaveData method
-        /// </summary>
-        public void SaveData()
-        {
-            // if no name is provided use the default
-            saveCounter++;
-            name = saveName + saveCounter.ToString();
-            if (gameSaves.Contains(savePath + "/" + name))
-            {
-                saveCounter++;
-                SaveData();
-            }
-            // refactor this later as it's own method with more error checking
-            Directory.CreateDirectory(savePath + "/" + name);
-            // may need to move this into a coroutine if it gets slow
-            gameSaves.Add(savePath + "/" + name);
-            foreach (var container in registeredPersistantDataContainers)
-            {
-                container.Key.SaveData(savePath + "/" + name);
-            }
-        }
-
+       
 
         /// <summary>
         /// Overwrites a specific save in the game by deleting it and then saving it again
@@ -136,6 +108,7 @@ namespace GameProjectManager
             DeleteData(name);
             SaveData(name);
         }
+
         /// <summary>
         /// Deletes a specific save from the game
         /// </summary>
@@ -155,7 +128,7 @@ namespace GameProjectManager
         }
         
         /// <summary>
-        /// Deletes all saved from the game USE WITH EXTREME CAUTION!
+        /// Deletes all saved from the game USE WITH EXTREME CAUTION! Dev use only
         /// </summary>
         public void DeleteAllData()
         {
