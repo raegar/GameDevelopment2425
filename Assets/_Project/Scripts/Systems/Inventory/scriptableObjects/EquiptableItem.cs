@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace InventorySystem
 {
-    [CreateAssetMenu(fileName = "New item", menuName = "create item/equiptable item")]
+    [CreateAssetMenu(fileName = "New item", menuName = "Create item/Equiptable item")]
     public class EquiptableItem : Item
     {
         public int attack;

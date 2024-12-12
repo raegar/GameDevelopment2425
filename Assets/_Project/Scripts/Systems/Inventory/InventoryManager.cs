@@ -41,10 +41,9 @@ namespace InventorySystem
             if (itemList.Contains(item))
             {
                 item.AddToStack(amountToAdd);
-                if (item.currentAmount + amountToAdd > item.maxAmount)
+                if (item.currentAmount + amountToAdd > item.maxAmount) //the item has gone over the max amount, display in game
                 {
-                    //the item has gone over the max amount, display in game
-                    notificationText.text = "not enough inventory space"; 
+                    notificationText.text = "not enough inventory space. Upgrade Storage"; 
                 }
             }
             else

@@ -41,5 +41,12 @@ namespace vikingInventory
         {
             itemList.Remove(item);
         }
+        public void RemoveAll()
+        {
+            foreach(var item in itemList)
+            {
+                itemList.Remove(item);
+            }
+        }
     }
 }

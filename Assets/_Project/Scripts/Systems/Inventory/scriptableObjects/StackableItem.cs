@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace InventorySystem
 {
-    [CreateAssetMenu(fileName = "New item", menuName = "create item/stackable item")]
+    [CreateAssetMenu(fileName = "New item", menuName = "Create item/Stackable items/Stackable item")]
     public class StackableItem : Item, IStackable
     {
         public int currentAmount;
@@ -24,8 +24,7 @@ namespace InventorySystem
             if (currentAmount + amount >= 0)
             {
                 currentAmount -= amount;
-            }
-            
+            } 
         }
     }
 }
