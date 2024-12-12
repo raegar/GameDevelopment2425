@@ -40,12 +40,8 @@ namespace InventorySystem
         {
             if (itemList.Contains(item))
             {
-                //checks if adding the items goes over the maxAmount
-                if (item.currentAmount + amountToAdd <= item.maxAmount)
-                {
-                    item.currentAmount += amountToAdd;
-                }
-                else
+                item.AddToStack(amountToAdd);
+                if (item.currentAmount + amountToAdd > item.maxAmount)
                 {
                     //the item has gone over the max amount, display in game
                     notificationText.text = "not enough inventory space"; 
@@ -60,14 +56,17 @@ namespace InventorySystem
         {
             if (itemList.Contains(item))
             {
-                item.currentAmount -= amountToSubtract;
-                if (item.currentAmount == 0)
+                if (item.currentAmount - amountToSubtract == 0)
                 {
                     itemList.Remove(item);
                 }
-                else if (item.currentAmount < 0) //make sure it doesnt go below zero
+                else if (item.currentAmount - amountToSubtract < 0) //make sure it doesnt go below zero
                 {
                     Debug.LogError("item amount is " + item.currentAmount); 
+                }
+                else
+                {
+                    item.RemoveFromStack(amountToSubtract);
                 }
             }
         }
