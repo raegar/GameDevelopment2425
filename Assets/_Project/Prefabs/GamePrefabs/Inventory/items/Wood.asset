@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5e667a18807104d988a0cab4bbf4ee, type: 3}
-  m_Name: sword
+  m_Script: {fileID: 11500000, guid: d836488bd76ff5043a4036215857a89a, type: 3}
+  m_Name: Wood
   m_EditorClassIdentifier: 
-  itemName: sword
+  itemName: logs
   itemSprite: {fileID: 0}
-  attack: 5
-  defence: 0
+  currentAmount: 10
+  maxAmount: 100

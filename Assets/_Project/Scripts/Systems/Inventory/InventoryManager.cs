@@ -30,7 +30,14 @@ namespace InventorySystem
         {
             if (item is IStackable stackable)
             {
-                stackable.AddToStack(amountToAdd);
+                if (itemList.Contains(item))
+                {
+                    stackable.AddToStack(amountToAdd);
+                }
+                else
+                {
+                    itemList.Add(item);
+                }
             }
             else
             {
