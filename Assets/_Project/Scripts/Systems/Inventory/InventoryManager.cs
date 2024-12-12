@@ -26,50 +26,28 @@ namespace InventorySystem
             ListItems();
         }
         //add and remove Items
-        public void AddItem(Item item)
+        public void AddItem(Item item, int amountToAdd)
         {
-            itemList.Add(item);
-        }
-        public void RemoveItem(Item item)
-        {
-            itemList.Remove(item);
-        }
-
-        //add and remove StackableItems
-        public void AddItem(StackableItem item, int amountToAdd)
-        {
-            if (itemList.Contains(item))
+            if (item is IStackable stackable)
             {
-                item.AddToStack(amountToAdd);
-                if (item.currentAmount + amountToAdd > item.maxAmount) //the item has gone over the max amount, display in game
-                {
-                    notificationText.text = "not enough inventory space. Upgrade Storage"; 
-                }
+                stackable.AddToStack(amountToAdd);
             }
             else
             {
                 itemList.Add(item);
             }
         }
-        public void RemoveItem(StackableItem item, int amountToSubtract)
+        public void RemoveItem(Item item, int amountToSubtract)
         {
-            if (itemList.Contains(item))
+            if (item is IStackable stackable)
             {
-                if (item.currentAmount - amountToSubtract == 0)
-                {
-                    itemList.Remove(item);
-                }
-                else if (item.currentAmount - amountToSubtract < 0) //make sure it doesnt go below zero
-                {
-                    Debug.LogError("item amount is " + item.currentAmount); 
-                }
-                else
-                {
-                    item.RemoveFromStack(amountToSubtract);
-                }
+                stackable.AddToStack(amountToSubtract);
+            }
+            else
+            {
+                itemList.Remove(item);
             }
         }
-
         public void ListItems() // should be called when opening inventory
         {
             //clean the inventory before displaying
