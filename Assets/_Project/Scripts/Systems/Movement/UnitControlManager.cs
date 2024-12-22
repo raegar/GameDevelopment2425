@@ -40,7 +40,11 @@ public class UnitControlManager : Singleton<UnitControlManager>
             DeselectUnit(selectedUnit);
         }
         selectedUnit = unit;
-        selectedUnit.selectedIcon.SetActive(true);
+        SelectionEffects selectionEffects = selectedUnit.GetComponent<SelectionEffects>();
+        if (selectionEffects != null)
+        {
+            selectionEffects.selectedIcon.SetActive(true);
+        }
         UIManager.Instance.OpenPanel(settlerPanel.GetComponent<PanelBase>());
         if (unit.affiliation == Affiliation.Friendly)
         {
@@ -50,7 +54,11 @@ public class UnitControlManager : Singleton<UnitControlManager>
 
     public void DeselectUnit(UnitMovementScript unit)
     {
-        selectedUnit.selectedIcon.SetActive(false);
+        SelectionEffects selectionEffects = selectedUnit.GetComponent<SelectionEffects>();
+        if (selectionEffects != null)
+        {
+            selectionEffects.selectedIcon.SetActive(false);
+        }
         selectedUnit = null;
         UIManager.Instance.ClosePanel(settlerPanel.GetComponent<PanelBase>());
         UIManager.Instance.ClosePanel(inventoryPanel.GetComponent<PanelBase>());
@@ -63,9 +71,15 @@ public class UnitControlManager : Singleton<UnitControlManager>
         }
         selectedUnit.agent.isStopped = true;
         selectedUnit.agent.destination = orderPos;
-        selectedUnit.destinationIcon.transform.position = new Vector3(orderPos.x, orderPos.y + 0.1f, orderPos.z);
-        selectedUnit.destinationIcon.transform.parent = this.transform;
-        selectedUnit.destinationIcon.SetActive(true);
+        SelectionEffects selectionEffects = selectedUnit.GetComponent<SelectionEffects>();
+        
+        if (selectionEffects != null)
+        {
+            selectionEffects.destinationIcon.transform.position = new Vector3(orderPos.x, orderPos.y + 0.1f, orderPos.z);
+            selectionEffects.destinationIcon.transform.parent = this.transform;
+            selectionEffects.destinationIcon.SetActive(true);
+        }
+
         selectedUnit.agent.isStopped = false;
         Debug.Log($"{gameObject.name} {selectedUnit.agent.destination}");
     }
