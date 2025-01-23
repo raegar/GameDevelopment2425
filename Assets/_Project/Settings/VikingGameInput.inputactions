@@ -756,6 +756,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Command",
+            "id": "12134043-74da-4a91-b158-35c947a00e3c",
+            "actions": [
+                {
+                    "name": "MoveTo",
+                    "type": "Button",
+                    "id": "954b000f-fa22-451e-bdc8-438946bfa96d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c66e7bb1-c180-47af-bfb5-d12cb872ac18",
+                    "path": "<Pointer>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch;Keyboard&Mouse",
+                    "action": "MoveTo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
