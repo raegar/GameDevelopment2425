@@ -59,17 +59,6 @@ public class SelectionEffects : MonoBehaviour
         lineRenderer.enabled = useLines;
     }
 
-    private void Update()
-    {
-        if (!useLines)
-        {
-            // Disable the line functionality entirely
-            if (lineRenderer != null)
-                lineRenderer.enabled = false;
-            return;
-        }
-    }
-
     public void EnableIndicators()
     {
         lineRenderer.enabled = true;

@@ -1,6 +1,5 @@
 using PatternLibrary;
 using UnityEngine;
-using static UnitMovementScript;
 
 public class UnitControlManager : Singleton<UnitControlManager> 
 {
@@ -32,6 +31,21 @@ public class UnitControlManager : Singleton<UnitControlManager>
             }
         }
     }
+
+    private void SetReferences()
+    {
+        if (inputActionsAsset != null)
+        {
+            moveAction = inputActionsAsset.FindActionMap("Command/MoveTo").FindAction("MoveTo");
+
+            moveAction.performed += ctx => SelectUnit();
+        }
+        else
+        {
+            Debug.LogError("Input Actions Asset is not set in the inspector.");
+        }
+    }
+
 
     public void SelectUnit(UnitMovementScript unit)
     {
