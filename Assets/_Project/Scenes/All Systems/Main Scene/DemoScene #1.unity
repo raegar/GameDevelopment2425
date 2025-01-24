@@ -1137,6 +1137,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1416766266}
+    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1416766264}
     - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
         type: 3}
@@ -2140,6 +2144,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 732296221}
+    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 732296219}
     - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
         type: 3}
@@ -3081,6 +3089,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2019948757}
+    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2019948766}
     - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
         type: 3}
       insertIndex: -1
@@ -4130,6 +4142,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 748363418}
+    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 748363416}
     - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
         type: 3}
@@ -4347,7 +4363,7 @@ MonoBehaviour:
   mouseOver: 0
   agent: {fileID: 0}
   animator: {fileID: 0}
-  affiliation: 2
+  affiliation: 0
   stoppingDistance: 0.5
 --- !u!195 &732296214
 NavMeshAgent:
@@ -4419,6 +4435,20 @@ MonoBehaviour:
   neutralColor: {fileID: 2100000, guid: cd92451ec422e0344b2b15b4b5537870, type: 2}
   curveResolution: 100
   useLines: 1
+--- !u!114 &732296221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732296209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4064b1c221792e146a41c845fdfdf7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOver: 0
+  unitMovementScript: {fileID: 0}
 --- !u!1 &748363406 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
@@ -4472,7 +4502,7 @@ MonoBehaviour:
   mouseOver: 0
   agent: {fileID: 0}
   animator: {fileID: 0}
-  affiliation: 0
+  affiliation: 1
   stoppingDistance: 0.5
 --- !u!195 &748363410
 NavMeshAgent:
@@ -4557,6 +4587,20 @@ MonoBehaviour:
   neutralColor: {fileID: 2100000, guid: cd92451ec422e0344b2b15b4b5537870, type: 2}
   curveResolution: 100
   useLines: 1
+--- !u!114 &748363418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748363406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4064b1c221792e146a41c845fdfdf7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOver: 0
+  unitMovementScript: {fileID: 0}
 --- !u!1 &781973636
 GameObject:
   m_ObjectHideFlags: 3
@@ -5328,7 +5372,7 @@ MonoBehaviour:
   mouseOver: 0
   agent: {fileID: 0}
   animator: {fileID: 0}
-  affiliation: 0
+  affiliation: 1
   stoppingDistance: 0.5
 --- !u!195 &848087882
 NavMeshAgent:
@@ -5413,6 +5457,20 @@ MonoBehaviour:
   neutralColor: {fileID: 2100000, guid: cd92451ec422e0344b2b15b4b5537870, type: 2}
   curveResolution: 100
   useLines: 1
+--- !u!114 &848087890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848087878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4064b1c221792e146a41c845fdfdf7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOver: 0
+  unitMovementScript: {fileID: 0}
 --- !u!1 &884547590
 GameObject:
   m_ObjectHideFlags: 0
@@ -9739,7 +9797,7 @@ MonoBehaviour:
   mouseOver: 0
   agent: {fileID: 0}
   animator: {fileID: 0}
-  affiliation: 1
+  affiliation: 2
   stoppingDistance: 0.5
 --- !u!195 &1416766259
 NavMeshAgent:
@@ -9811,6 +9869,20 @@ MonoBehaviour:
   neutralColor: {fileID: 2100000, guid: cd92451ec422e0344b2b15b4b5537870, type: 2}
   curveResolution: 100
   useLines: 1
+--- !u!114 &1416766266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416766254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4064b1c221792e146a41c845fdfdf7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOver: 0
+  unitMovementScript: {fileID: 0}
 --- !u!1 &1451400887
 GameObject:
   m_ObjectHideFlags: 0
@@ -10755,6 +10827,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 848087881}
+    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 848087890}
     - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
         type: 3}
       insertIndex: -1
@@ -14039,7 +14115,7 @@ MonoBehaviour:
   mouseOver: 0
   agent: {fileID: 0}
   animator: {fileID: 0}
-  affiliation: 0
+  affiliation: 1
   stoppingDistance: 0.5
 --- !u!195 &2019948758
 NavMeshAgent:
@@ -14124,6 +14200,20 @@ MonoBehaviour:
   neutralColor: {fileID: 2100000, guid: cd92451ec422e0344b2b15b4b5537870, type: 2}
   curveResolution: 100
   useLines: 1
+--- !u!114 &2019948766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019948754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4064b1c221792e146a41c845fdfdf7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOver: 0
+  unitMovementScript: {fileID: 0}
 --- !u!114 &2042925262 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3529099077710551842, guid: 325e83de48a093b418de844bfc8440b3,
