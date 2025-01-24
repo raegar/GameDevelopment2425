@@ -22,6 +22,11 @@ public class UnitCommandScript : MonoBehaviour
         UnitControlManager.Instance.SelectUnit(unitMovementScript);
     }
 
+    public void DeselectUnit()
+    {
+        UnitControlManager.Instance.SelectUnit(null);
+    }
+
     public void MoveUnit(Vector3 destination)
     {
         UnitControlManager.Instance.Order(destination);

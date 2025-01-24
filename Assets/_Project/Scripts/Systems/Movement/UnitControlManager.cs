@@ -4,7 +4,7 @@ using UnityEngine;
 public class UnitControlManager : Singleton<UnitControlManager> 
 {
     [Header("References")]
-    public UnitMovementScript selectedUnit;
+    public UnitCommandScript selectedUnit;
     public Camera gameCamera;
     public GameObject settlerPanel, inventoryPanel;
     public Material lineMaterial;
@@ -32,22 +32,7 @@ public class UnitControlManager : Singleton<UnitControlManager>
         }
     }
 
-    private void SetReferences()
-    {
-        if (inputActionsAsset != null)
-        {
-            moveAction = inputActionsAsset.FindActionMap("Command/MoveTo").FindAction("MoveTo");
-
-            moveAction.performed += ctx => SelectUnit();
-        }
-        else
-        {
-            Debug.LogError("Input Actions Asset is not set in the inspector.");
-        }
-    }
-
-
-    public void SelectUnit(UnitMovementScript unit)
+    public void SelectUnit(UnitCommandScript unit)
     {
         if (selectedUnit != null)
         {
@@ -66,7 +51,7 @@ public class UnitControlManager : Singleton<UnitControlManager>
         }
     }
 
-    public void DeselectUnit(UnitMovementScript unit)
+    public void DeselectUnit(UnitCommandScript unit)
     {
         SelectionEffects selectionEffects = selectedUnit.GetComponent<SelectionEffects>();
         if (selectionEffects != null)
@@ -79,10 +64,6 @@ public class UnitControlManager : Singleton<UnitControlManager>
     }
     public void Order(Vector3 orderPos)
     {
-        if (selectedUnit.affiliation != Affiliation.Friendly)
-        {
-            return;
-        }
         selectedUnit.agent.isStopped = true;
         selectedUnit.agent.destination = orderPos;
         SelectionEffects selectionEffects = selectedUnit.GetComponent<SelectionEffects>();

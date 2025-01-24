@@ -51,7 +51,7 @@ public class UnitPCControls : BaseUnitControls
             }
             else
             {
-                //move action (from point A to B) here
+                unitCommandScript.DeselectUnit();
             }
         }
     }
