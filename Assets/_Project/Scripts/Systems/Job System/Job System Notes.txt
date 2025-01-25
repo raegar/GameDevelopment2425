@@ -1,7 +1,7 @@
 Current Plan:
 
 Job Definition:
-A job is the complete beginning to end sequence of smaller tasks.
+A job is the complete beginning-to-end sequence of smaller tasks.
 
 Task Definition:
 A task is a smaller and singular action to be undertaken as part of a job.
