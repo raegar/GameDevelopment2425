@@ -1,0 +1,35 @@
+Current Plan:
+
+Job Definition:
+A job is the complete beginning to end sequence of smaller tasks.
+
+Task Definition:
+A task is a smaller and singular action to be undertaken as part of a job.
+
+Example:
+
+Job - Get 5 stone
+
+Tasks -
+
+1. Check if have tool (bool, can decide whether this leads into a different job or want the player to have to manually sort it out on a case by case basis)
+IF WAS TRUE
+2. Find (and move to) rock
+3. Mine rock (and keep checking inventory for how much stone)
+IF ENOUGH STONE
+4. Find nearest storage
+5. Deposit the stone at the storage
+
+Alternatively:
+
+Job - Mine stone (generic, could be sent by the player, or assigned automatically if the viking is set to be a miner)
+
+Tasks -
+
+1. Check if have tool
+IF WAS TRUE
+2. Find (and move to) rock
+3. Mine rock
+IF STONE CAPACITY IS FULL
+4. Find nearest storage
+5. Deposit the stone at the storage
