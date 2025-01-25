@@ -1,4 +1,3 @@
-using Codice.Client.Commands;
 using UnityEngine;
 
 public class Worker : MonoBehaviour
@@ -74,8 +73,7 @@ public class Worker : MonoBehaviour
 
         if (currentJob != null)
         {
-            currentJob.PauseJob();
-            pausedJob = currentJob;
+            PauseCurrentJob();
         }
 
         currentJob = job;
@@ -87,8 +85,11 @@ public class Worker : MonoBehaviour
         if (pausedJob != null)
         {
             currentJob = pausedJob;
+            currentTask = pausedTask;
             pausedJob = null;
+            pausedTask = null;
             currentJob.ResumeJob();
+            hasPausedJob = false;
         }
     }
 
