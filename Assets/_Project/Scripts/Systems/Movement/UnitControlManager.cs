@@ -23,11 +23,19 @@ public class UnitControlManager : Singleton<UnitControlManager>
                 Ray ray = gameCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hitPoint;
 
+
                 if (Physics.Raycast(ray, out hitPoint))
                 {
-                    Vector3 finalPos = new Vector3(hitPoint.point.x, hitPoint.point.y, hitPoint.point.z);
-                    Order(finalPos);
-                    Debug.Log($"Mouse pos: {ray} Hitpoint pos: {hitPoint.point} Final pos: {finalPos}");
+                    if (hitPoint.collider.tag == "Interactable") 
+                    {
+                        // do interactor stuff
+                    }
+                    else
+                    {
+                        Vector3 finalPos = new Vector3(hitPoint.point.x, hitPoint.point.y, hitPoint.point.z);
+                        Order(finalPos);
+                        Debug.Log($"Mouse pos: {ray} Hitpoint pos: {hitPoint.point} Final pos: {finalPos}");
+                    }
                 }
             }
         }

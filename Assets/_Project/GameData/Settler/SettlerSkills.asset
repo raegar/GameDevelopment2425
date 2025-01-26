@@ -16,7 +16,11 @@ MonoBehaviour:
     _serializedList:
     - Key: Woodworking
       Value: 1
-    - Key: Killing Things
+    - Key: Tree Felling
+      Value: 1
+    - Key: Fighting
       Value: 9
     - Key: Farming
+      Value: 1
+    - Key: Mining
       Value: 1
