@@ -88,7 +88,7 @@ public class Worker : MonoBehaviour
             currentTask = pausedTask;
             pausedJob = null;
             pausedTask = null;
-            currentJob.ResumeJob();
+            currentJob.ResumeJob(this);
             hasPausedJob = false;
         }
     }
@@ -97,7 +97,7 @@ public class Worker : MonoBehaviour
     {
         if (currentJob != null)
         {
-            currentJob.PauseJob();
+            currentJob.PauseJob(this);
             pausedJob = currentJob;
             pausedTask = currentTask;
             currentTask = null;

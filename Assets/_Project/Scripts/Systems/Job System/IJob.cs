@@ -4,6 +4,6 @@ public interface IJob
     void UpdateJob();
     bool IsComplete();
     void OnJobComplete();
-    void PauseJob();
-    void ResumeJob();
+    void PauseJob(Worker worker); // uses worker reference for debugging
+    void ResumeJob(Worker worker);
 }

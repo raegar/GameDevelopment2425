@@ -9,6 +9,7 @@ public class UnitControlManager : Singleton<UnitControlManager>
     public Camera gameCamera;
     public GameObject settlerPanel, inventoryPanel;
     public Material lineMaterial;
+    [SerializeField] private bool useUI = true;
 
     private void Update()
     {
@@ -41,10 +42,13 @@ public class UnitControlManager : Singleton<UnitControlManager>
         }
         selectedUnit = unit;
         selectedUnit.selectedIcon.SetActive(true);
-        UIManager.Instance.OpenPanel(settlerPanel.GetComponent<PanelBase>());
-        if (unit.affiliation == Affiliation.Friendly)
+        if (useUI)
         {
-            UIManager.Instance.OpenPanel(inventoryPanel.GetComponent<PanelBase>());
+            UIManager.Instance.OpenPanel(settlerPanel.GetComponent<PanelBase>());
+            if (unit.affiliation == Affiliation.Friendly)
+            {
+                UIManager.Instance.OpenPanel(inventoryPanel.GetComponent<PanelBase>());
+            }
         }
     }
 
@@ -52,8 +56,12 @@ public class UnitControlManager : Singleton<UnitControlManager>
     {
         selectedUnit.selectedIcon.SetActive(false);
         selectedUnit = null;
-        UIManager.Instance.ClosePanel(settlerPanel.GetComponent<PanelBase>());
-        UIManager.Instance.ClosePanel(inventoryPanel.GetComponent<PanelBase>());
+
+        if (useUI)
+        {
+            UIManager.Instance.ClosePanel(settlerPanel.GetComponent<PanelBase>());
+            UIManager.Instance.ClosePanel(inventoryPanel.GetComponent<PanelBase>());
+        }
     }
     public void Order(Vector3 orderPos)
     {
