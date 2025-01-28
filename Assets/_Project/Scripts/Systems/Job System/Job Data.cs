@@ -11,6 +11,7 @@ public enum TargetingType
 public class JobData : ScriptableObject
 {
     public TargetingType targetingType = TargetingType.Closest; // which behaviour to use when searching for target
+    public GameObject target; // target for job
     public int resourceTarget; // if applicable
     public JobReward jobReward; // reward for completing job
 }

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: JobData_MineRock
   m_EditorClassIdentifier: 
   targetingType: 1
-  resourceAmount: 0
+  target: {fileID: 0}
+  resourceTarget: 5
+  jobReward: {fileID: 0}
