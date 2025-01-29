@@ -5,7 +5,7 @@ public abstract class BaseJob : ScriptableObject, IJob
     public string jobName = "New Job";
     [SerializeField] protected JobData jobData;
     public ITask[] tasks;
-    public bool IsComplete()
+    public virtual bool IsComplete()
     {
         if (tasks[tasks.Length - 1].IsComplete())
         {
@@ -17,32 +17,32 @@ public abstract class BaseJob : ScriptableObject, IJob
         }
     }
 
-    public void OnJobComplete()
+    public virtual void OnJobComplete()
     {
         jobData.jobReward.GiveReward();
     }
 
-    public void PauseJob(Worker worker)
+    public virtual void PauseJob(Worker worker)
     {
         Debug.Log($"Worker {worker} paused {this} job.");
     }
 
-    public void ResumeJob(Worker worker)
+    public virtual void ResumeJob(Worker worker)
     {
         Debug.Log($"Worker {worker} resumed {this} job.");
     }
 
-    public void StartJob(Worker worker)
+    public virtual void StartJob(Worker worker)
     {
         throw new System.NotImplementedException();
     }
 
-    public void UpdateJob()
+    public virtual void UpdateJob()
     {
         throw new System.NotImplementedException();
     }
 
-    public void CancelJob()
+    public virtual void CancelJob()
     {
         throw new System.NotImplementedException();
     }
