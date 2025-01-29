@@ -28,14 +28,13 @@ public class UnitControlManager : Singleton<UnitControlManager>
                 {
                     if (hitPoint.collider.tag == "Interactable") 
                     {
-                        // do interactor stuff
+                        hitPoint.collider.GetComponent<IInteractable>().Interact();
                     }
-                    else
-                    {
+                    
                         Vector3 finalPos = new Vector3(hitPoint.point.x, hitPoint.point.y, hitPoint.point.z);
                         Order(finalPos);
                         Debug.Log($"Mouse pos: {ray} Hitpoint pos: {hitPoint.point} Final pos: {finalPos}");
-                    }
+                    
                 }
             }
         }
