@@ -30,7 +30,8 @@ namespace vikingInventory
         {
             if (itemList.Count == maxItemAmount)
             {
-                //put items into storage if invent is full
+                //go to storage building if invent is full and deposit items
+                Debug.Log("invent full");
             }
             else
             {
@@ -40,6 +41,13 @@ namespace vikingInventory
         public void RemoveItem(Item item)
         {
             itemList.Remove(item);
+        }
+        public void RemoveAll()
+        {
+            foreach(var item in itemList)
+            {
+                itemList.Remove(item);
+            }
         }
     }
 }

@@ -3,9 +3,12 @@
  * Purpose: This is a scriptable object that holds information on food items
 */
 
+using UnityEngine;
+
 namespace InventorySystem
 {
-    public class EdibleItem : Item
+    [CreateAssetMenu(fileName = "New item", menuName = "Create item/Stackable items/Food Items")]
+    public class EdibleItem : StackableItem
     {
         public float hunger;
     }
