@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Inventory:InventorySystem:Item
   itemName: Wood
   itemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+
