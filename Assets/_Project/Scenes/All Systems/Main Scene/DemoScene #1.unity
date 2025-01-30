@@ -1040,7 +1040,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_Name
-      value: Viking 4
+      value: OLD VIKINGS
+      objectReference: {fileID: 0}
+    - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 193240, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_IsActive
@@ -2035,7 +2039,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_Name
-      value: Viking 5
+      value: OLD VIKINGS
+      objectReference: {fileID: 0}
+    - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 192534, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_IsActive
@@ -3896,7 +3904,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_Name
-      value: Viking 2
+      value: OLD VIKINGS
+      objectReference: {fileID: 0}
+    - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 193240, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_IsActive
@@ -5638,8 +5650,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DemoUIManager, Assembly-CSharp
+      - m_Target: {fileID: 1383164281}
+        m_TargetAssemblyTypeName: DemoUIManager, ScriptsAssemblyDefinition
         m_MethodName: ToggleCanvas
         m_Mode: 3
         m_Arguments:
@@ -8212,8 +8224,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DemoUIManager, Assembly-CSharp
+      - m_Target: {fileID: 1383164281}
+        m_TargetAssemblyTypeName: DemoUIManager, ScriptsAssemblyDefinition
         m_MethodName: ToggleCanvas
         m_Mode: 3
         m_Arguments:
@@ -8871,11 +8883,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd5a774c40c56b40a0d61c1c5ffc2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  persistentAcrossScenes: 1
+  persistentAcrossScenes: 0
   canvasObjects:
   - {fileID: 722668319}
-  - {fileID: 1529183692}
   - {fileID: 1673604701}
+  - {fileID: 1529183692}
 --- !u!82 &1383215382 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 1019419294397757272, guid: 325e83de48a093b418de844bfc8440b3,
@@ -10204,7 +10216,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_Name
-      value: Viking 3
+      value: OLD VIKINGS
+      objectReference: {fileID: 0}
+    - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 193240, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_IsActive
@@ -11093,6 +11109,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675200092}
   m_CullTransparentMesh: 1
+--- !u!1 &1696958986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1696958987}
+  m_Layer: 0
+  m_Name: _____POPULATION MANAGEMENT_____
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1696958987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696958986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -45.812363, y: 47.576668, z: -32.869152}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1702276406
 GameObject:
   m_ObjectHideFlags: 0
@@ -11287,8 +11334,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DemoUIManager, Assembly-CSharp
+      - m_Target: {fileID: 1383164281}
+        m_TargetAssemblyTypeName: DemoUIManager, ScriptsAssemblyDefinition
         m_MethodName: ToggleCanvas
         m_Mode: 3
         m_Arguments:
@@ -12607,7 +12654,7 @@ MonoBehaviour:
   settlerBaseStats: {fileID: 11400000, guid: a4c6ccc9093c65641a7ea0c6f6b75cd4, type: 2}
   settlerSkillDictionary: {fileID: 11400000, guid: bceb10e018ad74c48a216070f03ae97c,
     type: 2}
-  fatherNameTest: Erik
+  fatherNameTest: 
   statsType: 2
 --- !u!1 &1859791302
 GameObject:
@@ -13946,6 +13993,104 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2130658825
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 575490932387697322, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_Name
+      value: VikingIntervalSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737390445703049653, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737390445703049653, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825681845443980155, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825681845443980155, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825681845443980155, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825681845443980155, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825681845443980155, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825681845443980155, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825681845443980155, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825681845443980155, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825681845443980155, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825681845443980155, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8726242144378889076, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: xOffset
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8726242144378889076, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: zOffset
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8726242144378889076, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: minimumVikingSpace
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124705759464738728, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.59
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575e07b7beffaa24f8b5c4853c5ca955, type: 3}
 --- !u!1001 &5364647530554589337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13957,7 +14102,12 @@ PrefabInstance:
     - target: {fileID: 3683869115100030199, guid: 6b7930d986ff9d343b0e46e5a6da0f54,
         type: 3}
       propertyPath: m_Name
-      value: Viking 1
+      value: OLD VIKINGS
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683869115100030199, guid: 6b7930d986ff9d343b0e46e5a6da0f54,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7405294251228119403, guid: 6b7930d986ff9d343b0e46e5a6da0f54,
         type: 3}
@@ -14065,3 +14215,5 @@ SceneRoots:
   - {fileID: 1946476017}
   - {fileID: 1902984025}
   - {fileID: 1855744302}
+  - {fileID: 1696958987}
+  - {fileID: 2130658825}

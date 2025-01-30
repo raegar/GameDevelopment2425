@@ -18,9 +18,12 @@ public class VikingIntervalSpawner : MonoBehaviour
     [Header("Location Settings")]
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private Transform initialSpawn;
+    [SerializeField] private float xOffset = 1;
+    [SerializeField] private float zOffset = 1;
 
     [Header("Misc Settings")]
     [SerializeField] private int initialVikingCount = 3;
+    [SerializeField] private float minimumVikingSpace = 0.5f;
     private Coroutine spawnVikingCoroutine;
 
     private void Start()
@@ -54,18 +57,40 @@ public class VikingIntervalSpawner : MonoBehaviour
     }
     private void Spawn(Transform transform, int count)
     {
+        Transform[] transformsUsed = new Transform[count];
+
         for (int i = 0; i < count; i++)
         {
             if (PopulationManager.Instance.populationCount < PopulationManager.Instance.currentMaxPopulation)
             {
-                GameObject viking = Instantiate(vikingPrefab, OffsetTransform(transform).position, Quaternion.identity);
+                bool tooClose = true;
+                transformsUsed[i] = OffsetTransform(transform);
+
+                // check if transforms are too close too eachother
+
+                if (tooClose)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        foreach (Transform t in transformsUsed)
+                        {
+                            if (Vector3.Distance(t.position, transformsUsed[i].position) < minimumVikingSpace)
+                            {
+                                transformsUsed[i] = OffsetTransform(transform);
+                                break;
+                            }
+                            tooClose = false;
+                        }
+                    }
+                }
+                GameObject viking = Instantiate(vikingPrefab, transformsUsed[i].position, Quaternion.identity);
             }
         }
     }
 
     private Transform OffsetTransform(Transform transform)
     {
-        Vector3 offset = new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5));
+        Vector3 offset = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset, zOffset));
         transform.position += offset;
         return transform;
     }
