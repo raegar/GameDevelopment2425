@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class VikingTracker : MonoBehaviour
 {
+    private static bool isQuitting = false;
+
     private void Awake()
     {
         PopulationManager.Instance.AddMeToPopulation(gameObject);
     }
 
+    private void OnApplicationQuit() // check if application is quitting to not cause OnDestroy errors
+    {
+        isQuitting = true;
+    }
+
     private void OnDestroy()
     {
-        if (Application.isFocused) // <- this stops OnDestroy errors from happening when leaving playmode
+        if (!isQuitting)
         {
-            if (PopulationManager.Instance != null)
-            {
-                PopulationManager.Instance.RemoveMeFromPopulation(gameObject);
-            }
+            PopulationManager.Instance.RemoveMeFromPopulation(gameObject);
         }
     }
 }
