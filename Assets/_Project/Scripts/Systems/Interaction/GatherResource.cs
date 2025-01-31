@@ -2,6 +2,7 @@ using SettlerSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InventorySystem;
 
 
 public class GatherResource : MonoBehaviour, IInteractable
@@ -15,7 +16,7 @@ public class GatherResource : MonoBehaviour, IInteractable
     private Settler settler;
     public float coolDownDuration = 60f;
     public float cooldownTimer;
-    // problem with Jess's Item class - public Item item;
+    public Item item;
     public bool isGathering = false;
     void Awake()
     {
@@ -77,8 +78,8 @@ public class GatherResource : MonoBehaviour, IInteractable
 
     public void GatherComplete()
     {
-        // problem with Jess's Item class vikingInventory inventory = selectedByViking.GetComponentInChildren<vikingInventory>();
-        // problem with Jess's Item class inventory.AddResource(item, resourceAmount/10 * skillLevel );
+        vikingInventory inventory = selectedByViking.GetComponentInChildren<vikingInventory>();
+        inventory.AddResource(item, resourceAmount/10 * skillLevel );
         Debug.Log("Gathered " + resourceAmount / 10 * skillLevel); 
         selectedByViking = null;
         // stop animation
