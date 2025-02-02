@@ -6,7 +6,6 @@ namespace raidSystem
 {
     public class RaidSystem : MonoBehaviour
     {
-        public Transform vikingParent;
         public static RaidSystem instance;
 
         private int digit;
@@ -46,7 +45,7 @@ namespace raidSystem
                     foreach (GameObject viking in vikings)
                     {
                         viking.SetActive(true);
-                        viking.transform.SetParent(vikingParent);
+                        viking.transform.SetParent(null);
                     }
                 }
             }

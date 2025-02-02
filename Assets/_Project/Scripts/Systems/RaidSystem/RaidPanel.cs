@@ -1,3 +1,4 @@
+using SettlerSystem;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -29,12 +30,12 @@ namespace raidSystem
         {
             if (vikings.childCount - 1 > 1)
             {
-                GameObject viking = vikings.GetChild(0).gameObject;
+                GameObject viking = FindFirstObjectByType<GrabSettlerFromFactory>().gameObject;
                 vikingInRaid.Add(viking);
                 viking.transform.SetParent(vikingsToRaid);
                 viking.SetActive(false);
                 //set viking name to button text
-                vikingNameButton.GetComponent<TextMeshProUGUI>().text = viking.name;
+                vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = viking.GetComponent<GrabSettlerFromFactory>().name;
                 Instantiate(vikingNameButton).transform.SetParent(vikingNames);
             }
             else
