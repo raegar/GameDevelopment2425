@@ -774,8 +774,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   silverGained: 0
   prestigeGained: 0
-  silverText: {fileID: 0}
-  prestigeText: {fileID: 0}
+  silverText: {fileID: 1745498845633476497}
+  prestigeText: {fileID: 7221487036136534469}
 --- !u!1 &1860898111779314727
 GameObject:
   m_ObjectHideFlags: 0
