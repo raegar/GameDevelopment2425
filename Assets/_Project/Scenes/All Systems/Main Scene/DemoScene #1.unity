@@ -4572,6 +4572,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664513407}
   m_CullTransparentMesh: 1
+--- !u!224 &666677616 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 636844150725971391, guid: 89d2b632316be6149a23fc2ecef33760,
+    type: 3}
+  m_PrefabInstance: {fileID: 2021209747150466697}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &691950703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16536,9 +16542,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437419992629215500, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
+      propertyPath: vikingNames
+      value: 
+      objectReference: {fileID: 666677616}
+    - target: {fileID: 6437419992629215500, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
       propertyPath: vikingsToRaid
       value: 
-      objectReference: {fileID: 456190847}
+      objectReference: {fileID: 2076038845}
+    - target: {fileID: 6437419992629215500, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: addVikingButton
+      value: 
+      objectReference: {fileID: 6015738638556165458, guid: aef62a0214273f64087ea014bf9ceea2,
+        type: 3}
     - target: {fileID: 6437419992629215500, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: vikingNameButton

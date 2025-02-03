@@ -7,6 +7,7 @@ namespace raidSystem
     public class RaidSystem : MonoBehaviour
     {
         public static RaidSystem instance;
+        public VictoryPanel victoryPanel;
 
         private int digit;
         private void Awake()
@@ -49,10 +50,11 @@ namespace raidSystem
                     }
                 }
             }
+            GetRaidResults();
         }
         public void GetRaidResults()
         {
-            FindFirstObjectByType<VictoryPanel>().OpenPanel();
+            victoryPanel.OpenPanel();
         }
     }
 }

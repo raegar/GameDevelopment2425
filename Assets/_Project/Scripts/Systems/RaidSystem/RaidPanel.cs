@@ -9,9 +9,9 @@ namespace raidSystem
     public class RaidPanel : PanelBase
     {
         public Button vikingNameButton;
+        public Button addVikingButton;
         public List<GameObject> vikingInRaid = new List<GameObject>();
         [Header("Transforms")]
-        public Transform vikings;
         public Transform vikingsToRaid;
         public Transform vikingNames;
 
@@ -28,19 +28,16 @@ namespace raidSystem
         }
         public void AddVikingToRaid()
         {
-            if (vikings.childCount - 1 > 1)
+            GameObject viking = FindFirstObjectByType<GrabSettlerFromFactory>().gameObject;
+            if (viking != null && viking.activeInHierarchy)
             {
-                GameObject viking = FindFirstObjectByType<GrabSettlerFromFactory>().gameObject;
                 vikingInRaid.Add(viking);
                 viking.transform.SetParent(vikingsToRaid);
                 viking.SetActive(false);
+                viking.transform.localScale = Vector3.one;
                 //set viking name to button text
-                vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = viking.GetComponent<GrabSettlerFromFactory>().name;
+                vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = viking.name;
                 Instantiate(vikingNameButton).transform.SetParent(vikingNames);
-            }
-            else
-            {
-                Debug.Log("need at least one viking in settlement");
             }
         }
         public void RemoveVikingFromRaid(GameObject viking)
@@ -53,10 +50,11 @@ namespace raidSystem
             if (vikingInRaid.Count > 0)
             {
                 RaidSystem.instance.StartRaid(vikingInRaid);
-                foreach (GameObject go in vikingNames)
+                for (int i = 0; i < vikingsToRaid.childCount; i++)
                 {
-                    Destroy(go);
+                    Destroy(vikingsToRaid.GetChild(i).gameObject);
                 }
+                Instantiate(addVikingButton).transform.SetParent(vikingNames);
                 CloseRaidPanel();
             }
             else

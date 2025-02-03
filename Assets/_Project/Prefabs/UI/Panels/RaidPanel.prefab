@@ -985,11 +985,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b057885f08c61e4e80996f3e88adced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vikingNameButton: {fileID: 0}
+  vikingNameButton: {fileID: 6015738638556165458, guid: aef62a0214273f64087ea014bf9ceea2,
+    type: 3}
+  addVikingButton: {fileID: 7532081654185049115}
   vikingInRaid: []
-  vikings: {fileID: 0}
   vikingsToRaid: {fileID: 0}
-  vikingNames: {fileID: 0}
+  vikingNames: {fileID: 636844150725971391}
   RaidPower: 0
   recommendPower: 0
 --- !u!1 &3248625302993649214
@@ -2456,7 +2457,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4618314626136587056}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99836385
+  m_Size: 0.998364
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

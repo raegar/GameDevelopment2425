@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Viking \nName"
+  m_text: VikingPrefab(Clone)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 5816126051993703771}
   - component: {fileID: 8256261371199298427}
   - component: {fileID: 6015738638556165458}
+  - component: {fileID: 5883474576529711134}
   m_Layer: 5
   m_Name: VikingButton
   m_TagString: Untagged
@@ -168,10 +169,10 @@ RectTransform:
   - {fileID: 8519567011384487806}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 66.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5816126051993703771
 CanvasRenderer:
@@ -254,4 +255,28 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8256261371199298427}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5883474576529711134}
+        m_TargetAssemblyTypeName: raidSystem.VikingNameButton, ScriptsAssemblyDefinition
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5883474576529711134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202587902083099677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f412f6d6955ec44293cb0697017f0f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
