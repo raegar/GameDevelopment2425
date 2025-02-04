@@ -78,6 +78,7 @@ public class GatherResource : MonoBehaviour, IInteractable
         isGathering = true;
         settler = selectedByViking.GetComponentInChildren<Settler>();
         handInteractable = selectedByViking.GetComponentInChildren<HandInteractable>();
+
         if (settler.skills.ContainsKey(skillRequired))
         {
             skillLevel = settler.skills[skillRequired];
@@ -105,6 +106,7 @@ public class GatherResource : MonoBehaviour, IInteractable
         Debug.Log("Gathered " + resourceAmount / 10 * (skillLevel+10)); 
         selectedByViking = null;
         // stop animation
+
         if (handInteractable != null)
         {
             handInteractable.Unequip();
