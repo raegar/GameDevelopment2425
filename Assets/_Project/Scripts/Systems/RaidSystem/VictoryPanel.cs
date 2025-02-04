@@ -1,3 +1,8 @@
+/* Author Jess
+ * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+ * Purpose: This script handles the vicory panel for when the raids over
+*/
+
 using TMPro;
 
 namespace raidSystem

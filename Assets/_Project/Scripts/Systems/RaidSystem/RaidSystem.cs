@@ -1,4 +1,8 @@
-using System.Collections;
+/* Author Jess
+ * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+ * Purpose: This script handles starting a raid and giving the results
+*/
+
 using System.Collections.Generic;
 using UnityEngine;
 

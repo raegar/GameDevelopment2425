@@ -1,3 +1,8 @@
+/* Author Jess
+ * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+ * Purpose: This script handles the Panel for Raiding by adding vikings to raid
+*/
+
 using SettlerSystem;
 using System.Collections.Generic;
 using TMPro;
@@ -41,9 +46,10 @@ namespace raidSystem
         }
         public void RemoveVikingFromRaid(GameObject viking)
         {
-            vikingsToRaid.Find(viking.name).gameObject.SetActive(true);
-            vikingInRaid.Remove(viking);
-            Destroy(vikingNames.Find(viking.name).gameObject);
+            // dose not work right now
+            //vikingsToRaid.Find(viking.name).gameObject.SetActive(true);
+            //vikingInRaid.Remove(viking);
+            //Destroy(vikingNames.Find(viking.name).gameObject);
         }
         public void StartRaid()
         {
