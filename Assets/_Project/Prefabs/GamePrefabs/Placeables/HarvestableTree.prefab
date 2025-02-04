@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 3717855365333663040}
   - component: {fileID: 6356961208016312254}
   m_Layer: 0
-  m_Name: TestInteraction
+  m_Name: HarvestableTree
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
