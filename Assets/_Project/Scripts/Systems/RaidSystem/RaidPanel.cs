@@ -34,7 +34,6 @@ namespace raidSystem
                 vikingInRaid.Add(viking);
                 viking.transform.SetParent(vikingsToRaid);
                 viking.SetActive(false);
-                viking.transform.localScale = Vector3.one;
                 //set viking name to button text
                 vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = viking.name;
                 Instantiate(vikingNameButton).transform.SetParent(vikingNames);
@@ -42,19 +41,19 @@ namespace raidSystem
         }
         public void RemoveVikingFromRaid(GameObject viking)
         {
-            vikingsToRaid.Find(name).gameObject.SetActive(true);
+            vikingsToRaid.Find(viking.name).gameObject.SetActive(true);
             vikingInRaid.Remove(viking);
+            Destroy(vikingNames.Find(viking.name).gameObject);
         }
         public void StartRaid()
         {
             if (vikingInRaid.Count > 0)
             {
-                RaidSystem.instance.StartRaid(vikingInRaid);
-                for (int i = 0; i < vikingsToRaid.childCount; i++)
+                for (int i = 1; i < vikingNames.childCount; i++)
                 {
-                    Destroy(vikingsToRaid.GetChild(i).gameObject);
+                    Destroy(vikingNames.GetChild(i).gameObject);
                 }
-                Instantiate(addVikingButton).transform.SetParent(vikingNames);
+                RaidSystem.instance.StartRaid(vikingInRaid);
                 CloseRaidPanel();
             }
             else
