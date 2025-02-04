@@ -14131,6 +14131,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726242144378889076, guid: 575e07b7beffaa24f8b5c4853c5ca955,
         type: 3}
+      propertyPath: vikingPrefab
+      value: 
+      objectReference: {fileID: 3683869115100030199, guid: 6b7930d986ff9d343b0e46e5a6da0f54,
+        type: 3}
+    - target: {fileID: 8726242144378889076, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
       propertyPath: minimumVikingSpace
       value: 0.1
       objectReference: {fileID: 0}
@@ -14161,6 +14167,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: HarvestableTree
       objectReference: {fileID: 0}
+    - target: {fileID: 3150741967705960430, guid: 69e7c8baa5466bb479f2e90f3b0eb545,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 81048839}
+    - target: {fileID: 3311861702291041339, guid: 69e7c8baa5466bb479f2e90f3b0eb545,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3311861702293023711, guid: 69e7c8baa5466bb479f2e90f3b0eb545,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ad49b41a276194d4d8bbb81845557fdc, type: 2}
     - target: {fileID: 7313116373973093753, guid: 69e7c8baa5466bb479f2e90f3b0eb545,
         type: 3}
       propertyPath: m_LocalPosition.x
