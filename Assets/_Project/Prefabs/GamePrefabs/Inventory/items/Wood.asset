@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: d836488bd76ff5043a4036215857a89a, type: 3}
   m_Name: Wood
-  m_EditorClassIdentifier: Inventory:InventorySystem:Item
-  itemName: Wood
-  itemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-
+  m_EditorClassIdentifier: 
+  itemName: 
+  itemSprite: {fileID: 0}
+  currentAmount: 0
+  maxAmount: 0

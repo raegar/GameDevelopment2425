@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c09b92323d3a80a44a173631308bb853
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157744
+  packageName: Basic Motions
+  packageVersion: 1.4
+  assetPath: Assets/Kevin Iglesias/Basic Motions/AnimationControllers/BasicMotions@IdleWounded.controller
+  uploadId: 633227

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using InventorySystem;
+using vikingInventory;
 
 
 public class GatherResource : MonoBehaviour, IInteractable
@@ -12,6 +13,7 @@ public class GatherResource : MonoBehaviour, IInteractable
     public int resourceAmount = 30;
     public float gatherTime = 5f;
     public string skillRequired;
+    public AnimationClip gatherAnimation;
     public int skillLevel;
     private Settler settler;
     public float coolDownDuration = 60f;
@@ -69,6 +71,12 @@ public class GatherResource : MonoBehaviour, IInteractable
         {
             skillLevel = settler.skills[skillRequired];
             // play animation
+            Animation animator = selectedByViking.GetComponentInChildren<Animation>();
+            if (animator != null) 
+            {
+                animator.AddClip(gatherAnimation, "Gather");
+                animator.Play("Gather");
+            }
 
             // when time is up , call GatherComplete
             Invoke("GatherComplete", gatherTime/skillLevel);
@@ -78,8 +86,9 @@ public class GatherResource : MonoBehaviour, IInteractable
 
     public void GatherComplete()
     {
-        vikingInventory inventory = selectedByViking.GetComponentInChildren<vikingInventory>();
-        inventory.AddResource(item, resourceAmount/10 * skillLevel );
+        VikingInventory thisInventory = selectedByViking.GetComponentInChildren<VikingInventory>();
+        //, resourceAmount/10 * skillLevel
+        thisInventory.AddItem(item);
         Debug.Log("Gathered " + resourceAmount / 10 * skillLevel); 
         selectedByViking = null;
         // stop animation
