@@ -12,6 +12,7 @@ namespace raidSystem
     {
         public static RaidSystem instance;
         public VictoryPanel victoryPanel;
+        public Transform vikingsInRaid;
 
         private int digit;
         private void Awake()
@@ -32,26 +33,14 @@ namespace raidSystem
                     Destroy(viking);
                 }
             }
-            else if (digit <= 50 && digit > 30)
+            else 
             {
                 Debug.Log("Raid won");
-                int amount = vikings.Count;
-                if (digit < 70)
+                for (int i = 0; i < vikingsInRaid.childCount; i++)
                 {
-
-                }
-                else
-                {
-                    if (amount > 1)
-                    {
-                        int number = Random.Range(0, amount);
-                        Destroy(vikings[number]);
-                    }
-                    foreach (GameObject viking in vikings)
-                    {
-                        viking.SetActive(true);
-                        viking.transform.SetParent(null);
-                    }
+                    GameObject viking = vikingsInRaid.GetChild(i).gameObject;
+                    viking.SetActive(true);
+                    viking.transform.SetParent(null);
                 }
             }
             GetRaidResults();

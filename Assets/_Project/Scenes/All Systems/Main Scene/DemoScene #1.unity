@@ -2996,10 +2996,10 @@ RectTransform:
   - {fileID: 2002767247}
   m_Father: {fileID: 1633715295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -697.6025, y: 627.4665}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0.22131251, y: 0.87200004}
+  m_AnchorMax: {x: 0.28245848, y: 0.99100006}
+  m_AnchoredPosition: {x: -1, y: 1.5}
+  m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &354343507
 MonoBehaviour:
@@ -3495,6 +3495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryPanel: {fileID: 187137408399806397}
+  vikingsInRaid: {fileID: 2076038845}
 --- !u!4 &456190847
 Transform:
   m_ObjectHideFlags: 0
@@ -16739,6 +16740,11 @@ PrefabInstance:
     - target: {fileID: 8781842993716285579, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8781842993716285579, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
