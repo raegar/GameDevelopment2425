@@ -13,7 +13,7 @@ public class GatherResource : MonoBehaviour, IInteractable
     public int resourceAmount = 30;
     public float gatherTime = 5f;
     public string skillRequired;
-    public AnimationClip gatherAnimation;
+    private Animator vikingAnimator;
     public int skillLevel;
     private Settler settler;
     public float coolDownDuration = 60f;
@@ -23,6 +23,8 @@ public class GatherResource : MonoBehaviour, IInteractable
     public InventoryManager inventoryManager;
     public GameObject beforeHarvest;
     public GameObject afterHarvest;
+    private HandInteractable handInteractable;
+
     void Awake()
     {
        cooldownTimer = coolDownDuration;
@@ -75,11 +77,18 @@ public class GatherResource : MonoBehaviour, IInteractable
         Debug.Log("Gathering");
         isGathering = true;
         settler = selectedByViking.GetComponentInChildren<Settler>();
+        handInteractable = selectedByViking.GetComponentInChildren<HandInteractable>();
         if (settler.skills.ContainsKey(skillRequired))
         {
             skillLevel = settler.skills[skillRequired];
             // play animation
-             //Later
+            if (handInteractable != null)
+            {
+                handInteractable.Equip();
+            }
+            vikingAnimator = selectedByViking.GetComponent<Animator>();
+            vikingAnimator.SetBool("isWalking", false);
+            vikingAnimator.SetBool("isWoodcutting", true);
 
             // when time is up , call GatherComplete
             Invoke("GatherComplete", gatherTime/skillLevel);
@@ -96,7 +105,11 @@ public class GatherResource : MonoBehaviour, IInteractable
         Debug.Log("Gathered " + resourceAmount / 10 * (skillLevel+10)); 
         selectedByViking = null;
         // stop animation
-
+        if (handInteractable != null)
+        {
+            handInteractable.Unequip();
+        }
+        vikingAnimator.SetBool("isWoodcutting", false);
         // cooldown if applicable
         availableToGather = false;
         beforeHarvest.SetActive(false);
