@@ -20,9 +20,15 @@ public class GatherResource : MonoBehaviour, IInteractable
     public float cooldownTimer;
     public Item item;
     public bool isGathering = false;
+    public InventoryManager inventoryManager;
+    public GameObject beforeHarvest;
+    public GameObject afterHarvest;
     void Awake()
     {
        cooldownTimer = coolDownDuration;
+        inventoryManager = InventoryManager.instance;
+        beforeHarvest.SetActive(true);
+        afterHarvest.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -47,6 +53,8 @@ public class GatherResource : MonoBehaviour, IInteractable
             if (cooldownTimer <= 0)
             {
                 availableToGather = true;
+                beforeHarvest.SetActive(true);
+                afterHarvest.SetActive(false);
                 cooldownTimer = coolDownDuration;
             }
         }
@@ -71,12 +79,7 @@ public class GatherResource : MonoBehaviour, IInteractable
         {
             skillLevel = settler.skills[skillRequired];
             // play animation
-            Animation animator = selectedByViking.GetComponentInChildren<Animation>();
-            if (animator != null) 
-            {
-                animator.AddClip(gatherAnimation, "Gather");
-                animator.Play("Gather");
-            }
+             //Later
 
             // when time is up , call GatherComplete
             Invoke("GatherComplete", gatherTime/skillLevel);
@@ -86,14 +89,17 @@ public class GatherResource : MonoBehaviour, IInteractable
 
     public void GatherComplete()
     {
-        VikingInventory thisInventory = selectedByViking.GetComponentInChildren<VikingInventory>();
+        InventoryManager.instance.AddItem(item, resourceAmount / 10 * (10+skillLevel));
+        //VikingInventory thisInventory = selectedByViking.GetComponentInChildren<VikingInventory>();
         //, resourceAmount/10 * skillLevel
-        thisInventory.AddItem(item);
-        Debug.Log("Gathered " + resourceAmount / 10 * skillLevel); 
+        //thisInventory.AddItem(item);
+        Debug.Log("Gathered " + resourceAmount / 10 * (skillLevel+10)); 
         selectedByViking = null;
         // stop animation
 
         // cooldown if applicable
         availableToGather = false;
+        beforeHarvest.SetActive(false);
+        afterHarvest.SetActive(true);
     }
 }
