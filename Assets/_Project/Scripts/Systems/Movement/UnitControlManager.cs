@@ -41,10 +41,14 @@ public class UnitControlManager : Singleton<UnitControlManager>
         }
         selectedUnit = unit;
         selectedUnit.selectedIcon.SetActive(true);
-        UIManager.Instance.OpenPanel(settlerPanel.GetComponent<PanelBase>());
-        if (unit.affiliation == Affiliation.Friendly)
+        
+        if (settlerPanel != null && inventoryPanel != null)
         {
-            UIManager.Instance.OpenPanel(inventoryPanel.GetComponent<PanelBase>());
+            UIManager.Instance.OpenPanel(settlerPanel.GetComponent<PanelBase>());
+            if (unit.affiliation == Affiliation.Friendly)
+            {
+                UIManager.Instance.OpenPanel(inventoryPanel.GetComponent<PanelBase>());
+            }
         }
     }
 
@@ -52,8 +56,11 @@ public class UnitControlManager : Singleton<UnitControlManager>
     {
         selectedUnit.selectedIcon.SetActive(false);
         selectedUnit = null;
-        UIManager.Instance.ClosePanel(settlerPanel.GetComponent<PanelBase>());
-        UIManager.Instance.ClosePanel(inventoryPanel.GetComponent<PanelBase>());
+        if (settlerPanel != null && inventoryPanel != null)
+        {
+            UIManager.Instance.ClosePanel(settlerPanel.GetComponent<PanelBase>());
+            UIManager.Instance.ClosePanel(inventoryPanel.GetComponent<PanelBase>());
+        }
     }
     public void Order(Vector3 orderPos)
     {
