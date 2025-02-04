@@ -7,8 +7,6 @@ TagManager:
   - Object
   - Settler
   - MusicPlayer
-  - SelectionBox
-  - Interactable
   layers:
   - Default
   - TransparentFX

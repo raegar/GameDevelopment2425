@@ -44,14 +44,6 @@ namespace InventorySystem
                 itemList.Add(item);
             }
         }
-
-        public int CheckItemAmount(Item itemToCheck) //may need to use item.name
-        {
-            // get ammount here
-            //else
-            return 0;
-        }
-
         public void RemoveItem(Item item, int amountToSubtract)
         {
             if (item is IStackable stackable)

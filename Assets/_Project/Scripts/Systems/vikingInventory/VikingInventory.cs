@@ -35,7 +35,6 @@ namespace vikingInventory
             }
             else
             {
-                Debug.Log(item.name + "added");
                 itemList.Add(item);
             }
         }
