@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7613e88315588f748a698fd9c74ffdbe
+timeCreated: 1573743306
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157744
+  packageName: Basic Motions
+  packageVersion: 1.4
+  assetPath: Assets/Kevin Iglesias/Basic Motions/AnimationControllers/BasicMotions@Cheer02.controller
+  uploadId: 633227

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: bafeae56433616b4ea4675d727f39c2f
+timeCreated: 1573682134
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157744
+  packageName: Basic Motions
+  packageVersion: 1.4
+  assetPath: Assets/Kevin Iglesias/Basic Motions/AnimationControllers/BasicMotions@Strafe01.controller
+  uploadId: 633227

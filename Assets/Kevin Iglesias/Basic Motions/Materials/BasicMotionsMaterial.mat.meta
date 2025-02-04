@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: ccc50d631d14df84a982c4f4acd00013
+timeCreated: 1568740184
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157744
+  packageName: Basic Motions
+  packageVersion: 1.4
+  assetPath: Assets/Kevin Iglesias/Basic Motions/Materials/BasicMotionsMaterial.mat
+  uploadId: 633227

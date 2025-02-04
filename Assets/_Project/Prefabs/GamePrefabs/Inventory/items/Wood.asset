@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d836488bd76ff5043a4036215857a89a, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
-  itemName: logs
+  itemName: 
   itemSprite: {fileID: 0}
-  currentAmount: 10
-  maxAmount: 100
+  currentAmount: 0
+  maxAmount: 0
