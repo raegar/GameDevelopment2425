@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
+using InventorySystem;
 
 
 public class BuildingManager : MonoBehaviour
@@ -166,6 +167,7 @@ public class BuildingManager : MonoBehaviour
                 holdingComponent = true;
                 currentRotation = Vector3.zero;
                 InstantiateComponent();
+
             }
         }
     }
