@@ -4,36 +4,35 @@ using TMPro;
 
 namespace SettlerSystem
 {
+    public enum NameSystemType
+    {
+        SettlerFactory,
+        SettlerFactoryPatronymics
+    }
     public class GrabSettlerFromFactory : MonoBehaviour
     {
-        [SerializeField] private Gender gender;
+        public Gender gender;
         [SerializeField] private string foreName, surName;
-        [SerializeField] private SystemType systemSelection;
+        [SerializeField] private NameSystemType systemSelection;
         [SerializeField] private bool randomFather;
-        
-        public enum SystemType
-        {
-            SettlerFactory,
-            SettlerFactoryPatronymics
-        }
 
         private TextMeshPro textMeshPro;
         private Settler thisSettler;
 
-        private void Start()
+        public void GetName()
         {
             textMeshPro = GetComponentInChildren<TextMeshPro>();
             if (textMeshPro == null)
             {
                 Debug.LogError("TextMeshPro component not found on this object");
             }
-            
+
             switch (systemSelection)
             {
-                case SystemType.SettlerFactory:
+                case NameSystemType.SettlerFactory:
                     thisSettler = SettlerFactory.Instance.Create().GetComponent<Settler>();
                     break;
-                case SystemType.SettlerFactoryPatronymics:
+                case NameSystemType.SettlerFactoryPatronymics:
                     thisSettler = SettlerFactoryPatronymics.Instance.CreateCustom(SocialStatus.Unassigned, 0, true, gender, randomFather).GetComponent<Settler>();
                     break;
             }
@@ -43,6 +42,24 @@ namespace SettlerSystem
             foreName = thisSettler.forename;
             surName = thisSettler.surname;
             textMeshPro.text = $"{foreName} {surName}";
+        }
+
+        public void ChangeNameSystem()
+        {
+            switch (systemSelection)
+            {
+                case NameSystemType.SettlerFactory:
+                    systemSelection = NameSystemType.SettlerFactoryPatronymics;
+                    break;
+                case NameSystemType.SettlerFactoryPatronymics:
+                    systemSelection = NameSystemType.SettlerFactory;
+                    break;
+            }
+        }
+
+        public void ChangeNameSystem(NameSystemType systemType)
+        {
+            systemSelection = systemType;
         }
     }
 }
