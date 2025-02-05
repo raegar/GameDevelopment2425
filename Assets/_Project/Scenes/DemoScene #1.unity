@@ -6333,9 +6333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b898090bec9e5014b9a2c65f860b0633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemList:
-  - {fileID: 11400000, guid: 7bb9ccb502d744d4198f3865f9976c78, type: 2}
-  - {fileID: 11400000, guid: 0027c7d2620da034bb52f220f10e1065, type: 2}
+  itemList: []
   itemContainer: {fileID: 376794981}
   itemTemplate: {fileID: 1247689221358577459, guid: da9e0555bbf321645bd98152be25543d,
     type: 3}
