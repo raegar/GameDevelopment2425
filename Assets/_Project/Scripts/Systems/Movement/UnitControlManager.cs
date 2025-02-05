@@ -1,5 +1,6 @@
 using PatternLibrary;
 using UnityEngine;
+using static Codice.Client.Commands.WkTree.WorkspaceTreeNode;
 using static UnitMovementScript;
 
 public class UnitControlManager : Singleton<UnitControlManager> 
@@ -25,6 +26,11 @@ public class UnitControlManager : Singleton<UnitControlManager>
 
                 if (Physics.Raycast(ray, out hitPoint))
                 {
+                    if (hitPoint.collider.tag == "Interactable")
+                    {
+                        hitPoint.collider.GetComponent<IInteractable>().Interact();
+                    }
+
                     Vector3 finalPos = new Vector3(hitPoint.point.x, hitPoint.point.y, hitPoint.point.z);
                     Order(finalPos);
                     Debug.Log($"Mouse pos: {ray} Hitpoint pos: {hitPoint.point} Final pos: {finalPos}");
@@ -32,7 +38,7 @@ public class UnitControlManager : Singleton<UnitControlManager>
             }
         }
     }
-
+    
     public void SelectUnit(UnitMovementScript unit)
     {
         if (selectedUnit != null)
