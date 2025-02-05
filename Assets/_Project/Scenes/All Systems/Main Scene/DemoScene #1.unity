@@ -14162,6 +14162,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7234474765591821, guid: 69e7c8baa5466bb479f2e90f3b0eb545, type: 3}
+      propertyPath: beforeHarvest
+      value: 
+      objectReference: {fileID: 8354179487109896681}
     - target: {fileID: 1139142881563893718, guid: 69e7c8baa5466bb479f2e90f3b0eb545,
         type: 3}
       propertyPath: m_Name
@@ -14172,16 +14176,11 @@ PrefabInstance:
       propertyPath: raycastCamera
       value: 
       objectReference: {fileID: 81048839}
-    - target: {fileID: 3311861702291041339, guid: 69e7c8baa5466bb479f2e90f3b0eb545,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 3311861702293023711, guid: 69e7c8baa5466bb479f2e90f3b0eb545,
+    - target: {fileID: 3580359803869471519, guid: 69e7c8baa5466bb479f2e90f3b0eb545,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ad49b41a276194d4d8bbb81845557fdc, type: 2}
+      objectReference: {fileID: 2100000, guid: 78fe28b7e26367146869f0acd860219c, type: 2}
     - target: {fileID: 7313116373973093753, guid: 69e7c8baa5466bb479f2e90f3b0eb545,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14310,6 +14309,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b7930d986ff9d343b0e46e5a6da0f54, type: 3}
+--- !u!1 &8354179487109896681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3216415208245382809, guid: 69e7c8baa5466bb479f2e90f3b0eb545,
+    type: 3}
+  m_PrefabInstance: {fileID: 4935583146995336282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
