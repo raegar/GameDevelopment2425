@@ -9,6 +9,7 @@ TagManager:
   - MusicPlayer
   - SelectionBox
   - Structure
+  - Interactable
   layers:
   - Default
   - TransparentFX
