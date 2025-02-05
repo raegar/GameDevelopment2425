@@ -800,7 +800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76aeb0dd2af004fb4c108ecdbd915a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleScript: 1
 --- !u!114 &99284556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -957,7 +956,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_Name
-      value: Viking 4
+      value: VIKINGS OLD
+      objectReference: {fileID: 0}
+    - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 193240, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_IsActive
@@ -1611,7 +1614,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_Name
-      value: Viking 5
+      value: VIKINGS OLD
+      objectReference: {fileID: 0}
+    - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 192534, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_IsActive
@@ -2421,7 +2428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_Name
-      value: Viking 1
+      value: VIKINGS OLD
+      objectReference: {fileID: 0}
+    - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 193240, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_IsActive
@@ -3317,7 +3328,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_Name
-      value: Viking 2
+      value: VIKINGS OLD
+      objectReference: {fileID: 0}
+    - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 193240, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_IsActive
@@ -3587,11 +3602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3633a285a00c2fc4da75896425f19118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gender: 0
-  foreName: 
-  surName: 
-  systemSelection: 1
-  randomFather: 1
 --- !u!114 &732296212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3700,11 +3710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3633a285a00c2fc4da75896425f19118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gender: 0
-  foreName: 
-  surName: 
-  systemSelection: 1
-  randomFather: 0
 --- !u!114 &748363408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4338,11 +4343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3633a285a00c2fc4da75896425f19118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gender: 1
-  foreName: 
-  surName: 
-  systemSelection: 1
-  randomFather: 0
 --- !u!114 &848087880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4743,9 +4743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b898090bec9e5014b9a2c65f860b0633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemList:
-  - {fileID: 11400000, guid: 7bb9ccb502d744d4198f3865f9976c78, type: 2}
-  - {fileID: 11400000, guid: 0027c7d2620da034bb52f220f10e1065, type: 2}
+  itemList: []
   itemContainer: {fileID: 376794981}
   itemTemplate: {fileID: 1247689221358577459, guid: da9e0555bbf321645bd98152be25543d,
     type: 3}
@@ -5231,7 +5229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76aeb0dd2af004fb4c108ecdbd915a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleScript: 1
 --- !u!114 &981387058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6616,7 +6613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76aeb0dd2af004fb4c108ecdbd915a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleScript: 1
 --- !u!114 &1202177696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6932,7 +6928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76aeb0dd2af004fb4c108ecdbd915a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleScript: 1
 --- !u!114 &1247395214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7271,7 +7266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76aeb0dd2af004fb4c108ecdbd915a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleScript: 1
 --- !u!114 &1293495903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8018,11 +8012,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d2a05aa291bc84bba28480d67ccceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  persistentAcrossScenes: 1
-  canvasObjects:
-  - {fileID: 722668319}
-  - {fileID: 1673604701}
-  - {fileID: 1529183692}
 --- !u!114 &1383164277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8491,11 +8480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3633a285a00c2fc4da75896425f19118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gender: 0
-  foreName: 
-  surName: 
-  systemSelection: 1
-  randomFather: 1
 --- !u!114 &1416766257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9361,7 +9345,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_Name
-      value: Viking 3
+      value: VIKINGS OLD
+      objectReference: {fileID: 0}
+    - target: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 193240, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
       propertyPath: m_IsActive
@@ -11581,15 +11569,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1855744300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfd8beb8579e2a8499e62552d03a6190, type: 3}
+  m_Script: {fileID: 11500000, guid: dd768624cf611db4c80d03b1bf7f2f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  persistentAcrossScenes: 0
+  persistentAcrossScenes: 1
   settlerRandomizer: {fileID: 11400000, guid: 42529474f1f396f4781b876fd63bf03c, type: 2}
   settlerBaseStats: {fileID: 11400000, guid: a4c6ccc9093c65641a7ea0c6f6b75cd4, type: 2}
   settlerSkillDictionary: {fileID: 11400000, guid: bceb10e018ad74c48a216070f03ae97c,
     type: 2}
-  fatherNameTest: Erik
+  fatherNameTest: 
   statsType: 2
 --- !u!4 &1855744302
 Transform:
@@ -12395,11 +12383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3633a285a00c2fc4da75896425f19118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gender: 0
-  foreName: 
-  surName: 
-  systemSelection: 1
-  randomFather: 0
 --- !u!114 &2019948756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13109,11 +13092,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 575490932387697322, guid: 575e07b7beffaa24f8b5c4853c5ca955,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1260408244}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 575e07b7beffaa24f8b5c4853c5ca955, type: 3}
 --- !u!1001 &4935583146995336282
 PrefabInstance:
@@ -13327,3 +13306,6 @@ SceneRoots:
   - {fileID: 1946476017}
   - {fileID: 1902984025}
   - {fileID: 1855744302}
+  - {fileID: 2130658825}
+  - {fileID: 5364647530554589337}
+  - {fileID: 4935583146995336282}
