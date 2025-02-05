@@ -60,7 +60,8 @@ public class _BuildingManager : MonoBehaviour
         pendingObject.GetComponent<MeshRenderer>().material = materials[2];
         if (playSound)
         {
-            pendingObject.GetComponent<PlayWhenCalled>().PlaySound();
+            //pendingObject.GetComponent<PlayWhenCalled>().PlaySound();
+            Debug.LogWarning("pendingObject.GetComponent<PlayWhenCalled>().PlaySound() Has been disabled");
         }
         pendingObject = null;
     }
