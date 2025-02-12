@@ -1,11 +1,11 @@
 /* Author Jess
  * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
- * Purpose: This script handles Listing the Vikings and displaying that list
+ * Purpose: This script handles Listing the Vikings and displaying that list to add them to a raid
 */
 using UnityEngine;
 using TMPro;
 
-public class VikingListPanel : MonoBehaviour
+public class VikingListPanel : PanelBase
 {
     public Transform vikings; // empty gameobject that contains all viking in the settlement
     public Transform listContents;
@@ -13,6 +13,7 @@ public class VikingListPanel : MonoBehaviour
 
     public void OpenVikingListpanel()
     {
+        UIManager.Instance.OpenPanel(this);
         ListVikingNames();
     }
     public void CloseVikingListpanel()
