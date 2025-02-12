@@ -9,7 +9,6 @@ public class VikingListPanel : PanelBase
 {
     public Transform vikings; // empty gameobject that contains all viking in the settlement
     public Transform listContents;
-    public GameObject vikingNameButton;
 
     public void OpenVikingListpanel()
     {
@@ -18,24 +17,17 @@ public class VikingListPanel : PanelBase
     }
     public void CloseVikingListpanel()
     {
-        gameObject.SetActive(false);
-    }
-    public void OpenVikingInventory()
-    {
-        gameObject.SetActive(true);
+        UIManager.Instance.ClosePanel(this);
     }
     public void AddVikingToList(GameObject viking)
     {
-        vikingNameButton.GetComponent<TextMeshProUGUI>().text = viking.ToString(); // get the viking name this should be changed later
-        Instantiate(vikingNameButton, listContents); //make the button
+        // create new text to add vikng to list
+        TextMeshProUGUI text = new TextMeshProUGUI();
+        text.text = viking.ToString(); 
+        Instantiate(text, listContents); 
     }
     public void ListVikingNames() // only done at the start
     {
-        
-        foreach (var viking in vikings)
-        {
-            vikingNameButton.GetComponent<TextMeshProUGUI>().text = viking.ToString(); // get the viking name
-            Instantiate(vikingNameButton, listContents); //make the button
-        }
+
     }
 }
