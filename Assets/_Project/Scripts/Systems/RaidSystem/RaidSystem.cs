@@ -13,6 +13,7 @@ namespace raidSystem
         public static RaidSystem instance;
         public VictoryPanel victoryPanel;
         public Transform vikingsInRaid;
+        bool isRaidStarted = false;
 
         private int digit;
         private void Awake()
@@ -24,6 +25,7 @@ namespace raidSystem
         }
         public void StartRaid(List<GameObject> vikings)
         {
+            isRaidStarted = true;
             digit = Random.Range(0, 101);
             if (digit <= 30)
             {

@@ -26,21 +26,14 @@ public class VikingListPanel : PanelBase
     {
         UIManager.Instance.ClosePanel(this);
     }
-    public void AddVikingToList(GameObject viking)
-    {
-        // create new text to add vikng to list
-        TextMeshProUGUI text = new TextMeshProUGUI();
-        text.text = viking.ToString(); 
-        Instantiate(text, listContents); 
-    }
-    public void ListVikingNames() // only done at the start
+    public void ListVikingNames() 
     {
         GameObject[] vikingList = populationManager.ReturnAllVikings();
 
         for (int i = 0; i < vikingList.Length; i++)
         {
-            
-
+            vikingName.text = vikingList[i].name + "+";
+            Instantiate(vikingName, listContents);
         }
     }
 }

@@ -4613,7 +4613,7 @@ PrefabInstance:
     - target: {fileID: 636844150725971391, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.49147773
+      value: 0.491795
       objectReference: {fileID: 0}
     - target: {fileID: 2766624441830252630, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -12822,6 +12822,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listContents: {fileID: 1913922600}
+  vikingName: {fileID: 5295230501204788489, guid: e880018e2fb3e9448bec5b0c7f4da02a,
+    type: 3}
 --- !u!1 &1839514351
 GameObject:
   m_ObjectHideFlags: 0
@@ -13553,7 +13555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0006091374}
+  m_AnchoredPosition: {x: 0, y: -0.00005054474}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1946476016
