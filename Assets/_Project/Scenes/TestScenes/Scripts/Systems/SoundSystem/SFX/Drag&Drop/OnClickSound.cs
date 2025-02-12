@@ -30,4 +30,9 @@ public class OnClickSound : DragDropSound
             }
         }
     }
+
+    public void ChangeIndex(int newIndex)
+    {
+        clipIndexToPlay = newIndex;
+    }   
 }
