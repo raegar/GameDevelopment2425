@@ -4613,7 +4613,7 @@ PrefabInstance:
     - target: {fileID: 636844150725971391, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.49084115
+      value: 0.49147773
       objectReference: {fileID: 0}
     - target: {fileID: 2766624441830252630, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -12711,6 +12711,7 @@ GameObject:
   - component: {fileID: 1829296611}
   - component: {fileID: 1829296610}
   - component: {fileID: 1829296609}
+  - component: {fileID: 1829296612}
   m_Layer: 0
   m_Name: VikingListScrollView
   m_TagString: Untagged
@@ -12808,6 +12809,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829296607}
   m_CullTransparentMesh: 1
+--- !u!114 &1829296612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829296607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e2a6fbb9ddb24458e99fd7ec376e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listContents: {fileID: 1913922600}
 --- !u!1 &1839514351
 GameObject:
   m_ObjectHideFlags: 0
@@ -13539,7 +13553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.0006091374}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1946476016
@@ -14725,10 +14739,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726242144378889076, guid: 575e07b7beffaa24f8b5c4853c5ca955,
         type: 3}
+      propertyPath: interval
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8726242144378889076, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
       propertyPath: vikingPrefab
       value: 
       objectReference: {fileID: 3683869115100030199, guid: 6b7930d986ff9d343b0e46e5a6da0f54,
         type: 3}
+    - target: {fileID: 8726242144378889076, guid: 575e07b7beffaa24f8b5c4853c5ca955,
+        type: 3}
+      propertyPath: randomInterval
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8726242144378889076, guid: 575e07b7beffaa24f8b5c4853c5ca955,
         type: 3}
       propertyPath: minimumVikingSpace

@@ -4,11 +4,18 @@
 */
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class VikingListPanel : PanelBase
 {
-    public Transform vikings; // empty gameobject that contains all viking in the settlement
     public Transform listContents;
+    public TextMeshProUGUI vikingName;
+    PopulationManager populationManager;
+
+    private void Awake()
+    {
+        populationManager = FindFirstObjectByType<PopulationManager>();
+    }
 
     public void OpenVikingListpanel()
     {
@@ -28,6 +35,12 @@ public class VikingListPanel : PanelBase
     }
     public void ListVikingNames() // only done at the start
     {
+        GameObject[] vikingList = populationManager.ReturnAllVikings();
 
+        for (int i = 0; i < vikingList.Length; i++)
+        {
+            
+
+        }
     }
 }
