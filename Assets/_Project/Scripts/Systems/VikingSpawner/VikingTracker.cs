@@ -5,10 +5,11 @@ using UnityEngine;
 public class VikingTracker : MonoBehaviour
 {
     private static bool isQuitting = false;
+    private int ID = -1;
 
     private void Awake()
     {
-        PopulationManager.Instance.AddMeToPopulation(gameObject);
+        PopulationManager.Instance.AddMeToPopulation(this);
     }
 
     private void OnApplicationQuit() // check if application is quitting to not cause OnDestroy errors
@@ -20,7 +21,17 @@ public class VikingTracker : MonoBehaviour
     {
         if (!isQuitting)
         {
-            PopulationManager.Instance.RemoveMeFromPopulation(gameObject);
+            PopulationManager.Instance.RemoveMeFromPopulation(ID);
         }
+    }
+
+    public void SetID(int id)
+    {
+        ID = id;
+    }
+
+    public int GetID()
+    {
+        return ID;
     }
 }
