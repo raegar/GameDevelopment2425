@@ -4605,6 +4605,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1344004618}
     m_Modifications:
+    - target: {fileID: 459878709336370651, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 459878709336370651, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 459878709336370651, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1829296612}
+    - target: {fileID: 459878709336370651, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 459878709336370651, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseVikingListpanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 459878709336370651, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: VikingListPanel, ScriptsAssemblyDefinition
+      objectReference: {fileID: 0}
+    - target: {fileID: 459878709336370651, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 636844150725971391, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4613,7 +4648,12 @@ PrefabInstance:
     - target: {fileID: 636844150725971391, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.491795
+      value: 0.49082416
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034891487222066255, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2766624441830252630, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -4746,6 +4786,21 @@ PrefabInstance:
       propertyPath: m_Value
       value: -0.00012434718
       objectReference: {fileID: 0}
+    - target: {fileID: 7532081654185049115, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1829296612}
+    - target: {fileID: 7532081654185049115, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenVikingListpanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7532081654185049115, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VikingListPanel, ScriptsAssemblyDefinition
+      objectReference: {fileID: 0}
     - target: {fileID: 8105975930053431049, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4779,7 +4834,7 @@ PrefabInstance:
     - target: {fileID: 8105975930053431049, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 804.0286
+      value: 779.1418
       objectReference: {fileID: 0}
     - target: {fileID: 8105975930053431049, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -4789,17 +4844,17 @@ PrefabInstance:
     - target: {fileID: 8105975930053431049, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6262141
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8105975930053431049, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6262141
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8105975930053431049, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6262141
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8105975930053431049, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -4839,7 +4894,7 @@ PrefabInstance:
     - target: {fileID: 8105975930053431049, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -12.4434
       objectReference: {fileID: 0}
     - target: {fileID: 8105975930053431049, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -5108,7 +5163,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1118280379}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99995005
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5969,6 +6024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryPanel: {fileID: 729317486}
   vikingsInRaid: {fileID: 413926354}
+  raidLength: 10
 --- !u!4 &970952034
 Transform:
   m_ObjectHideFlags: 0
@@ -6045,17 +6101,17 @@ PrefabInstance:
     - target: {fileID: 6396345379461372111, guid: a1d0ee413dc2ebc49ab3f0b0f9a59735,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6262141
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6396345379461372111, guid: a1d0ee413dc2ebc49ab3f0b0f9a59735,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6262141
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6396345379461372111, guid: a1d0ee413dc2ebc49ab3f0b0f9a59735,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6262141
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6396345379461372111, guid: a1d0ee413dc2ebc49ab3f0b0f9a59735,
         type: 3}
@@ -12738,8 +12794,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 168.2792, y: -0.000014901161}
-  m_SizeDelta: {x: 336.5584, y: 555.3763}
+  m_AnchoredPosition: {x: 278.99, y: -0.0012665}
+  m_SizeDelta: {x: 557.99, y: 892.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1829296609
 MonoBehaviour:
@@ -13532,6 +13588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1913922600}
+  - component: {fileID: 1913922601}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -13555,9 +13612,33 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00005054474}
+  m_AnchoredPosition: {x: 0, y: 0.00003980306}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &1913922601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913922599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 400, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 1
+  m_ConstraintCount: 1
 --- !u!1 &1946476016
 GameObject:
   m_ObjectHideFlags: 0

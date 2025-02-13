@@ -13,16 +13,20 @@ namespace raidSystem
 {
     public class RaidPanel : PanelBase
     {
+        [Header("Buttons")]
         public Button vikingNameButton;
         public Button addVikingButton;
-        public List<GameObject> vikingInRaid = new List<GameObject>();
+        
         [Header("Transforms")]
         public Transform vikingsToRaid;
         public Transform vikingNames;
 
+        List<GameObject> vikingInRaid = new List<GameObject>();
+
         [Header("power amounts")]
         public int RaidPower;
         public int recommendPower;
+
         public void OpenRaidPanel()
         {
             UIManager.Instance.OpenPanel(this);
@@ -47,9 +51,9 @@ namespace raidSystem
         public void RemoveVikingFromRaid(GameObject viking)
         {
             // dose not work right now
-            //vikingsToRaid.Find(viking.name).gameObject.SetActive(true);
-            //vikingInRaid.Remove(viking);
-            //Destroy(vikingNames.Find(viking.name).gameObject);
+            vikingsToRaid.Find(viking.name).gameObject.SetActive(true);
+            vikingInRaid.Remove(viking);
+            Destroy(vikingNames.Find(viking.name).gameObject);
         }
         public void StartRaid()
         {
@@ -68,5 +72,7 @@ namespace raidSystem
             }
 
         }
+        
+        
     }
 }

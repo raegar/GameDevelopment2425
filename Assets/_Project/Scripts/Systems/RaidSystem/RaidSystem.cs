@@ -13,9 +13,12 @@ namespace raidSystem
         public static RaidSystem instance;
         public VictoryPanel victoryPanel;
         public Transform vikingsInRaid;
-        bool isRaidStarted = false;
+        public float raidLength = 60;
 
-        private int digit;
+        List<GameObject> raidList;
+        bool raidStarted = false;
+        float raidTime;
+        int digit;
         private void Awake()
         {
             if (instance == null)
@@ -23,9 +26,26 @@ namespace raidSystem
                 instance = this;
             }
         }
+        private void Update()
+        {
+            if (raidStarted == true)
+            {
+                if (raidTime >= raidLength)
+                {
+                    raidStarted = false;
+                    EndRaid(raidList);
+                }
+            }
+        }
         public void StartRaid(List<GameObject> vikings)
         {
-            isRaidStarted = true;
+            raidStarted = true;
+            raidTime = Time.time;
+            raidList = vikings;
+        }
+
+        public void EndRaid(List<GameObject> vikings)
+        {
             digit = Random.Range(0, 101);
             if (digit <= 30)
             {
@@ -35,7 +55,7 @@ namespace raidSystem
                     Destroy(viking);
                 }
             }
-            else 
+            else
             {
                 Debug.Log("Raid won");
                 for (int i = 0; i < vikingsInRaid.childCount; i++)
@@ -45,10 +65,6 @@ namespace raidSystem
                     viking.transform.SetParent(null);
                 }
             }
-            GetRaidResults();
-        }
-        public void GetRaidResults()
-        {
             victoryPanel.OpenPanel();
         }
     }

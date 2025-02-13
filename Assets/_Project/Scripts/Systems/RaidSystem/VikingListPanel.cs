@@ -4,18 +4,11 @@
 */
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class VikingListPanel : PanelBase
 {
     public Transform listContents;
     public TextMeshProUGUI vikingName;
-    PopulationManager populationManager;
-
-    private void Awake()
-    {
-        populationManager = FindFirstObjectByType<PopulationManager>();
-    }
 
     public void OpenVikingListpanel()
     {
@@ -28,7 +21,12 @@ public class VikingListPanel : PanelBase
     }
     public void ListVikingNames() 
     {
-        GameObject[] vikingList = populationManager.ReturnAllVikings();
+        //delete exsisting buttons
+        foreach (GameObject go in listContents)
+        {
+            Destroy(go);
+        }
+        GameObject[] vikingList = PopulationManager.Instance.ReturnAllVikings();
 
         for (int i = 0; i < vikingList.Length; i++)
         {
