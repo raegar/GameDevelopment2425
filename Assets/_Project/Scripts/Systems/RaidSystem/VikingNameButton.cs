@@ -9,9 +9,15 @@ namespace raidSystem
 {
     public class VikingNameButton : MonoBehaviour
     {
+        RaidPanel raidPanel;
+        private void Awake()
+        {
+            raidPanel = FindAnyObjectByType<RaidPanel>();
+        }
         public void OnClick()
         {
-            FindObjectOfType<RaidPanel>().RemoveVikingFromRaid(gameObject);
+            raidPanel.AddVikingToRaid(gameObject.name);
+            Destroy(gameObject);
         }
     }
 }

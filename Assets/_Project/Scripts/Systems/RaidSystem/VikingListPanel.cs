@@ -4,11 +4,14 @@
 */
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class VikingListPanel : PanelBase
 {
     public Transform listContents;
     public TextMeshProUGUI vikingName;
+
+    GameObject[] vikings;
 
     public void OpenVikingListpanel()
     {
@@ -26,11 +29,11 @@ public class VikingListPanel : PanelBase
         {
             Destroy(go);
         }
-        GameObject[] vikingList = PopulationManager.Instance.ReturnAllVikings();
+        vikings = PopulationManager.Instance.ReturnAllVikings();
 
-        for (int i = 0; i < vikingList.Length; i++)
+        for (int i = 0; i < vikings.Length; i++)
         {
-            vikingName.text = vikingList[i].name + "+";
+            vikingName.text = vikings[i].name + "+";
             Instantiate(vikingName, listContents);
         }
     }

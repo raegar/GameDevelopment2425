@@ -5,6 +5,7 @@
 
 using SettlerSystem;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,9 +36,11 @@ namespace raidSystem
         {
             UIManager.Instance.ClosePanel(this);
         }
-        public void AddVikingToRaid()
+        public void AddVikingToRaid(string vikingName)
         {
-            GameObject viking = FindFirstObjectByType<GrabSettlerFromFactory>().gameObject;
+            List<GameObject> vikings = PopulationManager.Instance.ReturnAllVikings().ToList();
+            GameObject viking = vikings.Find(x => x.name == vikingName); // coming up null
+
             if (viking != null && viking.activeInHierarchy)
             {
                 vikingInRaid.Add(viking);
