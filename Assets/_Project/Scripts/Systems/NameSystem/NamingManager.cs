@@ -405,6 +405,13 @@ public class NamingManager : Singleton<NamingManager>
         return fullName;
     }
 
+    public string[] ReturnVikingNames()
+    {
+        string[] names = new string[fullnameRecord.Count];
+        names = fullnameRecord.Keys.ToArray();
+        return names;
+    }
+
     public void TestDuplicateNames() // <--- This method is used to test the naming system with duplicate names.
     {
         // Test with a set of duplicate names
