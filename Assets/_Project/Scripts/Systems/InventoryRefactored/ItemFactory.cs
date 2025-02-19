@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
 
-namespace InventorySystem
+namespace Inventory2
 {
     public class ItemFactory : MonoBehaviour
     {

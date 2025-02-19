@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace InventorySystem
+namespace Inventory2
 {
     public enum equipSlot
     {
@@ -49,7 +49,6 @@ namespace InventorySystem
         public bool isDestroyable = true;
         public float destroytime = 0f;
         public float destroyTimer = 0f;
-
     }
 }
 

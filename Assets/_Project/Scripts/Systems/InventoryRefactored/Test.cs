@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace InventorySystem {
+namespace Inventory2 {
     public class Test : MonoBehaviour
     {
         public ItemFactory itemFactory;

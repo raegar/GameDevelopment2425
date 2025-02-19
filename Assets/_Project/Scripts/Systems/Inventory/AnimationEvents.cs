@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class AnimationEvents : MonoBehaviour
 {
-    public AudioClip cutwood;
+    public AudioClip sound;
     private AudioSource m_MyAudioSource;
 
     void Awake()
     {
         m_MyAudioSource = GetComponent<AudioSource>();
     }
-    public void PlayCutWoodSound()
+    public void PlayAnimationEventSound()
     {
-        m_MyAudioSource.clip = cutwood;
+        m_MyAudioSource.clip = sound;
         m_MyAudioSource.Play();
     }
 }

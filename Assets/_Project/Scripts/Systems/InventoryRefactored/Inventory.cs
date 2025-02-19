@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace InventorySystem
+namespace Inventory2
 {
     public class Inventory : MonoBehaviour
     {
         [SerializeField] public List<Item> items = new List<Item>();
-        [SerializeField] private int maxInventorySize = 20;
+        [SerializeField] private int maxInventorySize = 2000;
 
         // create an observer pattern to update the UI when the inventory changes 
 
