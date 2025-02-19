@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4495352897612789643}
   - component: {fileID: 5295230501204788489}
   - component: {fileID: 5761359267323184160}
-  - component: {fileID: -925300029835304802}
+  - component: {fileID: 3308006565544503400}
   m_Layer: 5
   m_Name: VikingNameButton
   m_TagString: Untagged
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VikingPrefab(Clone)+
+  m_text: Helga Tove
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -925300029835304802}
+      - m_Target: {fileID: 3308006565544503400}
         m_TargetAssemblyTypeName: raidSystem.VikingNameButton, ScriptsAssemblyDefinition
         m_MethodName: OnClick
         m_Mode: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-925300029835304802
+--- !u!114 &3308006565544503400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

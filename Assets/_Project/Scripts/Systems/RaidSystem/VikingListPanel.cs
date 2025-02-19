@@ -5,6 +5,8 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using SettlerSystem;
+using raidSystem;
 
 public class VikingListPanel : PanelBase
 {
@@ -32,9 +34,10 @@ public class VikingListPanel : PanelBase
         vikings = PopulationManager.Instance.ReturnAllVikings();
         for (int i = 0; i < vikings.Length; i++)
         {
-            vikingName.text = vikings[i].name + "+";
-            vikingName.name = vikings[i].name;
-            Instantiate(vikingName, listContents);
+            string foreName = vikings[i].GetComponent<GrabSettlerFromFactory>().foreName;
+            string surName = vikings[i].GetComponent<GrabSettlerFromFactory>().surName;
+            vikingName.text = foreName + " " + surName;
+            Instantiate(vikingName, listContents).name = foreName;
         }
     }
 }

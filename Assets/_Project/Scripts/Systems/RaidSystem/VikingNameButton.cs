@@ -15,7 +15,7 @@ namespace raidSystem
         }
         public void OnClick()
         {
-            raidPanel.AddVikingToRaid("VikingPrefab (Clone)");
+            raidPanel.AddVikingToRaid(gameObject.name);
             Destroy(gameObject);
         }
     }

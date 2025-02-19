@@ -3,6 +3,7 @@
  * Purpose: This script handles the Panel for Raiding by adding vikings to raid
 */
 
+using SettlerSystem;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -38,29 +39,43 @@ namespace raidSystem
         {
             UIManager.Instance.ClosePanel(this);
         }
-        public void AddVikingToRaid(string vikingName)
+        public void AddVikingToRaid(string viking)
         {
             List<GameObject> vikings = PopulationManager.Instance.ReturnAllVikings().ToList();
            for (int i = 0; i < vikings.Count; i++)
             {
-                if (vikings[i].name == vikingName && vikings[i].activeInHierarchy)
+                string foreName = vikings[i].GetComponent<GrabSettlerFromFactory>().foreName;
+                string surname = vikings[i].GetComponent<GrabSettlerFromFactory>().surName;
+                if (foreName == viking && vikings[i].activeInHierarchy)
                 {
                     vikingInRaid.Add(vikings[i]);
                     vikings[i].transform.SetParent(vikingsToRaid);
                     vikings[i].SetActive(false);
 
                     //set viking name to button text
-                    vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = vikingName;
-                    Instantiate(vikingNameButton).transform.SetParent(vikingNames);
+                    vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = foreName + " " + surname;
+                    Instantiate(vikingNameButton, vikingNames).name = foreName;
+                    return;
                 }
             }
         }
-        public void RemoveVikingFromRaid(GameObject viking)
+        public void RemoveVikingFromRaid(string vikingName)
         {
-            // dose not work right now
-            vikingsToRaid.Find(viking.name).gameObject.SetActive(true);
-            vikingInRaid.Remove(viking);
-            Destroy(vikingNames.Find(viking.name).gameObject);
+            foreach (GameObject viking in vikingInRaid)
+            {
+                if (viking.GetComponent<GrabSettlerFromFactory>().foreName == vikingName)
+                {
+                    vikingInRaid.Remove(viking);
+                    for (int i = 0; i < vikingNames.childCount; i++)
+                    {
+                        string objectName = vikingNames.GetChild(i).gameObject.GetComponent<GrabSettlerFromFactory>().foreName;
+                        if (objectName == vikingName)
+                        {
+                            Destroy(vikingNames.GetChild(i).gameObject);
+                        }
+                    }
+                }
+            }
             listPanel.ListVikingNames();
         }
         public void StartRaid()
