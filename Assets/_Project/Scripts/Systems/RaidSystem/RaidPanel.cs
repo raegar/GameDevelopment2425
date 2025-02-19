@@ -3,7 +3,6 @@
  * Purpose: This script handles the Panel for Raiding by adding vikings to raid
 */
 
-using SettlerSystem;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -28,6 +27,9 @@ namespace raidSystem
         public int RaidPower;
         public int recommendPower;
 
+        [Header("script")]
+        public VikingListPanel listPanel;
+
         public void OpenRaidPanel()
         {
             UIManager.Instance.OpenPanel(this);
@@ -39,16 +41,18 @@ namespace raidSystem
         public void AddVikingToRaid(string vikingName)
         {
             List<GameObject> vikings = PopulationManager.Instance.ReturnAllVikings().ToList();
-            GameObject viking = vikings.Find(x => x.name == vikingName); // coming up null
-
-            if (viking != null && viking.activeInHierarchy)
+           for (int i = 0; i < vikings.Count; i++)
             {
-                vikingInRaid.Add(viking);
-                viking.transform.SetParent(vikingsToRaid);
-                viking.SetActive(false);
-                //set viking name to button text
-                vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = viking.name;
-                Instantiate(vikingNameButton).transform.SetParent(vikingNames);
+                if (vikings[i].name == vikingName && vikings[i].activeInHierarchy)
+                {
+                    vikingInRaid.Add(vikings[i]);
+                    vikings[i].transform.SetParent(vikingsToRaid);
+                    vikings[i].SetActive(false);
+
+                    //set viking name to button text
+                    vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = vikingName;
+                    Instantiate(vikingNameButton).transform.SetParent(vikingNames);
+                }
             }
         }
         public void RemoveVikingFromRaid(GameObject viking)
@@ -57,6 +61,7 @@ namespace raidSystem
             vikingsToRaid.Find(viking.name).gameObject.SetActive(true);
             vikingInRaid.Remove(viking);
             Destroy(vikingNames.Find(viking.name).gameObject);
+            listPanel.ListVikingNames();
         }
         public void StartRaid()
         {

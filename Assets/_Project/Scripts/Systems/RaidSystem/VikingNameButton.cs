@@ -2,7 +2,6 @@
  * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
  * Purpose: This script lets the button remove itslef from the raid panel
 */
-
 using UnityEngine;
 
 namespace raidSystem
@@ -16,7 +15,7 @@ namespace raidSystem
         }
         public void OnClick()
         {
-            raidPanel.AddVikingToRaid(gameObject.name);
+            raidPanel.AddVikingToRaid("VikingPrefab (Clone)");
             Destroy(gameObject);
         }
     }

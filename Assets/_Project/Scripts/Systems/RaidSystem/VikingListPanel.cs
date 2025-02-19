@@ -25,15 +25,15 @@ public class VikingListPanel : PanelBase
     public void ListVikingNames() 
     {
         //delete exsisting buttons
-        foreach (GameObject go in listContents)
+        for (int i = 0; i < listContents.childCount; i++)
         {
-            Destroy(go);
+            Destroy(listContents.GetChild(i).gameObject);
         }
         vikings = PopulationManager.Instance.ReturnAllVikings();
-
         for (int i = 0; i < vikings.Length; i++)
         {
             vikingName.text = vikings[i].name + "+";
+            vikingName.name = vikings[i].name;
             Instantiate(vikingName, listContents);
         }
     }
