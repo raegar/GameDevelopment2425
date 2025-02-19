@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6ea404a8c0d64439f10479ff807ad0, type: 3}
+  m_Name: Stone
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 0}
+  itemIcon: {fileID: 0}
+  itemName: Stone
+  type: 5
+  itemDescription: a lump of stone
+  itemID: 0
+  itemValue: 2
+  isStackable: 1
+  itemStackCount: 1
+  maxStackCount: 10
+  isEquippable: 0
+  slot: 0
+  dropCoolDown: 20
+  dropTimer: 0
+  isDroppable: 1
+  isConsumable: 0
+  isQuestItem: 0
+  hasBeenDropped: 0
+  isDestroyable: 1
+  destroytime: 0
+  destroyTimer: 0
