@@ -14,6 +14,7 @@ namespace raidSystem
         public void OnClick()
         {
             raidPanel.RemoveVikingFromRaid(gameObject.name);
+            Destroy(gameObject);
         }
     }
 }
