@@ -59,15 +59,14 @@ namespace raidSystem
                 }
             }
         }
-        // wont remove if only one is in the raid
         public void RemoveVikingFromRaid(string vikingName)
         {
             for (int i = 0; i <= vikingInRaid.Count; i++)
             {
                 if (vikingInRaid[i].GetComponent<GrabSettlerFromFactory>().foreName == vikingName)
                 {
-                    vikingInRaid.Remove(vikingInRaid[i]);
                     vikingInRaid[i].SetActive(true);
+                    vikingInRaid.Remove(vikingInRaid[i]);
                     listPanel.ListVikingNames();
                     return;
                 }
