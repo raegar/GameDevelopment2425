@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using InventorySystem;
 using vikingInventory;
+using Inventory2;
 
 
 public class GatherResource : MonoBehaviour, IInteractable
@@ -19,6 +20,7 @@ public class GatherResource : MonoBehaviour, IInteractable
     public float coolDownDuration = 60f;
     public float cooldownTimer;
     public Item item;
+    public ItemSO templateItem;
     public AudioClip gatherSound;
     public bool isGathering = false;
     public InventoryManager inventoryManager;
@@ -105,8 +107,7 @@ public class GatherResource : MonoBehaviour, IInteractable
     {
         InventoryManager.instance.AddItem(item, resourceAmount / 10 * (10 + skillLevel));
         //VikingInventory thisInventory = selectedByViking.GetComponentInChildren<VikingInventory>();
-        //, resourceAmount/10 * skillLevel
-        //thisInventory.AddItem(item);
+        // uncomment when ready - SettlementInventory.Instance.AddItem(templateItem, resourceAmount / 10 * (10 + skillLevel));
         Debug.Log("Gathered " + resourceAmount / 10 * (skillLevel + 10));
         animationEvent.sound = null;
         selectedByViking = null;
