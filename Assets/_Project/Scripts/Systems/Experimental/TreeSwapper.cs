@@ -27,6 +27,7 @@ public class TreeSwapper : MonoBehaviour
             // For every tree on the island
             foreach (TreeInstance tree in thisTerrain.treeInstances)
             {
+                Debug.Log(tree.prototypeIndex);
                 Vector3 worldTreePos = Vector3.Scale(tree.position, thisTerrain.size) + terrains[i].transform.position;
                 Instantiate(theTree, worldTreePos, Quaternion.identity); // Create a prefab tree on its pos
                 placeablesSO.AddPlaceable(worldTreePos, tree.prototypeIndex); // Add the tree to the list of placeables
