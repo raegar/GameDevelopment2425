@@ -19,7 +19,7 @@ public class GatherResource : MonoBehaviour, IInteractable
     private Settler settler;
     public float coolDownDuration = 60f;
     public float cooldownTimer;
-    public Item item;
+    public Inventory2.Item item;
     public ItemSO templateItem;
     public AudioClip gatherSound;
     public bool isGathering = false;
