@@ -487,7 +487,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.55311733
-        functionName: PlayCutWoodSound
+        functionName: PlayAnimationEventSound
         data: 
         objectReferenceParameter: {fileID: 3683869115100030199, guid: 6b7930d986ff9d343b0e46e5a6da0f54,
           type: 3}
