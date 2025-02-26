@@ -5,6 +5,7 @@
 
 using SettlerSystem;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,16 +14,25 @@ namespace raidSystem
 {
     public class RaidPanel : PanelBase
     {
+        [Header("Buttons")]
         public Button vikingNameButton;
         public Button addVikingButton;
-        public List<GameObject> vikingInRaid = new List<GameObject>();
+        
         [Header("Transforms")]
         public Transform vikingsToRaid;
         public Transform vikingNames;
 
+        List<GameObject> vikingInRaid = new List<GameObject>();
+
         [Header("power amounts")]
         public int RaidPower;
         public int recommendPower;
+
+        [Header("script")]
+        public VikingListPanel listPanel;
+
+        public int amountOfVikingsToRaid = 4;
+
         public void OpenRaidPanel()
         {
             UIManager.Instance.OpenPanel(this);
@@ -31,42 +41,82 @@ namespace raidSystem
         {
             UIManager.Instance.ClosePanel(this);
         }
-        public void AddVikingToRaid()
+        public void AddVikingToRaid(string viking)
         {
-            GameObject viking = FindFirstObjectByType<GrabSettlerFromFactory>().gameObject;
-            if (viking != null && viking.activeInHierarchy)
+            List<GameObject> vikings = PopulationManager.Instance.ReturnAllVikings().ToList();
+           for (int i = 0; i < vikings.Count; i++)
             {
-                vikingInRaid.Add(viking);
-                viking.transform.SetParent(vikingsToRaid);
-                viking.SetActive(false);
-                //set viking name to button text
-                vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = viking.name;
-                Instantiate(vikingNameButton).transform.SetParent(vikingNames);
+                string foreName = vikings[i].GetComponent<GrabSettlerFromFactory>().foreName;
+                string surname = vikings[i].GetComponent<GrabSettlerFromFactory>().surName;
+                if (foreName == viking && vikings[i].activeInHierarchy)
+                {
+                    vikingInRaid.Add(vikings[i]);
+                    vikings[i].transform.SetParent(vikingsToRaid);
+                    vikings[i].SetActive(false);
+
+                    //set viking name to button text
+                    vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = foreName + " " + surname;
+                    Instantiate(vikingNameButton, vikingNames).name = foreName;
+                    return;
+                }
             }
         }
-        public void RemoveVikingFromRaid(GameObject viking)
+        public void RemoveVikingFromRaid(string vikingName)
         {
-            // dose not work right now
-            //vikingsToRaid.Find(viking.name).gameObject.SetActive(true);
-            //vikingInRaid.Remove(viking);
-            //Destroy(vikingNames.Find(viking.name).gameObject);
+            for (int i = 0; i <= vikingInRaid.Count; i++)
+            {
+                if (vikingInRaid[i].GetComponent<GrabSettlerFromFactory>().foreName == vikingName)
+                {
+                    vikingInRaid[i].SetActive(true);
+                    vikingInRaid[i].transform.SetParent(null);
+                    vikingInRaid.Remove(vikingInRaid[i]);
+                    listPanel.ListVikingNames();
+                    return;
+                }
+            }
+        }
+        public void RemoveAllVikingsFromraid()
+        {
+            for(int i = 0; i  < vikingInRaid.Count;i++)
+            {
+                RemoveVikingFromRaid(vikingInRaid[i].GetComponent<GrabSettlerFromFactory>().foreName);
+            }
         }
         public void StartRaid()
         {
-            if (vikingInRaid.Count > 0)
+            if (vikingInRaid.Count >= amountOfVikingsToRaid)
             {
-                for (int i = 1; i < vikingNames.childCount; i++)
+                GameObject[] population = PopulationManager.Instance.ReturnAllVikings();
+                if (vikingInRaid.Count == population.Length)
                 {
-                    Destroy(vikingNames.GetChild(i).gameObject);
+                    Debug.Log("To many vikings in raid. need one to look after settlement");
                 }
-                RaidSystem.instance.StartRaid(vikingInRaid);
-                CloseRaidPanel();
+                else
+                {
+                    for (int i = 1; i < vikingNames.childCount; i++)
+                    {
+                        Destroy(vikingNames.GetChild(i).gameObject);
+                    }
+                    RaidSystem.instance.StartRaid(vikingInRaid);
+                    CloseRaidPanel();
+                    listPanel.CloseVikingListpanel();
+                }
             }
             else
             {
-                Debug.Log("No vikings in raid");
+                Debug.Log("Not enough vikings in raid. Need " + amountOfVikingsToRaid + " to raid");
             }
-
+        }
+        public bool CheckIfVikingInRaid(string vikingName)
+        {
+            for(int i = 0; i < vikingInRaid.Count;i++)
+            {
+                if (vikingInRaid[i].GetComponent<GrabSettlerFromFactory>().foreName.Equals(vikingName))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -1,3 +1,6 @@
 InventoryIconBG = Used for Inventory and Building Pieces
 StackedIconBG = Used as reference for stacked items
-StackedIconNumberBG= Used as background for number of items in stack
+StackedIconNumberBG = Used as background for number of items in stack
+
+InventorySystemIcon = Icon for Inventory System Menu
+RaidSystemIcon = Icon for Raid System Menu

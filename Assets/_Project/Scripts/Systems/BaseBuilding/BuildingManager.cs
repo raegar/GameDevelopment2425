@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
-using InventorySystem;
 
 
 public class BuildingManager : MonoBehaviour
@@ -15,10 +12,16 @@ public class BuildingManager : MonoBehaviour
     private GameObject selectedComponent;
     public GameObject componentToCreate;
 
+    public Material placeableMaterial;
+    public Material obstructedMaterial;
+    public Material normalMaterial;
+
     private List<GameObject> buildingPrefabs = new List<GameObject>();
     public GameObject buildingMenu;
     public GameObject buildingButton;
     private bool holdingComponent;
+
+    public List<GameObject> placedStructures = new List<GameObject>();
 
     private Vector3 currentRotation;
 
@@ -80,6 +83,14 @@ public class BuildingManager : MonoBehaviour
         componentToCreate.transform.position = snappedPosition;
         RotateComponent();
         //ChangeObjectAlpha.SetAlpha(componentToCreate, 0.5f);
+        if (hit.collider.CompareTag("Structure"))
+        {
+            componentToCreate.GetComponent<Renderer>().material = obstructedMaterial;
+        }
+        else
+        {
+            componentToCreate.GetComponent<Renderer>().material = placeableMaterial;
+        }
     }
 
     private void DropOrPlaceComponent()
@@ -102,8 +113,9 @@ public class BuildingManager : MonoBehaviour
                 Destroy(hit.collider.gameObject);
             }
             //ChangeObjectAlpha.SetAlpha(componentToCreate, 1f);
-            componentToCreate.GetComponent<Renderer>().material.color = Color.white;
+            componentToCreate.GetComponent<Renderer>().material = normalMaterial;
             SetCollidersEnabled(true);
+            placedStructures.Add(componentToCreate);
         }
         
     }

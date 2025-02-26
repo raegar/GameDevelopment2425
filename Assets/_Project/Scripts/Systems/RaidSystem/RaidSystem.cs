@@ -5,6 +5,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace raidSystem
 {
@@ -13,8 +14,13 @@ namespace raidSystem
         public static RaidSystem instance;
         public VictoryPanel victoryPanel;
         public Transform vikingsInRaid;
+        public Button raidPanelButton;
+        public float raidLength = 60;
 
-        private int digit;
+        List<GameObject> raidList;
+        bool raidStarted = false;
+        float raidTime;
+        int digit;
         private void Awake()
         {
             if (instance == null)
@@ -22,7 +28,26 @@ namespace raidSystem
                 instance = this;
             }
         }
+        private void Update()
+        {
+            if (raidStarted == true)
+            {
+                if (Time.time >= raidTime + raidLength)
+                {
+                    raidStarted = false;
+                    EndRaid(raidList);
+                }
+            }
+        }
         public void StartRaid(List<GameObject> vikings)
+        {
+            raidPanelButton.enabled = false;
+            raidStarted = true;
+            raidTime = Time.time;
+            raidList = vikings;
+        }
+
+        public void EndRaid(List<GameObject> vikings)
         {
             digit = Random.Range(0, 101);
             if (digit <= 30)
@@ -33,20 +58,17 @@ namespace raidSystem
                     Destroy(viking);
                 }
             }
-            else 
+            else
             {
                 Debug.Log("Raid won");
-                for (int i = 0; i < vikingsInRaid.childCount; i++)
+                foreach (GameObject viking in vikings)
                 {
-                    GameObject viking = vikingsInRaid.GetChild(i).gameObject;
                     viking.SetActive(true);
                     viking.transform.SetParent(null);
                 }
             }
-            GetRaidResults();
-        }
-        public void GetRaidResults()
-        {
+            raidPanelButton.enabled = true;
+            raidList.Clear();
             victoryPanel.OpenPanel();
         }
     }
