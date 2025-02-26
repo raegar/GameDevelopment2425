@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class OnPointerDownHandler : MonoBehaviour, IPointerDownHandler
+public class OnPointerDownHandler : MonoBehaviour, IPointerUpHandler
 {
 
     BuildingManager buildingManager;
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData)
     {
         buildingManager.BuildMenuButtonPressed(name);
     }

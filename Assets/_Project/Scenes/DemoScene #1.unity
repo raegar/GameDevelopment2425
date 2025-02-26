@@ -473,6 +473,21 @@ PrefabInstance:
       propertyPath: buildingMenu
       value: 
       objectReference: {fileID: 979641167}
+    - target: {fileID: 7635539661869267573, guid: d62a60b94c614c24f80493c065e1ea63,
+        type: 3}
+      propertyPath: normalMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 031f6a74178e1e84d8f15b889cd81e20, type: 2}
+    - target: {fileID: 7635539661869267573, guid: d62a60b94c614c24f80493c065e1ea63,
+        type: 3}
+      propertyPath: placeableMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 8e48af57084108f49b2a2e283c46da87, type: 2}
+    - target: {fileID: 7635539661869267573, guid: d62a60b94c614c24f80493c065e1ea63,
+        type: 3}
+      propertyPath: obstructedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: d9c064209b12b7441b3d9f0799d9088b, type: 2}
     - target: {fileID: 7982571160607144798, guid: d62a60b94c614c24f80493c065e1ea63,
         type: 3}
       propertyPath: m_Name
@@ -4561,7 +4576,7 @@ PrefabInstance:
     - target: {fileID: 636844150725971391, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.4907934
+      value: 0.4916533
       objectReference: {fileID: 0}
     - target: {fileID: 2034891487222066255, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
