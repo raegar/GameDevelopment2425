@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
-using InventorySystem;
 
 
 public class BuildingManager : MonoBehaviour
@@ -19,6 +16,8 @@ public class BuildingManager : MonoBehaviour
     public GameObject buildingMenu;
     public GameObject buildingButton;
     private bool holdingComponent;
+
+    public List<GameObject> placedStructures = new List<GameObject>();
 
     private Vector3 currentRotation;
 
@@ -97,6 +96,7 @@ public class BuildingManager : MonoBehaviour
             //ChangeObjectAlpha.SetAlpha(componentToCreate, 1f);
             componentToCreate.GetComponent<Renderer>().material.color = Color.white;
             SetCollidersEnabled(true);
+            placedStructures.Add(componentToCreate);
         }
         
     }
