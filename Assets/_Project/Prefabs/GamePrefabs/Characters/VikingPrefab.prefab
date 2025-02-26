@@ -1605,8 +1605,8 @@ GameObject:
   - component: {fileID: 1470421278825994342}
   - component: {fileID: -6316054614193548071}
   - component: {fileID: -5527538940944428582}
-  - component: {fileID: 7159651674764669049}
-  - component: {fileID: 7308634468993740803}
+  - component: {fileID: 4949166350586182897}
+  - component: {fileID: 5408293642808052054}
   m_Layer: 0
   m_Name: VikingPrefab
   m_TagString: Untagged
@@ -1637,6 +1637,7 @@ Transform:
   - {fileID: 3811980593069662752}
   - {fileID: 848208537679694496}
   - {fileID: 1436294559188976133}
+  - {fileID: 1613436337454753004}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4304078534407013699
@@ -1770,6 +1771,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gender: 0
+  foreName: 
+  surName: 
   systemSelection: 1
   randomFather: 0
 --- !u!114 &6035337557320869804
@@ -1962,8 +1965,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f31a7d6a437fb469714d706a04b2f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutwood: {fileID: 8300000, guid: ee39fde8a878bf242973355efe74dc69, type: 3}
---- !u!114 &7159651674764669049
+  sound: {fileID: 0}
+--- !u!114 &4949166350586182897
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1976,10 +1979,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 0}
-  profileSync: 0
+  profileSync: 1
   camerasLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 93
   effectGroup: 0
   effectGroupLayer:
     serializedVersion: 2
@@ -2053,13 +2056,13 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   outlineGradientInLocalSpace: 0
-  outlineWidth: 0.45
+  outlineWidth: 0.62
   outlineBlurPasses: 2
-  outlineQuality: 3
+  outlineQuality: 0
   outlineEdgeMode: 0
   outlineEdgeThreshold: 0.995
   outlineSharpness: 1
-  outlineDownsampling: 1
+  outlineDownsampling: 2
   outlineVisibility: 0
   glowBlendMode: 0
   outlineBlitDebug: 0
@@ -2067,11 +2070,11 @@ MonoBehaviour:
   outlineContourStyle: 0
   outlineMaskMode: 0
   glow: 0
-  glowWidth: 0.4
-  glowQuality: 3
+  glowWidth: 0.14
+  glowQuality: 1
   glowBlurMethod: 0
   glowDownsampling: 2
-  glowHQColor: {r: 0.64, g: 1, b: 0, a: 1}
+  glowHQColor: {r: 1, g: 0.52205884, b: 0.52205884, a: 1}
   glowDithering: 1
   glowDitheringStyle: 0
   glowMagicNumber1: 0.75
@@ -2103,10 +2106,10 @@ MonoBehaviour:
   targetFXTexture: {fileID: 0}
   targetFXColor: {r: 1, g: 1, b: 1, a: 1}
   targetFXCenter: {fileID: 0}
-  targetFXRotationSpeed: 50
-  targetFXInitialScale: 4
-  targetFXEndScale: 1.5
-  targetFXScaleToRenderBounds: 1
+  targetFXRotationSpeed: 30
+  targetFXInitialScale: 2
+  targetFXEndScale: 1.1
+  targetFXScaleToRenderBounds: 0
   targetFXUseEnclosingBounds: 0
   targetFXAlignToGround: 0
   targetFXOffset: {x: 0, y: 0, z: 0}
@@ -2116,7 +2119,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   targetFXTransitionDuration: 0.5
-  targetFXStayDuration: 1.5
+  targetFXStayDuration: 2
   targetFXVisibility: 1
   iconFX: 0
   iconFXMesh: {fileID: 0}
@@ -2161,7 +2164,7 @@ MonoBehaviour:
   hitFxFadeOutDuration: 0.25
   hitFxColor: {r: 1, g: 1, b: 1, a: 1}
   hitFxRadius: 0.5
---- !u!114 &7308634468993740803
+--- !u!114 &5408293642808052054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4452,3 +4455,87 @@ Transform:
   - {fileID: 983866917050066242}
   m_Father: {fileID: 6025308667670976756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8823015485015944162
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7405294251228119403}
+    m_Modifications:
+    - target: {fileID: 127564950756273643, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: rmsCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085746126545849452, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_Name
+      value: SilkSphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.9885054
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.885
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.487777
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800278906124689357, guid: bdb8a04ad36079a4ca415f17636eba6e,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bdb8a04ad36079a4ca415f17636eba6e, type: 3}
+--- !u!4 &1613436337454753004 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7788331356237844238, guid: bdb8a04ad36079a4ca415f17636eba6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8823015485015944162}
+  m_PrefabAsset: {fileID: 0}
