@@ -1,12 +1,12 @@
 /* Author Jess
  * License : CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
- * Purpose: This script lets the button to add viking to raid
+ * Purpose: This script lets the button remove itslef from the raid panel
 */
 using UnityEngine;
 
 namespace raidSystem
 {
-    public class VikingNameButton : MonoBehaviour
+    public class RemoveFromRaid : MonoBehaviour
     {
         RaidPanel raidPanel;
         private void Awake()
@@ -15,7 +15,7 @@ namespace raidSystem
         }
         public void OnClick()
         {
-            raidPanel.AddVikingToRaid(gameObject.name);
+            raidPanel.RemoveVikingFromRaid(gameObject.name);
             Destroy(gameObject);
         }
     }

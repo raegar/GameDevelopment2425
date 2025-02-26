@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VikingPrefab(Clone)
+  m_text: Gunhild Gro
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5816126051993703771}
   - component: {fileID: 8256261371199298427}
   - component: {fileID: 6015738638556165458}
-  - component: {fileID: 5883474576529711134}
+  - component: {fileID: -3307143749354802849}
   m_Layer: 5
   m_Name: VikingButton
   m_TagString: Untagged
@@ -256,8 +256,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5883474576529711134}
-        m_TargetAssemblyTypeName: raidSystem.VikingNameButton, ScriptsAssemblyDefinition
+      - m_Target: {fileID: -3307143749354802849}
+        m_TargetAssemblyTypeName: raidSystem.RemoveFromRaid, ScriptsAssemblyDefinition
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -268,7 +268,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5883474576529711134
+--- !u!114 &-3307143749354802849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -277,6 +277,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2202587902083099677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f412f6d6955ec44293cb0697017f0f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e87a30f3433e9042bdcf66538b56550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
