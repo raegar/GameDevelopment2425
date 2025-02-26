@@ -98,7 +98,7 @@ namespace raidSystem
                         Destroy(vikingNames.GetChild(i).gameObject);
                     }
                     RaidSystem.instance.StartRaid(vikingInRaid);
-                    vikingInRaid.Clear();
+                    //vikingInRaid.Clear();
                     CloseRaidPanel();
                     listPanel.CloseVikingListpanel();
                 }

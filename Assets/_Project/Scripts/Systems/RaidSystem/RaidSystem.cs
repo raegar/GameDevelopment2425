@@ -35,7 +35,7 @@ namespace raidSystem
                 if (Time.time >= raidTime + raidLength)
                 {
                     raidStarted = false;
-                    EndRaid();
+                    EndRaid(raidList);
                 }
             }
         }
@@ -47,23 +47,22 @@ namespace raidSystem
             raidList = vikings;
         }
 
-        public void EndRaid()
+        public void EndRaid(List<GameObject> vikings)
         {
             digit = Random.Range(0, 101);
             if (digit <= 30)
             {
                 Debug.Log("raid lost");
-                for (int i = 0; i < raidList.Count; i++)
+                foreach (GameObject viking in vikings)
                 {
-                    Destroy(raidList[i]);
+                    Destroy(viking);
                 }
             }
             else
             {
                 Debug.Log("Raid won");
-                for (int i = 0; i < vikingsInRaid.childCount;)
+                foreach (GameObject viking in vikings)
                 {
-                    GameObject viking = vikingsInRaid.GetChild(i).gameObject;
                     viking.SetActive(true);
                     viking.transform.SetParent(null);
                 }
