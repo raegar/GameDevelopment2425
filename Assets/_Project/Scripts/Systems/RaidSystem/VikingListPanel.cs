@@ -13,7 +13,10 @@ public class VikingListPanel : PanelBase
     public Transform listContents;
     public TextMeshProUGUI vikingName;
 
+    
     GameObject[] vikings;
+
+    public RaidPanel raidPanel;
 
     public void OpenVikingListpanel()
     {
@@ -36,8 +39,12 @@ public class VikingListPanel : PanelBase
         {
             string foreName = vikings[i].GetComponent<GrabSettlerFromFactory>().foreName;
             string surName = vikings[i].GetComponent<GrabSettlerFromFactory>().surName;
-            vikingName.text = foreName + " " + surName;
-            Instantiate(vikingName, listContents).name = foreName;
+
+            if (raidPanel.CheckIfVikingInRaid(foreName) == false)
+            {
+                vikingName.text = foreName + " " + surName;
+                Instantiate(vikingName, listContents).name = foreName;
+            }
         }
     }
 }

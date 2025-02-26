@@ -90,7 +90,16 @@ namespace raidSystem
             }
 
         }
-        
-        
+        public bool CheckIfVikingInRaid(string vikingName)
+        {
+            for(int i = 0; i < vikingInRaid.Count;i++)
+            {
+                if (vikingInRaid[i].GetComponent<GrabSettlerFromFactory>().foreName.Equals(vikingName))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
