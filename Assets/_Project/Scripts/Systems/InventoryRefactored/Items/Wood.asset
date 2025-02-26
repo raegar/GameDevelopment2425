@@ -16,7 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: b4ea2d7804621864c819cf1e53843553, type: 3}
   itemName: Wood
   type: 5
-  itemDescription: 
+  itemDescription: Got wood
   itemID: 0
   itemValue: 1
   isStackable: 1

@@ -87,13 +87,20 @@ public class BuildingManager : MonoBehaviour
         //RaycastForHotbarButton();
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (!RaycastWithoutTriggers(ray, out hit)) { return; }
+        //if (!RaycastWithoutTriggers(ray, out hit)) { return; } -- changed from this
+        if(!Physics.Raycast(ray, out hit)) { return; }  // to this, by Don to allow for building over harvestables
         if (hit.collider.CompareTag("Structure"))
         {
             Destroy(componentToCreate);
         }
         else
         {
+            // checking if we are trying to build on top of an interactable object
+            if (hit.collider.CompareTag("Interactable"))
+            {
+                // if so, destroy the object
+                Destroy(hit.collider.gameObject);
+            }
             //ChangeObjectAlpha.SetAlpha(componentToCreate, 1f);
             componentToCreate.GetComponent<Renderer>().material.color = Color.white;
             SetCollidersEnabled(true);

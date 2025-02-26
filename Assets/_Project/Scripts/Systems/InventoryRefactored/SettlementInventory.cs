@@ -21,8 +21,8 @@ namespace Inventory2
             {
                 Debug.Log("AddStackableItem");
                 AddStackableItem(itemTemplate, ammountToAdd);
-                // notify the UI the inv has changed
-                OnInventoryChanged();
+                // if we have observers notify them the inv has changed
+                if (OnInventoryChanged != null) {OnInventoryChanged();}
             }
             else
             {
@@ -30,8 +30,8 @@ namespace Inventory2
                 {
                     inventoryItems.Add(itemTemplate.CreateItem());
                 }
-                // notify the UI the inv has changed
-                OnInventoryChanged();
+                // if we have observers notify them the inv has changed
+                if (OnInventoryChanged != null) { OnInventoryChanged(); }
             }
             Debug.Log(inventoryItems.Count + " Items");
         }
@@ -79,6 +79,7 @@ namespace Inventory2
                 Debug.Log("New " + runningTotal);
                 //runningTotal = ammountToAdd;
                 Item newItem = itemTemplate.CreateItem();
+                Debug.Log("New Item Created");
                 if (runningTotal > newItem.maxStackCount)
                 {
                     newItem.itemStackCount = newItem.maxStackCount;
@@ -92,7 +93,7 @@ namespace Inventory2
                     runningTotal = 0;
                 }
             }
-
+            Debug.Log("Got here");
         }
         public void RemoveItem(ItemSO itemTemplate, int ammountToRemove = 1)
         {

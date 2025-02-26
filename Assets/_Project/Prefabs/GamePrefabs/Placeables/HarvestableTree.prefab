@@ -57,12 +57,12 @@ MonoBehaviour:
   skillLevel: 0
   coolDownDuration: 20
   cooldownTimer: 0
-  item: {fileID: 11400000, guid: a8efba0ba67bbff49bea62ef15d325e4, type: 2}
+  templateItem: {fileID: 11400000, guid: 4fdde67a245f13b429254cd8f6ffc606, type: 2}
   gatherSound: {fileID: 8300000, guid: ee39fde8a878bf242973355efe74dc69, type: 3}
   isGathering: 0
-  inventoryManager: {fileID: 0}
   beforeHarvest: {fileID: 3216415208245382809}
   afterHarvest: {fileID: 5647142209758201812}
+  animationName: 
 --- !u!65 &7259162047922936071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -324,8 +324,6 @@ GameObject:
   - component: {fileID: 7924086795968508469}
   - component: {fileID: 2811353893717256327}
   - component: {fileID: 3580359803869471519}
-  - component: {fileID: 2124116826553211463}
-  - component: {fileID: 2463975118723326418}
   m_Layer: 0
   m_Name: SM_Env_Tree_Pine_03
   m_TagString: Untagged
@@ -398,50 +396,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2124116826553211463
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216415208245382809}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43006545698579890, guid: f68521c495ebfed42a4bc2cdf4d47778, type: 2}
---- !u!64 &2463975118723326418
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216415208245382809}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43600783162907824, guid: f68521c495ebfed42a4bc2cdf4d47778, type: 2}
 --- !u!1 &5647142209758201812
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +407,6 @@ GameObject:
   - component: {fileID: 488894610979426231}
   - component: {fileID: 5693347247991297339}
   - component: {fileID: 741259735126812804}
-  - component: {fileID: 7492461357525144033}
   m_Layer: 0
   m_Name: Stump
   m_TagString: Untagged
@@ -526,26 +479,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7492461357525144033
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5647142209758201812}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

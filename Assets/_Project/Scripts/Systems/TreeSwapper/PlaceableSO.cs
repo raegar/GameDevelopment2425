@@ -25,9 +25,11 @@ public class PlaceableSO : ScriptableObject
 
     public void SpawnPlaceables()
     {
-        Debug.Log(placeablePosition.Count);
+        
+        //Debug.Log("num placeables = " + placeablePosition.Count);
         for (int i = 0; i < placeablePosition.Count -1; i++)
         {
+            //Debug.Log("placeable: "+ placeableIndex[i]);
             Instantiate(placeables[placeableIndex[i]], placeablePosition[i], Quaternion.identity);
         }
     }

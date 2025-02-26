@@ -2,8 +2,7 @@ using SettlerSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using InventorySystem;
-using vikingInventory;
+//using InventorySystem;
 using Inventory2;
 
 
@@ -23,16 +22,15 @@ public class GatherResource : MonoBehaviour, IInteractable
     public ItemSO templateItem;
     public AudioClip gatherSound;
     public bool isGathering = false;
-    public InventoryManager inventoryManager;
     public GameObject beforeHarvest;
     public GameObject afterHarvest;
     private HandInteractable handInteractable;
     private AnimationEvents animationEvent;
+    public string animationName;
 
     void Awake()
     {
         cooldownTimer = coolDownDuration;
-        inventoryManager = InventoryManager.instance;
         beforeHarvest.SetActive(true);
         afterHarvest.SetActive(false);
     }
@@ -105,10 +103,9 @@ public class GatherResource : MonoBehaviour, IInteractable
 
     public void GatherComplete()
     {
-        InventoryManager.instance.AddItem(item, resourceAmount / 10 * (10 + skillLevel));
-        //VikingInventory thisInventory = selectedByViking.GetComponentInChildren<VikingInventory>();
-        // uncomment when ready - SettlementInventory.Instance.AddItem(templateItem, resourceAmount / 10 * (10 + skillLevel));
-        Debug.Log("Gathered " + resourceAmount / 10 * (skillLevel + 10));
+        
+        SettlementInventory.Instance.AddItem(templateItem, resourceAmount);
+        Debug.Log("Gathered " + resourceAmount);
         animationEvent.sound = null;
         selectedByViking = null;
         // stop animation
