@@ -66,6 +66,7 @@ namespace raidSystem
                 if (vikingInRaid[i].GetComponent<GrabSettlerFromFactory>().foreName == vikingName)
                 {
                     vikingInRaid[i].SetActive(true);
+                    vikingInRaid[i].transform.SetParent(null);
                     vikingInRaid.Remove(vikingInRaid[i]);
                     listPanel.ListVikingNames();
                     return;
@@ -82,13 +83,14 @@ namespace raidSystem
                     Destroy(vikingNames.GetChild(i).gameObject);
                 }
                 RaidSystem.instance.StartRaid(vikingInRaid);
+                vikingInRaid.Clear();
                 CloseRaidPanel();
+                listPanel.CloseVikingListpanel();
             }
             else
             {
                 Debug.Log("No vikings in raid");
             }
-
         }
         public bool CheckIfVikingInRaid(string vikingName)
         {

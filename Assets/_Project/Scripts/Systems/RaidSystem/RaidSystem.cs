@@ -5,6 +5,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace raidSystem
 {
@@ -13,6 +14,7 @@ namespace raidSystem
         public static RaidSystem instance;
         public VictoryPanel victoryPanel;
         public Transform vikingsInRaid;
+        public Button raidPanelButton;
         public float raidLength = 60;
 
         List<GameObject> raidList;
@@ -39,6 +41,7 @@ namespace raidSystem
         }
         public void StartRaid(List<GameObject> vikings)
         {
+            raidPanelButton.enabled = false;
             raidStarted = true;
             raidTime = Time.time;
             raidList = vikings;
@@ -65,6 +68,7 @@ namespace raidSystem
                     viking.transform.SetParent(null);
                 }
             }
+            raidPanelButton.enabled = true;
             victoryPanel.OpenPanel();
         }
     }
