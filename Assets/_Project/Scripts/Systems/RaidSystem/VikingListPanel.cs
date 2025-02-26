@@ -4,7 +4,6 @@
 */
 using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
 using SettlerSystem;
 using raidSystem;
 

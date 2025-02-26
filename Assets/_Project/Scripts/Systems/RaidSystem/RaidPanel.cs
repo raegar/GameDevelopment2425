@@ -31,6 +31,8 @@ namespace raidSystem
         [Header("script")]
         public VikingListPanel listPanel;
 
+        public int amountOfVikingsToRaid = 4;
+
         public void OpenRaidPanel()
         {
             UIManager.Instance.OpenPanel(this);
@@ -72,24 +74,38 @@ namespace raidSystem
                     return;
                 }
             }
-            
+        }
+        public void RemoveAllVikingsFromraid()
+        {
+            for(int i = 0; i  < vikingInRaid.Count;i++)
+            {
+                RemoveVikingFromRaid(vikingInRaid[i].GetComponent<GrabSettlerFromFactory>().foreName);
+            }
         }
         public void StartRaid()
         {
-            if (vikingInRaid.Count > 0)
+            if (vikingInRaid.Count >= amountOfVikingsToRaid)
             {
-                for (int i = 1; i < vikingNames.childCount; i++)
+                GameObject[] population = PopulationManager.Instance.ReturnAllVikings();
+                if (vikingInRaid.Count == population.Length)
                 {
-                    Destroy(vikingNames.GetChild(i).gameObject);
+                    Debug.Log("To many vikings in raid. need one to look after settlement");
                 }
-                RaidSystem.instance.StartRaid(vikingInRaid);
-                vikingInRaid.Clear();
-                CloseRaidPanel();
-                listPanel.CloseVikingListpanel();
+                else
+                {
+                    for (int i = 1; i < vikingNames.childCount; i++)
+                    {
+                        Destroy(vikingNames.GetChild(i).gameObject);
+                    }
+                    RaidSystem.instance.StartRaid(vikingInRaid);
+                    vikingInRaid.Clear();
+                    CloseRaidPanel();
+                    listPanel.CloseVikingListpanel();
+                }
             }
             else
             {
-                Debug.Log("No vikings in raid");
+                Debug.Log("Not enough vikings in raid. Need " + amountOfVikingsToRaid + " to raid");
             }
         }
         public bool CheckIfVikingInRaid(string vikingName)
