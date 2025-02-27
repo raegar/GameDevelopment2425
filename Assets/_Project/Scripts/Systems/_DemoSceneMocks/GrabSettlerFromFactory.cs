@@ -12,7 +12,8 @@ namespace SettlerSystem
     public class GrabSettlerFromFactory : MonoBehaviour
     {
         public Gender gender;
-        [SerializeField] private string foreName, surName;
+        [SerializeField] public string foreName { get; private set; }
+        [SerializeField] public string surName { get; private set; }
         [SerializeField] private NameSystemType systemSelection;
         [SerializeField] private bool randomFather;
 
