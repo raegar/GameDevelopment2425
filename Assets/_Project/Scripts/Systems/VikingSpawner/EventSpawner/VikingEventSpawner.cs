@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpawnerCriteriaHandler))]
 public class VikingEventSpawner : BaseVikingSpawner
 {
-    public delegate void SpawnAction();
-    public static event SpawnAction OnSpawnCriteriaMet;
     protected override void Awake()
     {
         base.Awake();
@@ -27,11 +26,11 @@ public class VikingEventSpawner : BaseVikingSpawner
 
     private void OnEnable()
     {
-        OnSpawnCriteriaMet += Spawn;
+        SpawnerCriteriaHandler.OnSpawnCriteriaMet += Spawn;
     }
 
     private void OnDisable()
     {
-        OnSpawnCriteriaMet -= Spawn;
+        SpawnerCriteriaHandler.OnSpawnCriteriaMet -= Spawn;
     }
 }

@@ -21,8 +21,6 @@ public class BuildingManager : MonoBehaviour
     public GameObject buildingButton;
     private bool holdingComponent;
 
-    public List<GameObject> placedStructures = new List<GameObject>();
-
     private Vector3 currentRotation;
 
 
@@ -108,7 +106,7 @@ public class BuildingManager : MonoBehaviour
             //ChangeObjectAlpha.SetAlpha(componentToCreate, 1f);
             componentToCreate.GetComponent<Renderer>().material = normalMaterial;
             SetCollidersEnabled(true);
-            placedStructures.Add(componentToCreate);
+            SpawnerCriteriaHandler.Instance.AddBlock();
         }
         
     }

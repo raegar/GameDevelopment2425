@@ -12,13 +12,13 @@ public abstract class BaseVikingSpawner : MonoBehaviour
     public Transform initialSpawn;
 
     [Header("Viking Settings")]
-    protected GameObject vikingPrefab;
-    protected int minCount = 1;
-    protected int maxCount = 3;
+    [SerializeField] protected GameObject vikingPrefab;
+    [SerializeField] protected int minCount = 1;
+    [SerializeField] protected int maxCount = 3;
 
     [Header("Misc Settings")]
-    protected int initialVikingCount = 3;
-    protected float minimumVikingSpace = 0.5f;
+    [SerializeField] protected int initialVikingCount = 3;
+    [SerializeField] protected float minimumVikingSpace = 0.5f;
     [Tooltip("Helps with not spawning vikings inside eachother")][SerializeField] private float xOffset = 1;
     [Tooltip("Helps with not spawning vikings inside eachother")][SerializeField] private float zOffset = 1;
 
@@ -54,6 +54,7 @@ public abstract class BaseVikingSpawner : MonoBehaviour
                     }
                 }
                 GameObject viking = Instantiate(vikingPrefab, transformsUsed[i].position, Quaternion.identity);
+                Debug.Log($"Viking {viking.name} spawned at {transformsUsed[i].position}", viking);
             }
         }
     }
