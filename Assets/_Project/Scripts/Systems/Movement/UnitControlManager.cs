@@ -1,5 +1,6 @@
 using PatternLibrary;
 using UnityEngine;
+using static Codice.Client.Commands.WkTree.WorkspaceTreeNode;
 using static UnitMovementScript;
 
 public class UnitControlManager : Singleton<UnitControlManager> 
@@ -7,7 +8,7 @@ public class UnitControlManager : Singleton<UnitControlManager>
     [Header("References")]
     public UnitMovementScript selectedUnit;
     public Camera gameCamera;
-    public GameObject settlerPanel;
+    public GameObject settlerPanel, inventoryPanel;
     public Material lineMaterial;
 
     private void Update()
@@ -47,9 +48,13 @@ public class UnitControlManager : Singleton<UnitControlManager>
         selectedUnit = unit;
         selectedUnit.selectedIcon.SetActive(true);
         
-        if (settlerPanel != null)
+        if (settlerPanel != null && inventoryPanel != null)
         {
             UIManager.Instance.OpenPanel(settlerPanel.GetComponent<PanelBase>());
+            if (unit.affiliation == Affiliation.Friendly)
+            {
+                UIManager.Instance.OpenPanel(inventoryPanel.GetComponent<PanelBase>());
+            }
         }
     }
 
@@ -57,9 +62,10 @@ public class UnitControlManager : Singleton<UnitControlManager>
     {
         selectedUnit.selectedIcon.SetActive(false);
         selectedUnit = null;
-        if (settlerPanel != null)
+        if (settlerPanel != null && inventoryPanel != null)
         {
             UIManager.Instance.ClosePanel(settlerPanel.GetComponent<PanelBase>());
+            UIManager.Instance.ClosePanel(inventoryPanel.GetComponent<PanelBase>());
         }
     }
     public void Order(Vector3 orderPos)

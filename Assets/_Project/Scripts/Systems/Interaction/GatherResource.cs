@@ -2,8 +2,8 @@ using SettlerSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using InventorySystem;
-using vikingInventory;
+//using InventorySystem;
+using Inventory2;
 
 
 public class GatherResource : MonoBehaviour, IInteractable
@@ -18,24 +18,26 @@ public class GatherResource : MonoBehaviour, IInteractable
     private Settler settler;
     public float coolDownDuration = 60f;
     public float cooldownTimer;
-    public Item item;
+    public Inventory2.Item item;
+    public ItemSO templateItem;
+    public AudioClip gatherSound;
     public bool isGathering = false;
-    public InventoryManager inventoryManager;
     public GameObject beforeHarvest;
     public GameObject afterHarvest;
     private HandInteractable handInteractable;
+    private AnimationEvents animationEvent;
+    public string animationName;
 
     void Awake()
     {
-       cooldownTimer = coolDownDuration;
-        inventoryManager = InventoryManager.instance;
+        cooldownTimer = coolDownDuration;
         beforeHarvest.SetActive(true);
         afterHarvest.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
     {
-     if (other.gameObject == selectedByViking)
+        if (other.gameObject == selectedByViking)
         {
             Gather(selectedByViking);
         }
@@ -68,6 +70,7 @@ public class GatherResource : MonoBehaviour, IInteractable
         {
             isGathering = false;
             selectedByViking = null;
+            vikingAnimator.SetBool("isWoodcutting", false);
             CancelInvoke();
         }
     }
@@ -78,7 +81,8 @@ public class GatherResource : MonoBehaviour, IInteractable
         isGathering = true;
         settler = selectedByViking.GetComponentInChildren<Settler>();
         handInteractable = selectedByViking.GetComponentInChildren<HandInteractable>();
-
+        animationEvent = selectedByViking.GetComponent<AnimationEvents>();
+        animationEvent.sound = gatherSound;
         if (settler.skills.ContainsKey(skillRequired))
         {
             skillLevel = settler.skills[skillRequired];
@@ -92,18 +96,17 @@ public class GatherResource : MonoBehaviour, IInteractable
             vikingAnimator.SetBool("isWoodcutting", true);
 
             // when time is up , call GatherComplete
-            Invoke("GatherComplete", gatherTime/skillLevel);
+            Invoke("GatherComplete", gatherTime / skillLevel);
         }
-        else {return; }
+        else { return; }
     }
 
     public void GatherComplete()
     {
-        InventoryManager.instance.AddItem(item, resourceAmount / 10 * (10+skillLevel));
-        //VikingInventory thisInventory = selectedByViking.GetComponentInChildren<VikingInventory>();
-        //, resourceAmount/10 * skillLevel
-        //thisInventory.AddItem(item);
-        Debug.Log("Gathered " + resourceAmount / 10 * (skillLevel+10)); 
+        
+        SettlementInventory.Instance.AddItem(templateItem, resourceAmount);
+        Debug.Log("Gathered " + resourceAmount);
+        animationEvent.sound = null;
         selectedByViking = null;
         // stop animation
 
