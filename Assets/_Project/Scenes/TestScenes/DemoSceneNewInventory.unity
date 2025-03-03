@@ -716,7 +716,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 40.62204
+  field of view: 25
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2145,7 +2145,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1823158538}
   m_Follow: {fileID: 1823158538}
   m_Lens:
-    FieldOfView: 40.62204
+    FieldOfView: 25
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -4470,7 +4470,7 @@ PrefabInstance:
     - target: {fileID: 636844150725971391, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.550978
+      value: 0.49143755
       objectReference: {fileID: 0}
     - target: {fileID: 2766624441830252630, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -5659,6 +5659,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryPanel: {fileID: 729317486}
   vikingsInRaid: {fileID: 413926354}
+  raidPanelButton: {fileID: 0}
+  raidLength: 60
 --- !u!4 &970952034
 Transform:
   m_ObjectHideFlags: 0
