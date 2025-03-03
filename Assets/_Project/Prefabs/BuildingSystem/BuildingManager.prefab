@@ -45,8 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentToCreate: {fileID: 0}
-  mainCamera: {fileID: 0}
-  terrain: {fileID: 0}
+  placeableMaterial: {fileID: 0}
+  obstructedMaterial: {fileID: 0}
+  normalMaterial: {fileID: 0}
   buildingMenu: {fileID: 0}
   buildingButton: {fileID: 2145046915752007631, guid: a405588a2e070d744ba0cd4529373496,
     type: 3}
+  placedStructures: []
+  buildMaterial: {fileID: 11400000, guid: 4fdde67a245f13b429254cd8f6ffc606, type: 2}
+  buildCost: 20

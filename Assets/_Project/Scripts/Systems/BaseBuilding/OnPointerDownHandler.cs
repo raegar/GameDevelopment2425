@@ -1,3 +1,4 @@
+using Inventory2;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,10 +6,17 @@ public class OnPointerDownHandler : MonoBehaviour, IPointerUpHandler
 {
 
     BuildingManager buildingManager;
+    public bool isEnabled = true;
+    // added by Don for the demo
+    public ItemSO itemSO;
+    public int buildCost = 20;
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        buildingManager.BuildMenuButtonPressed(name);
+        if (isEnabled)
+        {
+            buildingManager.BuildMenuButtonPressed(name);
+        }
     }
 
     // Start is called before the first frame update
