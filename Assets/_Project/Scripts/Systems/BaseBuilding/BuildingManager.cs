@@ -226,12 +226,12 @@ public class BuildingManager : MonoBehaviour
 
     private void RotateComponent()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             componentToCreate.gameObject.transform.Rotate(0, 90f, 0);
             currentRotation.y += 90;
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             componentToCreate.gameObject.transform.Rotate(0, 90f, 0);
             currentRotation.y -= 90;
