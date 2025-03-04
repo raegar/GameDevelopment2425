@@ -705,7 +705,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 25
+  field of view: 31.14089
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2134,7 +2134,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1823158538}
   m_Follow: {fileID: 1823158538}
   m_Lens:
-    FieldOfView: 25
+    FieldOfView: 31.14089
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -4459,7 +4459,7 @@ PrefabInstance:
     - target: {fileID: 636844150725971391, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.49098936
+      value: 0.49129203
       objectReference: {fileID: 0}
     - target: {fileID: 2766624441830252630, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -8930,7 +8930,7 @@ PrefabInstance:
     - target: {fileID: 5510213824278889886, guid: 727cf0d19ff8f7d4db463eeeb2f71146,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00023503993
+      value: 0.00051155244
       objectReference: {fileID: 0}
     - target: {fileID: 5911014162042048191, guid: 727cf0d19ff8f7d4db463eeeb2f71146,
         type: 3}
