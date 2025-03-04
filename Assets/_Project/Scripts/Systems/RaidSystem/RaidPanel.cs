@@ -40,6 +40,7 @@ namespace raidSystem
         public void CloseRaidPanel()
         {
             UIManager.Instance.ClosePanel(this);
+            UIManager.Instance.ClosePanel(listPanel);
         }
         public void AddVikingToRaid(string viking)
         {
