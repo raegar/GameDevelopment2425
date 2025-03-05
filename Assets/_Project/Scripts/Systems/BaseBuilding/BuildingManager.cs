@@ -23,8 +23,6 @@ public class BuildingManager : MonoBehaviour
     public GameObject buildingButton;
     private bool holdingComponent;
 
-    public List<GameObject> placedStructures = new List<GameObject>();
-
     private Vector3 currentRotation;
     public ItemSO itemSO;
     public int buildCost = 20;
@@ -130,6 +128,11 @@ public class BuildingManager : MonoBehaviour
                 SetCollidersEnabled(true);
                 placedStructures.Add(componentToCreate);
             }
+            //ChangeObjectAlpha.SetAlpha(componentToCreate, 1f);
+            componentToCreate.GetComponent<Renderer>().material = normalMaterial;
+            SetCollidersEnabled(true);
+            SpawnerCriteriaHandler.Instance.AddBlock();
+        }
         
     }
 
