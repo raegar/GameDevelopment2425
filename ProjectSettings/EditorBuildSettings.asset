@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_Project/Scenes/TestScenes/MenuPanelText.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/_Project/Scenes/TestScenes/DemoSceneNewInventory.unity
+    guid: 8a40fff3afa50874ca5655d6ed4bafc3
   m_configObjects: {}

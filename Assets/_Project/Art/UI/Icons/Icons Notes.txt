@@ -4,3 +4,10 @@ StackedIconNumberBG = Used as background for number of items in stack
 
 InventorySystemIcon = Icon for Inventory System Menu
 RaidSystemIcon = Icon for Raid System Menu
+BuildingSystemIcon = Icon for Building System Menu
+TerrainSystemIcon = Icon for Terrain System Menu
+MusicSystemIcon = Icon for Music System Menu
+
+ClearTerrainIcon = Used for clearing selected terrain in Terrain system
+RaiseTerrainIcon = Used for raising selected terrain in Terrain system
+LowerTerrainIcon = Used for lowering selected terrain in Terrain system

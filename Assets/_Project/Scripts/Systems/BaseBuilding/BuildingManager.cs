@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Inventory2;
+using InventorySystem;
 
 
 public class BuildingManager : MonoBehaviour
@@ -22,6 +24,8 @@ public class BuildingManager : MonoBehaviour
     private bool holdingComponent;
 
     private Vector3 currentRotation;
+    public ItemSO itemSO;
+    public int buildCost = 20;
 
 
     // Start is called before the first frame update
@@ -45,10 +49,19 @@ public class BuildingManager : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-
-                DropOrPlaceComponent();
-                InstantiateComponent();
-                componentToCreate.gameObject.transform.eulerAngles = currentRotation;
+                if (SettlementInventory.Instance.HowManyInInventory(itemSO) >= buildCost)
+                {
+                    SettlementInventory.Instance.RemoveItem(itemSO, buildCost);
+                    DropOrPlaceComponent();
+                    InstantiateComponent();
+                    componentToCreate.gameObject.transform.eulerAngles = currentRotation;
+                    if (SettlementInventory.Instance.HowManyInInventory(itemSO) < buildCost) { StopHoldingComponent(); }
+                }
+                else
+                {
+                    Debug.Log("Not enough resources");
+                    StopHoldingComponent();
+                }
 
             }
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -93,22 +106,27 @@ public class BuildingManager : MonoBehaviour
 
     private void DropOrPlaceComponent()
     {
-        //RaycastForHotbarButton();
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //if (!RaycastWithoutTriggers(ray, out hit)) { return; } -- changed from this
-        if(!Physics.Raycast(ray, out hit)) { return; }  // to this, by Don to allow for building over harvestables
-        if (hit.collider.CompareTag("Structure"))
-        {
-            Destroy(componentToCreate);
-        }
-        else
-        {
-            // checking if we are trying to build on top of an interactable object
-            if (hit.collider.CompareTag("Interactable"))
+            //RaycastForHotbarButton();
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //if (!RaycastWithoutTriggers(ray, out hit)) { return; } -- changed from this
+            if (!Physics.Raycast(ray, out hit)) { return; }  // to this, by Don to allow for building over harvestables
+            if (hit.collider.CompareTag("Structure"))
             {
-                // if so, destroy the object
-                Destroy(hit.collider.gameObject);
+                Destroy(componentToCreate);
+            }
+            else
+            {
+                // checking if we are trying to build on top of an interactable object
+                if (hit.collider.CompareTag("Interactable"))
+                {
+                    // if so, destroy the object
+                    Destroy(hit.collider.gameObject);
+                }
+                //ChangeObjectAlpha.SetAlpha(componentToCreate, 1f);
+                componentToCreate.GetComponent<Renderer>().material = normalMaterial;
+                SetCollidersEnabled(true);
+                placedStructures.Add(componentToCreate);
             }
             //ChangeObjectAlpha.SetAlpha(componentToCreate, 1f);
             componentToCreate.GetComponent<Renderer>().material = normalMaterial;
@@ -224,12 +242,12 @@ public class BuildingManager : MonoBehaviour
 
     private void RotateComponent()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             componentToCreate.gameObject.transform.Rotate(0, 90f, 0);
             currentRotation.y += 90;
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             componentToCreate.gameObject.transform.Rotate(0, 90f, 0);
             currentRotation.y -= 90;
