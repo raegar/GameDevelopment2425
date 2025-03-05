@@ -126,13 +126,11 @@ public class BuildingManager : MonoBehaviour
                 //ChangeObjectAlpha.SetAlpha(componentToCreate, 1f);
                 componentToCreate.GetComponent<Renderer>().material = normalMaterial;
                 SetCollidersEnabled(true);
-                placedStructures.Add(componentToCreate);
+                //placedStructures.Add(componentToCreate);
             }
             //ChangeObjectAlpha.SetAlpha(componentToCreate, 1f);
-            componentToCreate.GetComponent<Renderer>().material = normalMaterial;
-            SetCollidersEnabled(true);
             SpawnerCriteriaHandler.Instance.AddBlock();
-        }
+        
         
     }
 
