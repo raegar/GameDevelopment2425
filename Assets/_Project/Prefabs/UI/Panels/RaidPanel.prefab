@@ -1126,9 +1126,15 @@ MonoBehaviour:
   addVikingButton: {fileID: 7532081654185049115}
   vikingsToRaid: {fileID: 0}
   vikingNames: {fileID: 636844150725971391}
-  RaidPower: 0
-  recommendPower: 0
-  listPanel: {fileID: 0}
+  recommendedPower: 4
+  raidPowerText: {fileID: 7639696392037921269}
+  recommendedPowerText: {fileID: 8027720426400993169}
+  silver: 10
+  prestige: 15
+  silverText: {fileID: 5066563262813994200}
+  prestigeText: {fileID: 3986657339249498325}
+  listPanel: {fileID: 3677454049420747331, guid: 727cf0d19ff8f7d4db463eeeb2f71146,
+    type: 3}
   amountOfVikingsToRaid: 4
 --- !u!1 &3248625302993649214
 GameObject:
@@ -1432,7 +1438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000026609749, y: -0.0002735579}
+  m_AnchoredPosition: {x: 0.000026609749, y: 0.00001505601}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7048302180696227081
@@ -2727,8 +2733,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5212756500925667690}
   m_HandleRect: {fileID: 4618314626136587056}
   m_Direction: 2
-  m_Value: 1.0005596
-  m_Size: 0.998364
+  m_Value: 0.99993783
+  m_Size: 0.9982188
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -25,8 +25,17 @@ namespace raidSystem
         List<GameObject> vikingInRaid = new List<GameObject>();
 
         [Header("power amounts")]
-        public int RaidPower;
-        public int recommendPower;
+        public int recommendedPower = 4;
+
+        public TextMeshProUGUI raidPowerText;
+        public TextMeshProUGUI recommendedPowerText;
+
+        [Header("Rewards")]
+        public int silver = 10;
+        public int prestige = 15;
+
+        public TextMeshProUGUI silverText;
+        public TextMeshProUGUI prestigeText;
 
         [Header("script")]
         public VikingListPanel listPanel;
@@ -58,6 +67,7 @@ namespace raidSystem
                     //set viking name to button text
                     vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = foreName + " " + surname;
                     Instantiate(vikingNameButton, vikingNames).name = foreName;
+                    UpdateRewards();
                     return;
                 }
             }
@@ -72,6 +82,7 @@ namespace raidSystem
                     vikingInRaid[i].transform.SetParent(null);
                     vikingInRaid.Remove(vikingInRaid[i]);
                     listPanel.ListVikingNames();
+                    UpdateRewards();
                     return;
                 }
             }
@@ -118,6 +129,13 @@ namespace raidSystem
                 }
             }
             return false;
+        }
+        public void UpdateRewards()
+        {
+            silverText.text = "Silver: " + (silver * vikingInRaid.Count).ToString();
+            prestigeText.text = "Prestige: " + (prestige * vikingInRaid.Count).ToString();
+            raidPowerText.text = "Raid Power: " + vikingInRaid.Count.ToString();
+            recommendedPowerText.text = "Recommended Power: " + recommendedPower.ToString();
         }
     }
 }
