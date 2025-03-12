@@ -9,14 +9,13 @@ namespace raidSystem
 {
     public class VictoryPanel : PanelBase
     {
-        public int silverGained;
-        public int prestigeGained;
-
         public TextMeshProUGUI silverText;
         public TextMeshProUGUI prestigeText;
+        public RaidPanel raidPanel;
         public void OpenPanel()
         {
             UIManager.Instance.OpenPanel(this);
+            SetResults();
         }
         public void ClosePanel()
         {
@@ -24,8 +23,8 @@ namespace raidSystem
         }
         public void SetResults()
         {
-            silverText.SetText("Silver Gained: " + silverGained.ToString());
-            prestigeText.SetText("Prestige Gained: " + prestigeGained.ToString());
+            silverText.SetText("Silver: " + raidPanel.silver.ToString());
+            prestigeText.SetText("Prestige: " + raidPanel.prestige.ToString());
         }
     }
 }

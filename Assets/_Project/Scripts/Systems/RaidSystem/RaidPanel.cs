@@ -31,8 +31,11 @@ namespace raidSystem
         public TextMeshProUGUI recommendedPowerText;
 
         [Header("Rewards")]
-        public int silver = 10;
-        public int prestige = 15;
+        public int silverPerViking = 10;
+        public int prestigePerViking = 15;
+
+        public int silver;
+        public int prestige;
 
         public TextMeshProUGUI silverText;
         public TextMeshProUGUI prestigeText;
@@ -45,6 +48,7 @@ namespace raidSystem
         public void OpenRaidPanel()
         {
             UIManager.Instance.OpenPanel(this);
+            UpdateRewards();
         }
         public void CloseRaidPanel()
         {
@@ -132,8 +136,10 @@ namespace raidSystem
         }
         public void UpdateRewards()
         {
-            silverText.text = "Silver: " + (silver * vikingInRaid.Count).ToString();
-            prestigeText.text = "Prestige: " + (prestige * vikingInRaid.Count).ToString();
+            silver = silverPerViking * vikingInRaid.Count;
+            prestige = prestigePerViking * vikingInRaid.Count;   
+            silverText.text = "Silver: " + silver.ToString();
+            prestigeText.text = "Prestige: " + prestige.ToString();
             raidPowerText.text = "Raid Power: " + vikingInRaid.Count.ToString();
             recommendedPowerText.text = "Recommended Power: " + recommendedPower.ToString();
         }
