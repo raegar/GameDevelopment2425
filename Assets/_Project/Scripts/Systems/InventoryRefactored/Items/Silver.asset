@@ -15,7 +15,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   itemIcon: {fileID: 0}
   itemName: Silver
-  type: 5
+  type: 1
   itemDescription: is currency
   itemID: 0
   itemValue: 1
