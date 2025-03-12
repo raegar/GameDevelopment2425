@@ -1811,18 +1811,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 732296210}
   m_SourcePrefab: {fileID: 100100000, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
---- !u!114 &292916316 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4299077782521758861, guid: 5194a3eb3874bf6449f130178e025d14,
-    type: 3}
-  m_PrefabInstance: {fileID: 1400100556}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912316381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8131638c4b067046a2c5492db3a3a76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &292916319 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7503310862635735523, guid: 5194a3eb3874bf6449f130178e025d14,
@@ -2778,8 +2766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94ef2e5717f8be4dbc9f3cfe9b645f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryPanel: {fileID: 536414788}
-  settlerPanel: {fileID: 292916316}
+  inventoryPanel: {fileID: 0}
+  settlerPanel: {fileID: 0}
   inventoryStatusText: {fileID: 297755941}
 --- !u!114 &522523094
 MonoBehaviour:
@@ -2985,18 +2973,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1281787908}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &536414788 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8363193703896230555, guid: 1c01e032435773a4c9953a186983991f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1281787908}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0130887388d2abd4c976ded89ef81874, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &559943621
 GameObject:
   m_ObjectHideFlags: 0
@@ -4537,7 +4513,7 @@ PrefabInstance:
     - target: {fileID: 636844150725971391, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.49081323
+      value: 0.49085677
       objectReference: {fileID: 0}
     - target: {fileID: 2766624441830252630, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -4626,6 +4602,11 @@ PrefabInstance:
       objectReference: {fileID: 912605139}
     - target: {fileID: 6437419992629215500, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
+      propertyPath: victoryPanel
+      value: 
+      objectReference: {fileID: 729317486}
+    - target: {fileID: 6437419992629215500, guid: 89d2b632316be6149a23fc2ecef33760,
+        type: 3}
       propertyPath: vikingsToRaid
       value: 
       objectReference: {fileID: 413926354}
@@ -4663,12 +4644,12 @@ PrefabInstance:
     - target: {fileID: 7392510763562136577, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7392510763562136577, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_Value
-      value: 0
+      value: -7.5864577
       objectReference: {fileID: 0}
     - target: {fileID: 7532081654185049115, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -5767,6 +5748,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8650905988134352441, guid: a1d0ee413dc2ebc49ab3f0b0f9a59735,
+        type: 3}
+      propertyPath: silverSO
+      value: 
+      objectReference: {fileID: 11400000, guid: e0e8a99368316d94186a36b1c12491a7,
+        type: 2}
+    - target: {fileID: 8650905988134352441, guid: a1d0ee413dc2ebc49ab3f0b0f9a59735,
+        type: 3}
+      propertyPath: prestigeSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ee758cc73f80cc4e933f70a49020b44,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9024,7 +9017,7 @@ PrefabInstance:
     - target: {fileID: 5510213824278889886, guid: 727cf0d19ff8f7d4db463eeeb2f71146,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000018835068
+      value: 0.000277075
       objectReference: {fileID: 0}
     - target: {fileID: 5911014162042048191, guid: 727cf0d19ff8f7d4db463eeeb2f71146,
         type: 3}

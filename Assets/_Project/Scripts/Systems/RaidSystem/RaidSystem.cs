@@ -66,10 +66,10 @@ namespace raidSystem
                     viking.SetActive(true);
                     viking.transform.SetParent(null);
                 }
+                victoryPanel.OpenPanel();
             }
             raidPanelButton.enabled = true;
             raidList.Clear();
-            victoryPanel.OpenPanel();
         }
     }
 }

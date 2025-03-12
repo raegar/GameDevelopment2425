@@ -14,6 +14,8 @@ namespace raidSystem
 {
     public class RaidPanel : PanelBase
     {
+
+        public VictoryPanel victoryPanel;
         [Header("Buttons")]
         public Button vikingNameButton;
         public Button addVikingButton;
@@ -34,8 +36,8 @@ namespace raidSystem
         public int silverPerViking = 10;
         public int prestigePerViking = 15;
 
-        public int silver;
-        public int prestige;
+        int silver;
+        int prestige;
 
         public TextMeshProUGUI silverText;
         public TextMeshProUGUI prestigeText;
@@ -142,6 +144,8 @@ namespace raidSystem
             prestigeText.text = "Prestige: " + prestige.ToString();
             raidPowerText.text = "Raid Power: " + vikingInRaid.Count.ToString();
             recommendedPowerText.text = "Recommended Power: " + recommendedPower.ToString();
+            victoryPanel.silver = silver;
+            victoryPanel.prestige = prestige;
         }
     }
 }
