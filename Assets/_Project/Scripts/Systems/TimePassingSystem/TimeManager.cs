@@ -26,7 +26,7 @@ public class TimeManager : MonoBehaviour
     private void Start()
     {
         localTimeScale = IsNight() ? nightTimeScale : dayTimeScale;
-        gameTimePassed = timeOfDay * 3600; // Corrected initialization
+        gameTimePassed = ConvertHoursToSeconds(timeOfDay);
     }
 
     private void IncrementDay()

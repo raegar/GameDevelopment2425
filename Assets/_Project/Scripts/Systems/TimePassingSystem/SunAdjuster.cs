@@ -35,7 +35,7 @@ public class SunAdjuster : MonoBehaviour
 
         if (timeManager == null)
         {
-            Debug.LogError("TimeManager not found in scene. Disabling SunAdjuster.", this);
+            Debug.LogError("SunAdjuster: TimeManager not found in scene. Disabling SunAdjuster.", this);
             enabled = false;
         }
 
@@ -43,7 +43,7 @@ public class SunAdjuster : MonoBehaviour
 
         if (sunLight == null)
         {
-            Debug.LogError("Sun Light not found in scene. Disabling SunAdjuster.", this);
+            Debug.LogError("SunAdjuster: Sun Light not found in scene. Disabling SunAdjuster.", this);
             enabled = false;
         }
 
@@ -101,9 +101,14 @@ public class SunAdjuster : MonoBehaviour
         {
             return sunIntensityEvening;
         }
-        else
+        else if (timeOfDay >= nightSunStart || timeOfDay < nightSunEnd)
         {
             return sunIntensityNight;
+        }
+        else
+        {
+            Debug.LogWarning("SunAdjuster: Time of day not within any range. Defaulting to night.", this);
+            return 0; // default to night, although this shouldn't happen
         }
     }
     private void SmoothTransitionSunIntensity(float targetIntensity, float transitionLength)
