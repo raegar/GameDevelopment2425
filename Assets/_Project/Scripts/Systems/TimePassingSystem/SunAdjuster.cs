@@ -2,12 +2,22 @@ using UnityEngine;
 
 public class SunAdjuster : MonoBehaviour
 {
-    [Header("Sun Settings")]
+    [Header("Morning")]
     [SerializeField] private float sunIntensityMorning = 0.7f;
+    [SerializeField] private int morningSunStart = 6;
+    [SerializeField] private int morningSunEnd = 12;
+    [Header("Midday")]
     [SerializeField] private float sunIntensityMidday = 1f;
-    [SerializeField] private float sunIntensityAfternoon = 0.7f;
+    [SerializeField] private int middaySunStart = 12;
+    [SerializeField] private int middaySunEnd = 18;
+    [Header("Evening")]
+    [SerializeField] private float sunIntensityEvening = 0.7f;
+    [SerializeField] private int eveningSunStart = 18;
+    [SerializeField] private int eveningSunEnd = 20;
+    [Header("Night")]
     [SerializeField] private float sunIntensityNight = 0f;
-    [ReadOnly][SerializeField] private float currentSunIntensity;
+    [SerializeField] private int nightSunStart = 20;
+    [SerializeField] private int nightSunEnd = 6;
 
     [Header("Transition Settings")]
     [SerializeField] private float transitionLength = 1f; // transition length in real seconds
@@ -15,6 +25,8 @@ public class SunAdjuster : MonoBehaviour
     private TimeManager timeManager;
     private Light sunLight;
 
+    [Header("Readonly Debug")]
+    [ReadOnly][SerializeField] private float currentSunIntensity;
     [ReadOnly][SerializeField] private int internalTimeOfDay;
 
     private void Awake()
@@ -34,6 +46,16 @@ public class SunAdjuster : MonoBehaviour
             Debug.LogError("Sun Light not found in scene. Disabling SunAdjuster.", this);
             enabled = false;
         }
+
+        EnsureAppropriateSunTimings();
+    }
+
+    private void EnsureAppropriateSunTimings()
+    {
+        middaySunStart = morningSunEnd;
+        eveningSunStart = middaySunEnd;
+        nightSunStart = eveningSunEnd;
+        nightSunEnd = morningSunStart;
     }
 
     private void Start()
@@ -67,17 +89,17 @@ public class SunAdjuster : MonoBehaviour
 
     private float CalculateSunIntensity(int timeOfDay)
     {
-        if (timeOfDay >= 6 && timeOfDay < 12)
+        if (timeOfDay >= morningSunStart && timeOfDay < morningSunEnd)
         {
             return sunIntensityMorning;
         }
-        else if (timeOfDay >= 12 && timeOfDay < 18)
+        else if (timeOfDay >= middaySunStart && timeOfDay < middaySunEnd)
         {
             return sunIntensityMidday;
         }
-        else if (timeOfDay >= 18 && timeOfDay < 24)
+        else if (timeOfDay >= eveningSunStart && timeOfDay < eveningSunEnd)
         {
-            return sunIntensityAfternoon;
+            return sunIntensityEvening;
         }
         else
         {

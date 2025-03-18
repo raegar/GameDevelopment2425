@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72370f21d48e564459189ad08593840f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScale: 600
-  nightTimeScale: 1200
+  timeScale: 60
+  nightTimeScale: 120
   timeOfDay: 12
   dayLength: 24
   gameDay: 1
@@ -66,3 +66,6 @@ MonoBehaviour:
   sunIntensityMidday: 1
   sunIntensityAfternoon: 0.7
   sunIntensityNight: 0
+  currentSunIntensity: 0
+  transitionLength: 1
+  internalTimeOfDay: 0

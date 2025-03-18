@@ -4,7 +4,7 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     [Header("Time Settings")]
-    [SerializeField] private int timeScale = 60; // 1 minute in real time = 1 hour in game time
+    [SerializeField] private int dayTimeScale = 60; // 1 minute in real time = 1 hour in game time
     [SerializeField] private int nightTimeScale = 120; // 1 minute in real time = 2 hours in game time
     private int localTimeScale;
 
@@ -16,6 +16,7 @@ public class TimeManager : MonoBehaviour
 
     // Events
     public static Action onDayChanged;
+    public static Action onTimeChanged;
 
     private void Update()
     {
@@ -24,7 +25,7 @@ public class TimeManager : MonoBehaviour
 
     private void Start()
     {
-        localTimeScale = timeScale;
+        localTimeScale = IsNight() ? nightTimeScale : dayTimeScale;
         gameTimePassed = timeOfDay * 3600; // Corrected initialization
     }
 
@@ -37,9 +38,17 @@ public class TimeManager : MonoBehaviour
 
     private void UpdateTime()
     {
-        localTimeScale = IsNight() ? nightTimeScale : timeScale;
+        localTimeScale = IsNight() ? nightTimeScale : dayTimeScale;
         gameTimePassed += Time.deltaTime * localTimeScale;
+
+        int previousTimeOfDay = timeOfDay;
         timeOfDay = ConvertSecondsToHours((int)gameTimePassed) % dayLength;
+
+        if (timeOfDay != previousTimeOfDay)
+        {
+            onTimeChanged?.Invoke();
+        }
+
         if (gameTimePassed >= ConvertHoursToSeconds(dayLength))
         {
             IncrementDay();
