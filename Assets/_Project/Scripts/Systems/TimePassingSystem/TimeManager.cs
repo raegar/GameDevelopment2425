@@ -26,7 +26,7 @@ public class TimeManager : MonoBehaviour
     private void Start()
     {
         localTimeScale = IsNight() ? nightTimeScale : dayTimeScale;
-        gameTimePassed = ConvertHoursToSeconds(timeOfDay);
+        gameTimePassed = ConvertHoursSeconds(timeOfDay, true);
     }
 
     private void IncrementDay()
@@ -42,14 +42,14 @@ public class TimeManager : MonoBehaviour
         gameTimePassed += Time.deltaTime * localTimeScale;
 
         int previousTimeOfDay = timeOfDay;
-        timeOfDay = ConvertSecondsToHours((int)gameTimePassed) % dayLength;
+        timeOfDay = ConvertHoursSeconds((int)gameTimePassed, false) % dayLength;
 
         if (timeOfDay != previousTimeOfDay)
         {
             onTimeChanged?.Invoke();
         }
 
-        if (gameTimePassed >= ConvertHoursToSeconds(dayLength))
+        if (gameTimePassed >= ConvertHoursSeconds(dayLength, true))
         {
             IncrementDay();
         }
@@ -83,13 +83,15 @@ public class TimeManager : MonoBehaviour
     }
 
     // Helper methods
-    private int ConvertHoursToSeconds(int hours)
+    private int ConvertHoursSeconds(int hours, bool hoursToSeconds)
     {
-        return hours * 3600;
-    }
-
-    private int ConvertSecondsToHours(int seconds)
-    {
-        return seconds / 3600;
+        if (hoursToSeconds)
+        {
+            return hours * 3600;
+        }
+        else
+        {
+            return hours / 3600;
+        }
     }
 }
