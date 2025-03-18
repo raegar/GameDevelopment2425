@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TimeConversion;
 
 public class TimeManager : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class TimeManager : MonoBehaviour
     private void Start()
     {
         localTimeScale = IsNight() ? nightTimeScale : dayTimeScale;
-        gameTimePassed = ConvertHoursSeconds(timeOfDay, true);
+        gameTimePassed = TimeConverter.ConvertToSeconds(timeOfDay, 0, 0);
     }
 
     private void IncrementDay()
@@ -42,14 +43,16 @@ public class TimeManager : MonoBehaviour
         gameTimePassed += Time.deltaTime * localTimeScale;
 
         int previousTimeOfDay = timeOfDay;
-        timeOfDay = ConvertHoursSeconds((int)gameTimePassed, false) % dayLength;
+
+        // this line converts seconds to hours and wraps around dayLength, resulting in integer timeOfDay
+        timeOfDay = TimeConverter.ConvertToHours(0, 0, (int)gameTimePassed) % dayLength;
 
         if (timeOfDay != previousTimeOfDay)
         {
             onTimeChanged?.Invoke();
         }
 
-        if (gameTimePassed >= ConvertHoursSeconds(dayLength, true))
+        if (gameTimePassed >= TimeConverter.ConvertToSeconds(dayLength, 0, 0))
         {
             IncrementDay();
         }
@@ -80,18 +83,5 @@ public class TimeManager : MonoBehaviour
     public int GetDayLength() // returns day length in hours
     {
         return dayLength;
-    }
-
-    // Helper methods
-    private int ConvertHoursSeconds(int hours, bool hoursToSeconds)
-    {
-        if (hoursToSeconds)
-        {
-            return hours * 3600;
-        }
-        else
-        {
-            return hours / 3600;
-        }
     }
 }
