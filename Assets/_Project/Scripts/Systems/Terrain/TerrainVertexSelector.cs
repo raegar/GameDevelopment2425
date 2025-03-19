@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -31,9 +33,9 @@ namespace terrain
 
                         // Create a frame at the selected position
                         GameObject newFrame = Instantiate(selectionFramePrefab, result.worldPosition, Quaternion.identity);
+                        StartCoroutine(CheckAndAddFrame(newFrame, terrainsAndVertices));
 
-                        // Add the terrain and any neighbours, as well as the frame object, to a list
-                        activeManipulators.Add((terrainsAndVertices, newFrame));
+                   
                     }
                 }
 
@@ -61,6 +63,24 @@ namespace terrain
                 }
             }
             
+        }
+
+        IEnumerator CheckAndAddFrame(GameObject newFrame, List<VertexPositionData> terrainsAndVertices)
+        {
+            // Wait for the next physics update
+            yield return new WaitForFixedUpdate();
+
+            StructureDetector structureDetector = newFrame.GetComponent<StructureDetector>();
+            if (!structureDetector.isHittingStructure)
+            {
+                activeManipulators.Add((terrainsAndVertices, newFrame));
+                Debug.Log("Added");
+            }
+            else
+            {
+                Destroy(newFrame);
+                Debug.Log("Destroyed");
+            }
         }
 
         public void ToggleTerrinControls()
