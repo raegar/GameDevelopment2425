@@ -4,10 +4,6 @@
  */
 public class MenuPanel : PanelBase
 {
-    void Awake()
-    {
-        base.Awake();
-    }
     public void OpenMenu()
     {
         UIManager.Instance.OpenPanel(this);

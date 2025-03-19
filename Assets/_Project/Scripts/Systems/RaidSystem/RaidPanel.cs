@@ -14,6 +14,8 @@ namespace raidSystem
 {
     public class RaidPanel : PanelBase
     {
+
+        public VictoryPanel victoryPanel;
         [Header("Buttons")]
         public Button vikingNameButton;
         public Button addVikingButton;
@@ -25,8 +27,20 @@ namespace raidSystem
         List<GameObject> vikingInRaid = new List<GameObject>();
 
         [Header("power amounts")]
-        public int RaidPower;
-        public int recommendPower;
+        public int recommendedPower = 4;
+
+        public TextMeshProUGUI raidPowerText;
+        public TextMeshProUGUI recommendedPowerText;
+
+        [Header("Rewards")]
+        public int silverPerViking = 10;
+        public int prestigePerViking = 15;
+
+        int silver;
+        int prestige;
+
+        public TextMeshProUGUI silverText;
+        public TextMeshProUGUI prestigeText;
 
         [Header("script")]
         public VikingListPanel listPanel;
@@ -36,6 +50,7 @@ namespace raidSystem
         public void OpenRaidPanel()
         {
             UIManager.Instance.OpenPanel(this);
+            UpdateRewards();
         }
         public void CloseRaidPanel()
         {
@@ -58,6 +73,7 @@ namespace raidSystem
                     //set viking name to button text
                     vikingNameButton.GetComponentInChildren<TextMeshProUGUI>().text = foreName + " " + surname;
                     Instantiate(vikingNameButton, vikingNames).name = foreName;
+                    UpdateRewards();
                     return;
                 }
             }
@@ -72,6 +88,7 @@ namespace raidSystem
                     vikingInRaid[i].transform.SetParent(null);
                     vikingInRaid.Remove(vikingInRaid[i]);
                     listPanel.ListVikingNames();
+                    UpdateRewards();
                     return;
                 }
             }
@@ -118,6 +135,17 @@ namespace raidSystem
                 }
             }
             return false;
+        }
+        public void UpdateRewards()
+        {
+            silver = silverPerViking * vikingInRaid.Count;
+            prestige = prestigePerViking * vikingInRaid.Count;   
+            silverText.text = "Silver: " + silver.ToString();
+            prestigeText.text = "Prestige: " + prestige.ToString();
+            raidPowerText.text = "Raid Power: " + vikingInRaid.Count.ToString();
+            recommendedPowerText.text = "Recommended Power: " + recommendedPower.ToString();
+            victoryPanel.silver = silver;
+            victoryPanel.prestige = prestige;
         }
     }
 }
