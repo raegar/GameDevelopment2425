@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1955438553337934411}
   - component: {fileID: 3150741967705960430}
   m_Layer: 0
-  m_Name: HarvestableTree
+  m_Name: LargeHarvestableTree
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,8 +33,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7924086795968508469}
   - {fileID: 488894610979426231}
+  - {fileID: 5013577565865936902}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7234474765591821
@@ -51,16 +51,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableToGather: 1
   selectedByViking: {fileID: 0}
-  resourceAmount: 30
-  gatherTime: 5
+  resourceAmount: 60
+  gatherTime: 10
   skillRequired: Woodworking
   skillLevel: 0
-  coolDownDuration: 20
+  coolDownDuration: 50
   cooldownTimer: 0
   templateItem: {fileID: 11400000, guid: 4fdde67a245f13b429254cd8f6ffc606, type: 2}
   gatherSound: {fileID: 8300000, guid: ee39fde8a878bf242973355efe74dc69, type: 3}
   isGathering: 0
-  beforeHarvest: {fileID: 3216415208245382809}
+  beforeHarvest: {fileID: 5013577565865716962}
   afterHarvest: {fileID: 5647142209758201812}
   animationName: isWoodcutting
 --- !u!65 &7259162047922936071
@@ -276,7 +276,7 @@ MonoBehaviour:
   seeThroughTextureUVSpace: 0
   seeThroughTextureScale: 1
   seeThroughChildrenSortingMode: 0
-  rmsCount: 1
+  rmsCount: 2
   hitFxInitialIntensity: 1
   hitFxMode: 0
   hitFxFadeOutDuration: 0.25
@@ -313,7 +313,7 @@ MonoBehaviour:
   singleSelection: 0
   toggle: 0
   keepSelection: 1
---- !u!1 &3216415208245382809
+--- !u!1 &5013577565865716962
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -321,46 +321,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7924086795968508469}
-  - component: {fileID: 2811353893717256327}
-  - component: {fileID: 3580359803869471519}
+  - component: {fileID: 5013577565865936902}
+  - component: {fileID: 5013577565868822714}
+  - component: {fileID: 5013577565867797740}
   m_Layer: 0
-  m_Name: SM_Env_Tree_Pine_03
+  m_Name: SM_Env_Tree_Pine_Large_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7924086795968508469
+--- !u!4 &5013577565865936902
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216415208245382809}
+  m_GameObject: {fileID: 5013577565865716962}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7313116373973093753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2811353893717256327
+--- !u!33 &5013577565868822714
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216415208245382809}
-  m_Mesh: {fileID: 4300000, guid: aff0723f5e46cad42bc6964a5d4747d1, type: 3}
---- !u!23 &3580359803869471519
+  m_GameObject: {fileID: 5013577565865716962}
+  m_Mesh: {fileID: 4300000, guid: c71bf7ed46f5eee40940e38dd6d96b28, type: 3}
+--- !u!23 &5013577565867797740
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216415208245382809}
+  m_GameObject: {fileID: 5013577565865716962}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -413,7 +413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &488894610979426231
 Transform:
   m_ObjectHideFlags: 0
@@ -423,8 +423,8 @@ Transform:
   m_GameObject: {fileID: 5647142209758201812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0.13, z: 0}
-  m_LocalScale: {x: 0.42, y: 0.27, z: 0.42}
+  m_LocalPosition: {x: 0.002, y: 0.221, z: -0.035}
+  m_LocalScale: {x: 0.3, y: 0.27, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7313116373973093753}

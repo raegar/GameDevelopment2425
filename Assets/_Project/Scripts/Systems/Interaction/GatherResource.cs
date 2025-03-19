@@ -27,6 +27,7 @@ public class GatherResource : MonoBehaviour, IInteractable
     private HandInteractable handInteractable;
     private AnimationEvents animationEvent;
     public string animationName;
+    public int toolNum;
 
     void Awake()
     {
@@ -70,14 +71,14 @@ public class GatherResource : MonoBehaviour, IInteractable
         {
             isGathering = false;
             selectedByViking = null;
-            vikingAnimator.SetBool("isWoodcutting", false);
+            vikingAnimator.SetBool(animationName, false);
             CancelInvoke();
         }
     }
 
     public void Gather(GameObject viking)
     {
-        Debug.Log("Gathering");
+        Debug.Log("Gathering"+ templateItem.itemName);
         isGathering = true;
         settler = selectedByViking.GetComponentInChildren<Settler>();
         handInteractable = selectedByViking.GetComponentInChildren<HandInteractable>();
@@ -89,11 +90,11 @@ public class GatherResource : MonoBehaviour, IInteractable
             // play animation
             if (handInteractable != null)
             {
-                handInteractable.Equip();
+                handInteractable.Equip(toolNum);
             }
             vikingAnimator = selectedByViking.GetComponent<Animator>();
             vikingAnimator.SetBool("isWalking", false);
-            vikingAnimator.SetBool("isWoodcutting", true);
+            vikingAnimator.SetBool(animationName, true);
 
             // when time is up , call GatherComplete
             Invoke("GatherComplete", gatherTime / skillLevel);
@@ -114,7 +115,7 @@ public class GatherResource : MonoBehaviour, IInteractable
         {
             handInteractable.Unequip();
         }
-        vikingAnimator.SetBool("isWoodcutting", false);
+        vikingAnimator.SetBool(animationName, false);
         // cooldown if applicable
         availableToGather = false;
         beforeHarvest.SetActive(false);

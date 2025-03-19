@@ -705,7 +705,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 31.14089
+  field of view: 25
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1764,7 +1764,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1823158538}
   m_Follow: {fileID: 1823158538}
   m_Lens:
-    FieldOfView: 31.14089
+    FieldOfView: 25
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -6890,6 +6890,7 @@ PrefabInstance:
     - target: {fileID: 5510213824278889886, guid: 727cf0d19ff8f7d4db463eeeb2f71146,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+
       value: 0.0009887897
       objectReference: {fileID: 0}
     - target: {fileID: 5911014162042048191, guid: 727cf0d19ff8f7d4db463eeeb2f71146,
@@ -9943,7 +9944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinemachineVirtualCamera: {fileID: 342446437}
   moveSpeed: 20
-  useEdgeScroll: 1
+  useEdgeScroll: 0
   edgeScrollSize: 20
   useDragPan: 0
   dragPanSpeed: 1
