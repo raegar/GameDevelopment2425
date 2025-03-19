@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class HandInteractable : MonoBehaviour
 {
-    public GameObject equipableItem;
-
-    public void Equip()
+    public GameObject[] equipableItem;
+    private int selectedItem = 0;
+    public void Equip(int itemNum)
     {
-        equipableItem.SetActive(true);
+        selectedItem = itemNum;
+        equipableItem[itemNum].SetActive(true);
     }
     public void Unequip()
     {
-        equipableItem.SetActive(false);
+        equipableItem[selectedItem].SetActive(false);
     }
 }
