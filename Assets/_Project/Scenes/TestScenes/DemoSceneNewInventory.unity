@@ -881,7 +881,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: b3b3d72f0b0bb4a4cbd487a4cd6b8488, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!4 &127619259
 Transform:
   m_ObjectHideFlags: 0
@@ -1372,57 +1372,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 462704, guid: 83905b55894130240b8d1a2922bf2198,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1479211819}
-    - targetCorrespondingSourceObject: {fileID: 462704, guid: 83905b55894130240b8d1a2922bf2198,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 264188536}
-    - targetCorrespondingSourceObject: {fileID: 462704, guid: 83905b55894130240b8d1a2922bf2198,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1247395212}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 732296215}
-    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 732296214}
-    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 732296213}
-    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 732296212}
-    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 732296211}
-    - targetCorrespondingSourceObject: {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 732296210}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
---- !u!114 &292916316 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4299077782521758861, guid: 5194a3eb3874bf6449f130178e025d14,
-    type: 3}
-  m_PrefabInstance: {fileID: 1400100556}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912316381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8131638c4b067046a2c5492db3a3a76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &292916319 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7503310862635735523, guid: 5194a3eb3874bf6449f130178e025d14,
@@ -1886,7 +1838,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 32bc0f269d559c746872aa6d57a5a9ab, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &365520162
 Terrain:
   m_ObjectHideFlags: 0
@@ -3195,7 +3147,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 2fe007168d6e8fc488bde96a5e402583, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &845049748
 Terrain:
   m_ObjectHideFlags: 0
@@ -3334,7 +3286,7 @@ PrefabInstance:
     - target: {fileID: 636844150725971391, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.49081323
+      value: 0.4908297
       objectReference: {fileID: 0}
     - target: {fileID: 2766624441830252630, guid: 89d2b632316be6149a23fc2ecef33760,
         type: 3}
@@ -4250,7 +4202,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 45f81d4d8d8e2da4590b9ceb22680ddf, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &943015017
 Terrain:
   m_ObjectHideFlags: 0
@@ -4748,7 +4700,7 @@ PrefabInstance:
         type: 3}
       propertyPath: terrains.Array.data[0]
       value: 
-      objectReference: {fileID: 127619255}
+      objectReference: {fileID: 0}
     - target: {fileID: 3344896423678518669, guid: bad24879a9c4591408d3edab0aa1d243,
         type: 3}
       propertyPath: terrains.Array.data[1]
@@ -6938,7 +6890,7 @@ PrefabInstance:
     - target: {fileID: 5510213824278889886, guid: 727cf0d19ff8f7d4db463eeeb2f71146,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000018835068
+      value: 0.0009887897
       objectReference: {fileID: 0}
     - target: {fileID: 5911014162042048191, guid: 727cf0d19ff8f7d4db463eeeb2f71146,
         type: 3}
@@ -9076,7 +9028,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 2599105ae0302574eb8bdaf664a614af, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &1702276409
 Terrain:
   m_ObjectHideFlags: 0
@@ -10977,7 +10929,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: d0d22cbd2efe1c741a9469d52d66069b, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &1965238809
 Terrain:
   m_ObjectHideFlags: 0
@@ -11312,7 +11264,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 0c8713218e6f1b94681f5e09524dbf16, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &2044104237
 Terrain:
   m_ObjectHideFlags: 0
@@ -11423,7 +11375,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 3b9f66bd25d8a7641899c88cb6ad31da, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &2049777090
 Terrain:
   m_ObjectHideFlags: 0
@@ -11782,7 +11734,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 5d8b5f7724348f547b1b890e71fd2471, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &2121883944
 Terrain:
   m_ObjectHideFlags: 0
@@ -13288,3 +13240,4 @@ SceneRoots:
   - {fileID: 1220898648}
   - {fileID: 413926354}
   - {fileID: 970952034}
+  - {fileID: 290102580}
