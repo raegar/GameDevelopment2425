@@ -21,23 +21,7 @@ public class SunAdjuster : MonoBehaviour
     [SerializeField] private int nightSunEnd = 6;
 
     [Header("Transition Settings")]
-    [SerializeField] private float transitionLength = 1f; // transition length in real seconds
-    public float TransitionLength
-    {
-        get
-        {
-            TransitionLength = transitionLength;
-            return transitionLength;
-        }
-        set
-        {
-            float tempValue = value;
-            tempValue = Mathf.Clamp(tempValue, minTransitionTime, maxTransitionTime);
-        }
-    }
-
-    [ReadOnly][SerializeField] private float minTransitionTime = 1f;
-    [ReadOnly][SerializeField] private float maxTransitionTime;
+    private float transitionLength = 1f; // transition length in real seconds
 
     private TimeManager timeManager;
     private Light sunLight;
@@ -67,6 +51,16 @@ public class SunAdjuster : MonoBehaviour
         EnsureAppropriateSunTimings();
     }
 
+    private void OnEnable()
+    {
+        TimeManager.onTimeChanged += SetTransitionTime;
+    }
+
+    private void OnDisable()
+    {
+        TimeManager.onTimeChanged -= SetTransitionTime;
+    }
+
     private void EnsureAppropriateSunTimings()
     {
         middaySunStart = morningSunEnd;
@@ -75,14 +69,18 @@ public class SunAdjuster : MonoBehaviour
         nightSunEnd = morningSunStart;
     }
 
-    private void SetMaximumTransitionTime()
+    private void SetTransitionTime()
     {
         // a maximum transition time should be two in-game hours
         int timescale = timeManager.GetTimeScale();
-        int twoHourTransitionTime = 2 * timescale;
+        // at 60, its 60 in-game hours for 1 real life hour
+        int newTransitionLength = 2 / timescale;
 
-        Debug.Log("Max transition time set: " +  twoHourTransitionTime);
-        maxTransitionTime = twoHourTransitionTime;
+        transitionLength = newTransitionLength;
+        if (transitionLength <= 0)
+        {
+            transitionLength = 1;
+        }
     }
 
     private void Start()
@@ -91,7 +89,7 @@ public class SunAdjuster : MonoBehaviour
         sunLight.intensity = CalculateSunIntensity(internalTimeOfDay);
         currentSunIntensity = sunLight.intensity;
 
-        SetMaximumTransitionTime();
+        SetTransitionTime();
     }
 
     private void FixedUpdate()

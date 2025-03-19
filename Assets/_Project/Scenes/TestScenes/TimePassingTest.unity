@@ -1333,12 +1333,12 @@ PrefabInstance:
     - target: {fileID: 5126006448688076285, guid: 7b565c4afaa39c44888cb6965a08ebd6,
         type: 3}
       propertyPath: dayTimeScale
-      value: 60
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 5126006448688076285, guid: 7b565c4afaa39c44888cb6965a08ebd6,
         type: 3}
       propertyPath: nightTimeScale
-      value: 120
+      value: 2400
       objectReference: {fileID: 0}
     - target: {fileID: 6287901904205210958, guid: 7b565c4afaa39c44888cb6965a08ebd6,
         type: 3}
