@@ -1,0 +1,4 @@
+Panel Window is 600x600 background, can be evenly split into 200x200 tiles
+
+_Design has knot pattern
+_NoDesign is plain background
