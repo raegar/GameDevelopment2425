@@ -7,7 +7,7 @@ public class TimeManager : MonoBehaviour
     [Header("Time Settings")]
     [SerializeField] private int dayTimeScale = 60; // 1 minute in real time = 1 hour in game time
     [SerializeField] private int nightTimeScale = 120; // 1 minute in real time = 2 hours in game time
-    private int localTimeScale;
+    [ReadOnly] [SerializeField] private int localTimeScale;
 
     [Header("Time Data")]
     [SerializeField] private int timeOfDay = 12; // 0 = midnight, 12 = midday

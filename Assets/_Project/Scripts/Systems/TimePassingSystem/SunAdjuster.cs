@@ -1,4 +1,5 @@
 using UnityEngine;
+using TimeConversion;
 
 public class SunAdjuster : MonoBehaviour
 {
@@ -21,6 +22,22 @@ public class SunAdjuster : MonoBehaviour
 
     [Header("Transition Settings")]
     [SerializeField] private float transitionLength = 1f; // transition length in real seconds
+    public float TransitionLength
+    {
+        get
+        {
+            TransitionLength = transitionLength;
+            return transitionLength;
+        }
+        set
+        {
+            float tempValue = value;
+            tempValue = Mathf.Clamp(tempValue, minTransitionTime, maxTransitionTime);
+        }
+    }
+
+    [ReadOnly][SerializeField] private float minTransitionTime = 1f;
+    [ReadOnly][SerializeField] private float maxTransitionTime;
 
     private TimeManager timeManager;
     private Light sunLight;
@@ -58,11 +75,23 @@ public class SunAdjuster : MonoBehaviour
         nightSunEnd = morningSunStart;
     }
 
+    private void SetMaximumTransitionTime()
+    {
+        // a maximum transition time should be two in-game hours
+        int timescale = timeManager.GetTimeScale();
+        int twoHourTransitionTime = 2 * timescale;
+
+        Debug.Log("Max transition time set: " +  twoHourTransitionTime);
+        maxTransitionTime = twoHourTransitionTime;
+    }
+
     private void Start()
     {
         internalTimeOfDay = timeManager.GetTimeOfDay();
         sunLight.intensity = CalculateSunIntensity(internalTimeOfDay);
         currentSunIntensity = sunLight.intensity;
+
+        SetMaximumTransitionTime();
     }
 
     private void FixedUpdate()
