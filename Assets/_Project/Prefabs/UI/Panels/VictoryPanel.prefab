@@ -772,10 +772,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c1b3ec59c393f479f388f174baa93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  silverGained: 0
-  prestigeGained: 0
   silverText: {fileID: 1745498845633476497}
   prestigeText: {fileID: 7221487036136534469}
+  raidPanel: {fileID: 6437419992629215500, guid: 89d2b632316be6149a23fc2ecef33760,
+    type: 3}
 --- !u!1 &1860898111779314727
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519300f17fc6b28449c3e38da839d8a8, type: 3}
+  m_Name: Silver
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 011b0ba1b9c31964e8fa518f4a4d8060, type: 3}
+  itemName: Silver
+  type: 1
+  itemDescription: is currency
+  itemID: 0
+  itemValue: 1
+  isStackable: 1
+  itemStackCount: 1
+  maxStackCount: 1000
+  isEquippable: 0
+  slot: 0
+  dropCoolDown: 20
+  dropTimer: 0
+  isDroppable: 1
+  isConsumable: 0
+  isQuestItem: 0
+  hasBeenDropped: 0
+  isDestroyable: 1
+  destroytime: 0
+  destroyTimer: 0
