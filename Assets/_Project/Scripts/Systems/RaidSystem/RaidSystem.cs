@@ -13,6 +13,7 @@ namespace raidSystem
     {
         public static RaidSystem instance;
         public VictoryPanel victoryPanel;
+        public RaidFailed FailPanel;
         public Transform vikingsInRaid;
         public Button raidPanelButton;
         public float raidLength = 60;
@@ -57,6 +58,7 @@ namespace raidSystem
                 {
                     Destroy(viking);
                 }
+                FailPanel.OpenPanel();
             }
             else
             {
