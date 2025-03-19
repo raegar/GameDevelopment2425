@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Prestige
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 0}
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 9da95bf4184f4d94290ad358e007284c, type: 3}
   itemName: Prestige
   type: 5
   itemDescription: 
