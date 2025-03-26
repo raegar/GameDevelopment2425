@@ -1092,15 +1092,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 9ec5b2298942996429d5f4ee11285e5e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1121,6 +1121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b057885f08c61e4e80996f3e88adced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victoryPanel: {fileID: 0}
   vikingNameButton: {fileID: 6015738638556165458, guid: aef62a0214273f64087ea014bf9ceea2,
     type: 3}
   addVikingButton: {fileID: 7532081654185049115}
@@ -1129,8 +1130,8 @@ MonoBehaviour:
   recommendedPower: 4
   raidPowerText: {fileID: 7639696392037921269}
   recommendedPowerText: {fileID: 8027720426400993169}
-  silver: 10
-  prestige: 15
+  silverPerViking: 10
+  prestigePerViking: 15
   silverText: {fileID: 5066563262813994200}
   prestigeText: {fileID: 3986657339249498325}
   listPanel: {fileID: 3677454049420747331, guid: 727cf0d19ff8f7d4db463eeeb2f71146,
@@ -1438,7 +1439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000026609749, y: 0.00001505601}
+  m_AnchoredPosition: {x: 0.000026609749, y: 0.018661296}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7048302180696227081
@@ -2733,8 +2734,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5212756500925667690}
   m_HandleRect: {fileID: 4618314626136587056}
   m_Direction: 2
-  m_Value: 0.99993783
-  m_Size: 0.9982188
+  m_Value: 0.96200955
+  m_Size: 0.998364
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
