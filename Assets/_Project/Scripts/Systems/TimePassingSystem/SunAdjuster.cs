@@ -20,15 +20,15 @@ public class SunAdjuster : MonoBehaviour
     [SerializeField] private int nightSunStart = 20;
     [SerializeField] private int nightSunEnd = 6;
 
-    [Header("Transition Settings")]
-    private float transitionLength = 1f; // transition length in real seconds
+    [Header("Transition")]
+    [ReadOnly][SerializeField] private AnimationCurve sunlightAnimationCurve;
 
     private TimeManager timeManager;
     private Light sunLight;
 
     [Header("Readonly Debug")]
     [ReadOnly][SerializeField] private float currentSunIntensity;
-    [ReadOnly][SerializeField] private int internalTimeOfDay;
+    [ReadOnly][SerializeField] private (int, int) internalTimeOfDay;
 
     private void Awake()
     {
@@ -49,16 +49,7 @@ public class SunAdjuster : MonoBehaviour
         }
 
         EnsureAppropriateSunTimings();
-    }
-
-    private void OnEnable()
-    {
-        TimeManager.onTimeChanged += SetTransitionTime;
-    }
-
-    private void OnDisable()
-    {
-        TimeManager.onTimeChanged -= SetTransitionTime;
+        CreateSunlightAnimationCurve();
     }
 
     private void EnsureAppropriateSunTimings()
@@ -69,27 +60,10 @@ public class SunAdjuster : MonoBehaviour
         nightSunEnd = morningSunStart;
     }
 
-    private void SetTransitionTime()
-    {
-        // a maximum transition time should be two in-game hours
-        int timescale = timeManager.GetTimeScale();
-        // at 60, its 60 in-game hours for 1 real life hour
-        int newTransitionLength = 2 / timescale;
-
-        transitionLength = newTransitionLength;
-        if (transitionLength <= 0)
-        {
-            transitionLength = 1;
-        }
-    }
-
     private void Start()
     {
-        internalTimeOfDay = timeManager.GetTimeOfDay();
-        sunLight.intensity = CalculateSunIntensity(internalTimeOfDay);
+        internalTimeOfDay = timeManager.GetTimeOfDayWithMinutes();
         currentSunIntensity = sunLight.intensity;
-
-        SetTransitionTime();
     }
 
     private void FixedUpdate()
@@ -99,60 +73,38 @@ public class SunAdjuster : MonoBehaviour
 
     private void UpdateSunIntensity()
     {
-        if (internalTimeOfDay != timeManager.GetTimeOfDay())
+        if (internalTimeOfDay != timeManager.GetTimeOfDayWithMinutes())
         {
-            internalTimeOfDay = timeManager.GetTimeOfDay();
+            internalTimeOfDay = timeManager.GetTimeOfDayWithMinutes();
         }
 
-        if (CalculateSunIntensity(internalTimeOfDay) != sunLight.intensity)
-        {
-            TransitionSunIntensity(CalculateSunIntensity(internalTimeOfDay), transitionLength, true);
-        }
+        Debug.Log($"Time of day: {internalTimeOfDay.Item1}:{internalTimeOfDay.Item2} - Sun intensity: {currentSunIntensity}");
+
+        TransitionSunIntensity();
 
         currentSunIntensity = sunLight.intensity;
     }
 
-
-
-    private float CalculateSunIntensity(int timeOfDay)
-    {
-        if (timeOfDay >= morningSunStart && timeOfDay < morningSunEnd)
-        {
-            return sunIntensityMorning;
-        }
-        else if (timeOfDay >= middaySunStart && timeOfDay < middaySunEnd)
-        {
-            return sunIntensityMidday;
-        }
-        else if (timeOfDay >= eveningSunStart && timeOfDay < eveningSunEnd)
-        {
-            return sunIntensityEvening;
-        }
-        else if (timeOfDay >= nightSunStart || timeOfDay < nightSunEnd)
-        {
-            return sunIntensityNight;
-        }
-        else
-        {
-            Debug.LogWarning("SunAdjuster: Time of day not within any range. Defaulting to night.", this);
-            return 0; // default to night, although this shouldn't happen
-        }
-    }
-    private void TransitionSunIntensity(float targetIntensity, float transitionLength, bool scaleWithTimeScale)
+    private void TransitionSunIntensity()
     {
         float currentIntensity = sunLight.intensity;
-        float transitionFactor = 1f;
 
+        float normalizedTime = (internalTimeOfDay.Item1 + (internalTimeOfDay.Item2 / 60f)) / 24f;
+        float curveValue = sunlightAnimationCurve.Evaluate(normalizedTime);
+        sunLight.intensity = Mathf.Lerp(currentIntensity, curveValue, Time.deltaTime);
+    }
 
-        if (!scaleWithTimeScale)
-        {
-            transitionFactor = Time.deltaTime / transitionLength;
-        }
-        else
-        {
-            transitionFactor = Time.deltaTime * timeManager.GetTimeScale() / transitionLength;
+    private void CreateSunlightAnimationCurve()
+    {
+        sunlightAnimationCurve = new AnimationCurve();
 
-        }
-        sunLight.intensity = Mathf.Lerp(currentIntensity, targetIntensity, transitionFactor);
+        // Key frames for the sunlightAnimationCurve, representing sun intensity at certain times of day
+        sunlightAnimationCurve.AddKey(new Keyframe(0f, sunIntensityNight)); // midnight
+        sunlightAnimationCurve.AddKey(new Keyframe(nightSunEnd / 24f, sunIntensityNight)); // end of night
+        sunlightAnimationCurve.AddKey(new Keyframe(morningSunStart / 24f, sunIntensityMorning)); // start of morning
+        sunlightAnimationCurve.AddKey(new Keyframe(middaySunStart / 24f, sunIntensityMidday)); // start of midday
+        sunlightAnimationCurve.AddKey(new Keyframe(eveningSunStart / 24f, sunIntensityEvening)); // start of evening
+        sunlightAnimationCurve.AddKey(new Keyframe(nightSunStart / 24f, sunIntensityNight)); // start of night
+        sunlightAnimationCurve.AddKey(new Keyframe(1f, sunIntensityNight)); // next midnight
     }
 }

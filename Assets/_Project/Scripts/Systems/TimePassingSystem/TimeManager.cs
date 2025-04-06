@@ -10,12 +10,17 @@ public class TimeManager : MonoBehaviour
     private int localTimeScale;
 
     [Header("Day Settings")]
-    [SerializeField] private int timeOfDay = 12; // 0 = midnight, 12 = midday
+    [SerializeField] private int hourOfDay = 12; // 0 = midnight, 12 = midday
     [SerializeField] private int dayLength = 24; // 24 hours in a day
     [SerializeField] private int gameDay = 1; // start at day 1
     [SerializeField] private int nightTimeStart = 18; // 6 PM
     [SerializeField] private int nightTimeEnd = 6; // 6 AM
     private float gameTimePassed = 0;
+    private float lastGameTimePassed = 0; // used to check if time has changed
+
+    [Header("Debug Information")]
+    [ReadOnly][SerializeField] private string timeScaleRatio;
+    [ReadOnly][SerializeField] private string currentTime;
 
     // Actions
     public static Action onDayChanged;
@@ -29,7 +34,7 @@ public class TimeManager : MonoBehaviour
     private void Awake()
     {
         localTimeScale = IsNight() ? nightTimeScale : dayTimeScale;
-        gameTimePassed = TimeConverter.ConvertToSeconds(timeOfDay, 0, 0);
+        gameTimePassed = TimeConverter.ConvertToSeconds(hourOfDay, 0, 0);
     }
 
     private void IncrementDay()
@@ -44,13 +49,14 @@ public class TimeManager : MonoBehaviour
         localTimeScale = IsNight() ? nightTimeScale : dayTimeScale;
         gameTimePassed += Time.deltaTime * localTimeScale;
 
-        int previousTimeOfDay = timeOfDay;
+        int previousTimeOfDay = hourOfDay;
 
-        // this line converts seconds to hours and wraps around dayLength, resulting in integer timeOfDay
-        timeOfDay = TimeConverter.ConvertToHours(0, 0, (int)gameTimePassed) % dayLength;
+        // this line converts seconds to hours and wraps around dayLength, resulting in integer hourOfDay
+        hourOfDay = (int)TimeConverter.ConvertToHours(0, 0, gameTimePassed, false);
 
-        if (timeOfDay != previousTimeOfDay)
+        if (previousTimeOfDay != hourOfDay)
         {
+            previousTimeOfDay = hourOfDay;
             onTimeChanged?.Invoke();
         }
 
@@ -58,18 +64,29 @@ public class TimeManager : MonoBehaviour
         {
             IncrementDay();
         }
+
+        timeScaleRatio = $"1 real minute equals {localTimeScale} game minutes";
+        currentTime = $"Day {gameDay}, Time {GetTimeOfDayWithMinutes().Item1}:{GetTimeOfDayWithMinutes().Item2}";
     }
 
     private bool IsNight()
     {
-        return timeOfDay >= nightTimeStart || timeOfDay < nightTimeEnd;
+        return hourOfDay >= nightTimeStart || hourOfDay < nightTimeEnd;
     }
 
 
-    // Public methods
+    // public methods
     public int GetTimeOfDay() // returns time of day in hours
     {
-        return timeOfDay;
+        return hourOfDay;
+    }
+
+    public (int, int) GetTimeOfDayWithMinutes() // returns time of day in hours and minutes
+    {
+        float hours = TimeConverter.ConvertToHours(0, 0, gameTimePassed, false);
+        float leftOverTime = hours % 1;
+        float minutes = TimeConverter.ConvertToMinutes(leftOverTime, 0, 0);
+        return ((int)Mathf.Floor(hours), (int)Mathf.Floor(minutes));
     }
 
     public int GetDay() // returns current day
@@ -85,5 +102,12 @@ public class TimeManager : MonoBehaviour
     public int GetDayLength() // returns day length in hours
     {
         return dayLength;
+    }
+
+    // Test/Utility method
+    public void FastForwardTime(int hours)
+    {
+        gameTimePassed += TimeConverter.ConvertToSeconds(hours, 0, 0);
+        UpdateTime();
     }
 }
