@@ -79,7 +79,7 @@ public class SunAdjuster : MonoBehaviour
 
         if (CalculateSunIntensity(internalTimeOfDay) != sunLight.intensity)
         {
-            SmoothTransitionSunIntensity(CalculateSunIntensity(internalTimeOfDay), transitionLength);
+            TransitionSunIntensity(CalculateSunIntensity(internalTimeOfDay), transitionLength, true);
         }
 
         currentSunIntensity = sunLight.intensity;
@@ -111,10 +111,21 @@ public class SunAdjuster : MonoBehaviour
             return 0; // default to night, although this shouldn't happen
         }
     }
-    private void SmoothTransitionSunIntensity(float targetIntensity, float transitionLength)
+    private void TransitionSunIntensity(float targetIntensity, float transitionLength, bool scaleWithTimeScale)
     {
         float currentIntensity = sunLight.intensity;
-        float transitionFactor = Time.deltaTime / transitionLength;
-        sunLight.intensity = Mathf.Lerp(currentIntensity, targetIntensity, transitionFactor); // THIS NEEDS TO SCALE OFF OF THE TIME SCALE IN SOME WAY
+        float transitionFactor = 1f;
+
+
+        if (!scaleWithTimeScale)
+        {
+            transitionFactor = Time.deltaTime / transitionLength;
+        }
+        else
+        {
+            transitionFactor = Time.deltaTime * timeManager.GetTimeScale() / transitionLength;
+
+        }
+        sunLight.intensity = Mathf.Lerp(currentIntensity, targetIntensity, transitionFactor);
     }
 }

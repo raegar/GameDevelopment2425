@@ -9,13 +9,15 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int nightTimeScale = 120; // 1 minute in real time = 2 hours in game time
     private int localTimeScale;
 
-    [Header("Time Data")]
+    [Header("Day Settings")]
     [SerializeField] private int timeOfDay = 12; // 0 = midnight, 12 = midday
     [SerializeField] private int dayLength = 24; // 24 hours in a day
     [SerializeField] private int gameDay = 1; // start at day 1
+    [SerializeField] private int nightTimeStart = 18; // 6 PM
+    [SerializeField] private int nightTimeEnd = 6; // 6 AM
     private float gameTimePassed = 0;
 
-    // Events
+    // Actions
     public static Action onDayChanged;
     public static Action onTimeChanged;
 
@@ -60,7 +62,7 @@ public class TimeManager : MonoBehaviour
 
     private bool IsNight()
     {
-        return timeOfDay >= 18 || timeOfDay < 6;
+        return timeOfDay >= nightTimeStart || timeOfDay < nightTimeEnd;
     }
 
 
