@@ -26,7 +26,7 @@ public class TimeManager : MonoBehaviour
         UpdateTime();
     }
 
-    private void Start()
+    private void Awake()
     {
         localTimeScale = IsNight() ? nightTimeScale : dayTimeScale;
         gameTimePassed = TimeConverter.ConvertToSeconds(timeOfDay, 0, 0);

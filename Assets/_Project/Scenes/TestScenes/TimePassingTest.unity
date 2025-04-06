@@ -1323,7 +1323,7 @@ PrefabInstance:
     - target: {fileID: 5126006448688076285, guid: 7b565c4afaa39c44888cb6965a08ebd6,
         type: 3}
       propertyPath: timeOfDay
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5126006448688076285, guid: 7b565c4afaa39c44888cb6965a08ebd6,
         type: 3}
