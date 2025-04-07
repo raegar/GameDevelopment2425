@@ -19,7 +19,7 @@ public class OnPointerDownHandler : MonoBehaviour, IPointerUpHandler
     {
         if (isEnabled)
         {
-            buildingManager.BuildMenuButtonPressed(name);
+            buildingManager.BuildMenuButtonPressed(name,itemsRequired,amountRequired);
         }
     }
 
