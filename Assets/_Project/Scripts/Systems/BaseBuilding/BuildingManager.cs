@@ -152,6 +152,13 @@ public class BuildingManager : MonoBehaviour
             button.transform.SetParent(buildingMenu.gameObject.transform, false);
             button.name = prefab.name;
             SetButtonData(button.name, button);
+            ResourcesRequired rq = prefab.GetComponent<ResourcesRequired>();
+            OnPointerDownHandler opdh = button.GetComponent<OnPointerDownHandler>();
+            BuildPieceChecker bpc = button.GetComponent<BuildPieceChecker>();
+            opdh.itemsRequired = rq.itemsRequired;
+            opdh.amountRequired = rq.amountRequired;
+            bpc.itemsRequired = rq.itemsRequired;
+            bpc.amountRequired = rq.amountRequired;
         }
     }
 
