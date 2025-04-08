@@ -27,6 +27,9 @@ public class BuildingManager : MonoBehaviour
     public ItemSO itemSO;
     public int buildCost = 20;
 
+    public List<ItemSO> itemsRequired;
+    public List<int> amountRequired;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +52,10 @@ public class BuildingManager : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (SettlementInventory.Instance.HowManyInInventory(itemSO) >= buildCost)
+                if (CheckForResources())
                 {
-                    SettlementInventory.Instance.RemoveItem(itemSO, buildCost);
+                    //SettlementInventory.Instance.RemoveItem(itemSO, buildCost);
+                    RemoveResources();
                     DropOrPlaceComponent();
                     InstantiateComponent();
                     componentToCreate.gameObject.transform.eulerAngles = currentRotation;
@@ -69,6 +73,27 @@ public class BuildingManager : MonoBehaviour
                 StopHoldingComponent();
             }
 
+        }
+    }
+
+    public bool CheckForResources()
+    {
+        foreach(ItemSO item in itemsRequired)
+        {
+            if (SettlementInventory.Instance.HowManyInInventory(item) < amountRequired[itemsRequired.IndexOf(item)])
+            {
+                Debug.Log("Not enough resources");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void RemoveResources()
+    {
+        foreach (ItemSO item in itemsRequired)
+        {
+            SettlementInventory.Instance.RemoveItem(item, amountRequired[itemsRequired.IndexOf(item)]);
         }
     }
 
@@ -152,6 +177,13 @@ public class BuildingManager : MonoBehaviour
             button.transform.SetParent(buildingMenu.gameObject.transform, false);
             button.name = prefab.name;
             SetButtonData(button.name, button);
+            ResourcesRequired rq = prefab.GetComponent<ResourcesRequired>();
+            OnPointerDownHandler opdh = button.GetComponent<OnPointerDownHandler>();
+            BuildPieceChecker bpc = button.GetComponent<BuildPieceChecker>();
+            opdh.itemsRequired = rq.itemsRequired;
+            opdh.amountRequired = rq.amountRequired;
+            bpc.itemsRequired = rq.itemsRequired;
+            bpc.amountRequired = rq.amountRequired;
         }
     }
 
@@ -189,7 +221,7 @@ public class BuildingManager : MonoBehaviour
 
     
 
-    public void BuildMenuButtonPressed(string name)
+    public void BuildMenuButtonPressed(string name, List<ItemSO> items, List<int> amount)
     {
         foreach (GameObject prefab in buildingPrefabs)
         {
@@ -200,7 +232,8 @@ public class BuildingManager : MonoBehaviour
                 holdingComponent = true;
                 currentRotation = Vector3.zero;
                 InstantiateComponent();
-
+                itemsRequired = items;
+                amountRequired = amount;
             }
         }
     }

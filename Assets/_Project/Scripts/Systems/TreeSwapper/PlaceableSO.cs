@@ -9,6 +9,7 @@ public class PlaceableSO : ScriptableObject
     public List<GameObject> placeables;
     public List<Vector3> placeablePosition;
     public List<int> placeableIndex = new List<int>();
+    public float yCutOff = 0f;
 
     public void ClearPlaceables()
     {
@@ -31,7 +32,11 @@ public class PlaceableSO : ScriptableObject
         {
             try { 
             //Debug.Log("placeable: "+ placeableIndex[i]);
-            Instantiate(placeables[placeableIndex[i]], placeablePosition[i], Quaternion.identity);
+            if (placeablePosition[i].y > yCutOff)
+                {
+                    Instantiate(placeables[placeableIndex[i]], placeablePosition[i], Quaternion.identity);
+                }
+                
             } catch
             {
 
