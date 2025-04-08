@@ -10,6 +10,7 @@ TagManager:
   - SelectionBox
   - Structure
   - Interactable
+  - Sun
   layers:
   - Default
   - TransparentFX
