@@ -26,29 +26,17 @@ namespace InventorySystem
             ListItems();
         }
         //add and remove Items
-        public void AddItem(Item item)
+        public void AddItem(Item item, int amountToAdd)
         {
-            itemList.Add(item);
-        }
-        public void RemoveItem(Item item)
-        {
-            itemList.Remove(item);
-        }
-
-        //add and remove StackableItems
-        public void AddItem(StackableItem item, int amountToAdd)
-        {
-            if (itemList.Contains(item))
+            if (item is IStackable stackable)
             {
-                //checks if adding the items goes over the maxAmount
-                if (item.currentAmount + amountToAdd <= item.maxAmount)
+                if (itemList.Contains(item))
                 {
-                    item.currentAmount += amountToAdd;
+                    stackable.AddToStack(amountToAdd);
                 }
                 else
                 {
-                    //the item has gone over the max amount, display in game
-                    notificationText.text = "not enough inventory space"; 
+                    itemList.Add(item);
                 }
             }
             else
@@ -56,22 +44,17 @@ namespace InventorySystem
                 itemList.Add(item);
             }
         }
-        public void RemoveItem(StackableItem item, int amountToSubtract)
+        public void RemoveItem(Item item, int amountToSubtract)
         {
-            if (itemList.Contains(item))
+            if (item is IStackable stackable)
             {
-                item.currentAmount -= amountToSubtract;
-                if (item.currentAmount == 0)
-                {
-                    itemList.Remove(item);
-                }
-                else if (item.currentAmount < 0) //make sure it doesnt go below zero
-                {
-                    Debug.LogError("item amount is " + item.currentAmount); 
-                }
+                stackable.AddToStack(amountToSubtract);
+            }
+            else
+            {
+                itemList.Remove(item);
             }
         }
-
         public void ListItems() // should be called when opening inventory
         {
             //clean the inventory before displaying

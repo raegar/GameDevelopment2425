@@ -25,4 +25,9 @@ public class InventoryPanel : PanelBase
         Debug.Log("Inventory Panel is disabled");
     }
     // do your funky stuff here
+
+    public void DisplaySettlerInventory()
+    {
+        // display settler inventory, link to UnitControlManager for reference to the selected settler
+    }
 }

@@ -4,12 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Object
   - Settler
+  - MusicPlayer
+  - SelectionBox
+  - Structure
+  - Interactable
+  - Sun
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Settler
